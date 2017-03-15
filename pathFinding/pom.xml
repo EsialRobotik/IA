@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>fr.esialrobotik</groupId>
+    <groupId>fr.esialrobotik.ia</groupId>
     <artifactId>IA</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>fr.esialrobotik</groupId>
+
   <artifactId>pathFinding</artifactId>
   <version>1.0</version>
   <name>pathFinding</name>
