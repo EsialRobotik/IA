@@ -1,6 +1,7 @@
 # IA : IA du robot
 
-##How to compile
+## How to compile
+
 To compile this project you will need to have [maven](https://maven.apache.org/install.html) install.
 
 Then you will need to install the dependency to the project [API](https://github.com/EsialRobotik/API) of EsialRobotik. 
