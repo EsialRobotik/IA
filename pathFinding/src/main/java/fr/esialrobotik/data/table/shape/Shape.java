@@ -1,4 +1,4 @@
-package fr.esialrobotik.data.table;
+package fr.esialrobotik.data.table.shape;
 
 /**
  * Created by icule on 28/03/17.
