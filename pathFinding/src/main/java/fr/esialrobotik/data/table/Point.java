@@ -18,4 +18,12 @@ public class Point {
         this.x = jsonObject.get("x").getAsInt();
         this.y = jsonObject.get("y").getAsInt();
     }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 }

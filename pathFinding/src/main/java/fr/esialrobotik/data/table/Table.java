@@ -5,10 +5,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.inject.Singleton;
+import fr.esialrobotik.data.table.shape.Shape;
+import fr.esialrobotik.data.table.shape.ShapeFactory;
 
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by icule on 28/03/17.
@@ -20,6 +24,8 @@ public class Table {
     private int width;
     private TableColor positiveStart;
     private TableColor negativeStart;
+
+    private List<Shape> shapeList;
 
     @Inject
     public Table(Gson gson){
@@ -37,9 +43,34 @@ public class Table {
     }
 
     private void loadConfig(JsonObject rootElement){
+        shapeList = new ArrayList<Shape>();
         length = rootElement.get("longueur").getAsInt();
         width = rootElement.get("largeur").getAsInt();
         positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXPositif").getAsString());
         negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXNegatif").getAsString());
+
+        for(JsonElement jsonElement : rootElement.getAsJsonArray("zonesInterdites")){
+            shapeList.add(ShapeFactory.getShape(jsonElement.getAsJsonObject()));
+        }
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public TableColor getPositiveStartColor(){
+        return positiveStart;
+    }
+
+    public TableColor getNegativeStartColor(){
+        return negativeStart;
+    }
+
+    public List<Shape> getShapeList(){
+        return shapeList;
     }
 }
