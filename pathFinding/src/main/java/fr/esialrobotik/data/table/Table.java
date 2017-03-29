@@ -25,6 +25,8 @@ public class Table {
     private TableColor positiveStart;
     private TableColor negativeStart;
 
+    private boolean[][] forbiddenArea;
+
     private List<Shape> shapeList;
 
     @Inject
@@ -72,5 +74,26 @@ public class Table {
 
     public List<Shape> getShapeList(){
         return shapeList;
+    }
+
+    public void drawTable() {
+        this.forbiddenArea = new boolean[length/10][width/10];
+        for(int i = 0; i < forbiddenArea.length; ++i) {
+            for(int j = 0; j < forbiddenArea[0].length; ++j) {
+                this.forbiddenArea[i][j] = false;
+            }
+        }
+        for(Shape shape : shapeList) {
+            shape.drawShapeEdges(this.forbiddenArea);
+        }
+    }
+
+    public void printTable() {
+        for(int i = 0; i < forbiddenArea.length; ++i) {
+            for(int j = 0; j < forbiddenArea[0].length; ++j){
+                System.out.print(forbiddenArea[i][j]?"x":"o");
+            }
+            System.out.print("\n");
+        }
     }
 }

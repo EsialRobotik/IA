@@ -23,4 +23,17 @@ public class Circle extends Shape{
     public Point getCenter(){
         return this.center;
     }
+
+    public void drawShapeEdges(final boolean[][] board) {
+        //We divide the circle in 1k part and compute point each time.
+        // We work with the original millimetric table and will convert in cm when drawing
+        final double radSplit = Math.PI / 1000;
+        double currentValue = 0;
+        while(currentValue < (Math.PI* 2)) {
+            final int x = (int)(center.getX() + radius * Math.cos(currentValue)) / 10;
+            final int y = (int)(center.getY() + radius * Math.sin(currentValue)) / 10;
+            board[x][y] = true;
+            currentValue += radSplit;
+        }
+    }
 }

@@ -92,5 +92,9 @@ public class TableTest {
         assertEquals(200, polygon.getVertexList().get(1).getY());
         assertEquals(200, polygon.getVertexList().get(2).getX());
         assertEquals(100, polygon.getVertexList().get(2).getY());
+
+        table.drawTable();
+
+        table.printTable();
     }
 }
