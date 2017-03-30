@@ -26,13 +26,20 @@ public class Polygon extends Shape {
         return this.vertexList;
     }
 
-    public void drawShapeEdges(boolean[][] board) {
+    public boolean[][] drawShapeEdges(int length, int width) {
+        boolean[][] board = this.getEmptyBoard(length, width);
+
         //We draw the shape edges segment by segment
         for(int i =0; i < vertexList.size() - 1 ; ++i) {
             drawSegment(board, vertexList.get(i), vertexList.get(i+1));
         }
         //Only the last segment is left
         drawSegment(board, vertexList.get(0), vertexList.get(vertexList.size() - 1));
+
+        ShapeFiller shapeFiller = new ShapeFiller(board);
+        shapeFiller.fillBoard();
+
+        return board;
     }
 
     private void drawSegment(boolean[][] board, final Point a, final Point b) {
@@ -49,5 +56,7 @@ public class Polygon extends Shape {
             x += deltaX;
             y += deltaY;
         }
+        ShapeFiller shapeFiller = new ShapeFiller(board);
+        shapeFiller.fillBoard();
     }
 }

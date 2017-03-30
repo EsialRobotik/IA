@@ -36,6 +36,15 @@ public class TableTest {
             "      \"rayon\": 200\n" +
             "    },\n" +
             "    {\n" +
+            "      \"forme\" : \"cercle\",\n" +
+            "      \"centre\" :\n" +
+            "        {\n" +
+            "          \"x\" : 300,\n" +
+            "          \"y\" : 1500\n" +
+            "        },\n" +
+            "      \"rayon\": 200\n" +
+            "    },\n" +
+            "    {\n" +
             "      \"forme\" : \"polygone\",\n" +
             "      \"points\" : [\n" +
             "        {\n" +
@@ -49,6 +58,27 @@ public class TableTest {
             "        {\n" +
             "          \"x\" : 200,\n" +
             "          \"y\" : 100\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"forme\" : \"polygone\",\n" +
+            "      \"points\" : [\n" +
+            "        {\n" +
+            "          \"x\" : 1000,\n" +
+            "          \"y\" : 100\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"x\" : 1000,\n" +
+            "          \"y\" : 200\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"x\" : 1200,\n" +
+            "          \"y\" : 300\n" +
+            "        },\n" +
+            "        {\n" +
+            "          \"x\" : 1200,\n" +
+            "          \"y\" : 50\n" +
             "        }\n" +
             "      ]\n" +
             "    }\n" +
@@ -83,8 +113,14 @@ public class TableTest {
         assertEquals(1500, temp.getCenter().getY());
         assertEquals(200, temp.getRadius());
 
-        assertTrue(table.getShapeList().get(1) instanceof Polygon);
-        Polygon polygon = (Polygon)table.getShapeList().get(1);
+        assertTrue(table.getShapeList().get(1) instanceof Circle);
+        temp = (Circle)table.getShapeList().get(1);
+        assertEquals(300, temp.getCenter().getX());
+        assertEquals(1500, temp.getCenter().getY());
+        assertEquals(200, temp.getRadius());
+
+        assertTrue(table.getShapeList().get(2) instanceof Polygon);
+        Polygon polygon = (Polygon)table.getShapeList().get(2);
         assertEquals(3, polygon.getVertexList().size());
         assertEquals(100, polygon.getVertexList().get(0).getX());
         assertEquals(100, polygon.getVertexList().get(0).getY());
@@ -95,6 +131,6 @@ public class TableTest {
 
         table.drawTable();
 
-        table.printTable();
+        //table.printTable();
     }
 }

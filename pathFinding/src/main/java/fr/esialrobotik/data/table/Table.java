@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import com.google.inject.Singleton;
 import fr.esialrobotik.data.table.shape.Shape;
 import fr.esialrobotik.data.table.shape.ShapeFactory;
+import fr.esialrobotik.data.table.shape.ShapeFiller;
 
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
@@ -77,14 +78,25 @@ public class Table {
     }
 
     public void drawTable() {
-        this.forbiddenArea = new boolean[length/10][width/10];
+        int rectifiedLength = length / 10;
+        int rectifiedWidth = width / 10;
+
+        this.forbiddenArea = new boolean[rectifiedLength][rectifiedWidth];
         for(int i = 0; i < forbiddenArea.length; ++i) {
             for(int j = 0; j < forbiddenArea[0].length; ++j) {
                 this.forbiddenArea[i][j] = false;
             }
         }
         for(Shape shape : shapeList) {
-            shape.drawShapeEdges(this.forbiddenArea);
+            boolean[][] temp = shape.drawShapeEdges(rectifiedLength, rectifiedWidth);
+
+            for(int i = 0; i < rectifiedLength; ++i) {
+                for(int j = 0; j < rectifiedWidth; ++j) {
+                    if(temp[i][j]){
+                        this.forbiddenArea[i][j] = true;
+                    }
+                }
+            }
         }
     }
 
