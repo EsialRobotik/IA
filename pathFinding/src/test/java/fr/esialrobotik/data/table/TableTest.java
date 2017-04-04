@@ -131,6 +131,10 @@ public class TableTest {
 
         table.drawTable();
 
-        //table.printTable();
+        table.printTable();
+
+        table.computeForbiddenArea(67);
+
+        table.printTable();
     }
 }

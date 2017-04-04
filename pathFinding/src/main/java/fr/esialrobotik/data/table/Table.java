@@ -5,9 +5,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.inject.Singleton;
+import fr.esialrobotik.data.table.shape.Circle;
 import fr.esialrobotik.data.table.shape.Shape;
 import fr.esialrobotik.data.table.shape.ShapeFactory;
-import fr.esialrobotik.data.table.shape.ShapeFiller;
 
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
@@ -98,6 +98,47 @@ public class Table {
                 }
             }
         }
+    }
+
+    public void computeForbiddenArea(int margin) {
+        int rectifiedMargin = (int)Math.ceil(margin / 10.);
+
+        int boardLength = forbiddenArea.length;
+        int boardWidth = forbiddenArea[0].length;
+
+
+        boolean[][] buffer = new boolean[boardLength + 2 * (rectifiedMargin + 1)][boardWidth + 2 * (rectifiedMargin + 1)];
+        for(int i = 0; i < buffer.length; ++i) {
+            for(int j = 0; j < buffer[0].length; ++j) {
+                buffer[i][j] = false;
+            }
+        }
+
+        Circle circle = new Circle(rectifiedMargin * 10, rectifiedMargin * 10, rectifiedMargin * 10);
+        boolean[][] shapeBuffer = circle.drawShapeEdges((rectifiedMargin + 1) * 2, (rectifiedMargin + 1) * 2);
+
+        for(int i = 0; i < boardLength; ++i) {
+            for(int j = 0; j < boardWidth; ++j) {
+                if(forbiddenArea[i][j] || i == 0 || j == 0 || i == boardLength -1 || j == boardWidth - 1) {
+                    for(int i1 = 0; i1 < shapeBuffer.length; ++i1) {
+                        for(int j1 = 0; j1 < shapeBuffer[0].length; ++j1) {
+                            if(shapeBuffer[i1][j1]){
+                                buffer[i + 1 + i1][j + 1 + j1] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int i1 = rectifiedMargin + 1; i1 < forbiddenArea.length + rectifiedMargin + 1; ++i1) {
+            for(int j1 = rectifiedMargin + 1; j1 < forbiddenArea[0].length + rectifiedMargin + 1; ++j1) {
+                if(buffer[i1][j1]){
+                    forbiddenArea[i1 - rectifiedMargin -  1][j1 - rectifiedMargin - 1] = true;
+                }
+            }
+        }
+
     }
 
     public void printTable() {

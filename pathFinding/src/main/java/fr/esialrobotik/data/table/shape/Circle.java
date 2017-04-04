@@ -16,6 +16,11 @@ public class Circle extends Shape{
       this.radius = jsonObject.get("rayon").getAsInt();
     }
 
+    public Circle(int x, int y, int radius){
+        this.center = new Point(x, y);
+        this.radius = radius;
+    }
+
     public int getRadius(){
         return radius;
     }
@@ -24,7 +29,7 @@ public class Circle extends Shape{
         return this.center;
     }
 
-    public boolean[][] drawShapeEdges(int length, int width) { //final boolean[][] board) {
+    public boolean[][] drawShapeEdges(int length, int width) {
         boolean[][] board = this.getEmptyBoard(length, width);
 
         //We divide the circle in 1k part and compute point each time.
