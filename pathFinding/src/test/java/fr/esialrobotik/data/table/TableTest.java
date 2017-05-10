@@ -9,9 +9,8 @@ import fr.esialrobotik.data.table.shape.Polygon;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.inject.Inject;
-
-import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -85,6 +84,7 @@ public class TableTest {
             "  ]\n" +
             "}";
     private Table table;
+    private Table toLoad;
 
     public class TableModuleTest extends AbstractModule{
         protected void configure() {
@@ -97,11 +97,12 @@ public class TableTest {
     public void setUp(){
         Injector injector = Guice.createInjector(new TableModuleTest());
         table = injector.getInstance(Table.class);
+        toLoad = injector.getInstance(Table.class);
     }
 
     @Test
-    public void testLoading(){
-        table.loadFromString(loadingExample);
+    public void testLoading() throws IOException {
+        table.loadJsonFromString(loadingExample);
         assertEquals(3000, table.getLength());
         assertEquals(2000, table.getWidth());
         assertEquals(TableColor.RED, table.getPositiveStartColor());
@@ -130,11 +131,15 @@ public class TableTest {
         assertEquals(100, polygon.getVertexList().get(2).getY());
 
         table.drawTable();
-
-        table.printTable();
-
         table.computeForbiddenArea(67);
 
-        table.printTable();
+        File f = new File("lala_random_improbable.txt");
+
+        table.saveToFile(f.getName());
+        toLoad.loadFromSaveFile(f.getName());
+
+        assertEquals(table.toString(), toLoad.toString());
+
+        f.delete();
     }
 }

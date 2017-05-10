@@ -4,14 +4,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import fr.esialrobotik.data.table.shape.Circle;
 import fr.esialrobotik.data.table.shape.Shape;
 import fr.esialrobotik.data.table.shape.ShapeFactory;
 
 import javax.inject.Inject;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +37,12 @@ public class Table {
         this.gson = gson;
     }
 
-    public void loadFromFile(String filePath) throws FileNotFoundException {
+    public void loadJsonFromFile(String filePath) throws FileNotFoundException {
         JsonParser parser = new JsonParser();
         loadConfig(parser.parse(new FileReader(filePath)).getAsJsonObject());
     }
 
-    public void loadFromString(String json){
+    public void loadJsonFromString(String json){
         JsonParser parser = new JsonParser();
         loadConfig(parser.parse(json).getAsJsonObject());
     }
@@ -147,6 +149,108 @@ public class Table {
                 System.out.print(forbiddenArea[i][j]?"x":"o");
             }
             System.out.print("\n");
+        }
+    }
+
+    public String toString() {
+        String res = "";
+        for(int i = 0; i < forbiddenArea.length; ++i) {
+            for(int j = 0; j < forbiddenArea[0].length; ++j){
+                res += forbiddenArea[i][j]?"x":"o";
+            }
+            res += "\n";
+        }
+        return res;
+    }
+
+    public void saveToFile(String filename) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
+        try {
+            fw = new FileWriter(filename);
+            bw = new BufferedWriter(fw);
+            bw.write(this.getLength() + " " + this.getWidth() + "\n");
+            bw.write(this.toString());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        finally {
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+                if (fw != null) {
+                    fw.close();
+                }
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+    }
+
+    public void loadFromSaveFile(String filename) throws IOException {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(filename));
+            String line;
+            line = br.readLine();
+            String[] temp = line.split(" ");
+            this.length = Integer.parseInt(temp[0]);
+            this.width = Integer.parseInt(temp[1]);
+
+            this.forbiddenArea = new boolean[this.length / 10][this.width / 10];
+            int acc = 0;
+            while ((line = br.readLine()) != null) {
+                for(int j = 0; j < forbiddenArea[0].length ; ++j) {
+                    if(line.charAt(j) == 'x') {
+                        forbiddenArea[acc][j] = true;
+                    }
+                    else {
+                        forbiddenArea[acc][j] = false;
+                    }
+                }
+                ++acc;
+            }
+        }
+        finally {
+            if(br != null) {
+                br.close();
+            }
+        }
+    }
+
+    public static class TableModule extends AbstractModule {
+        protected void configure() {
+            bind(Gson.class);
+            bind(Table.class);
+        }
+    }
+
+    public boolean isAreaForbidden(int x, int y) {
+        return forbiddenArea[x][y];
+    }
+
+    public static void main(String[] args) throws IOException {
+        File f = new File("l");
+        System.out.println(f.getAbsoluteFile());
+        Injector injector = Guice.createInjector(new TableModule());
+        Table table = injector.getInstance(Table.class);
+        table.loadJsonFromFile(args[0]);
+
+        table.drawTable();
+        //TODO get the dimension by the robot file
+        table.computeForbiddenArea(Integer.parseInt(args[1]));
+        table.saveToFile("test.tbl");
+
+        Table saved = injector.getInstance(Table.class);
+        saved.loadFromSaveFile("test.tbl");
+        if(saved.toString().equals(table.toString())) {
+            System.out.println("Generation of the table succesfull.");
         }
     }
 }
