@@ -12,7 +12,19 @@
   <version>1.0</version>
   <name>detection</name>
   <url>http://maven.apache.org</url>
-  <dependencies>
 
+
+  <dependencies>
+    <dependency>
+      <groupId>fr.esialrobotik</groupId>
+      <artifactId>utils</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>fr.esialrobotik</groupId>
+      <artifactId>detection</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>
