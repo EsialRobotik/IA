@@ -25,9 +25,9 @@ public class UltraSoundManager {
         thread = new Thread(new Runnable() {
             public void run() {
                 while(!thread.isInterrupted()){
-                    final int[] pull = detectionInterface.ultraSoundDetection();
+                    final long[] pull = detectionInterface.ultraSoundDetection();
                     boolean pullRes = false;
-                    for(int value : pull) {
+                    for(long value : pull) {
                         if(value < threshold) {
                             pullRes = true;
                         }
