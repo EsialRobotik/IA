@@ -41,4 +41,8 @@ public class DetectionManager {
     public boolean emergencyDetection() {
         return this.ultraSoundManager.hasBeenDetected();
     }
+
+    public int getEmergencyDetectionMap() {
+        return this.ultraSoundManager.getDetectionResult();
+    }
 }

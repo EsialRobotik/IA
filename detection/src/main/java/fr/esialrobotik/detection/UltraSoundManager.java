@@ -2,6 +2,8 @@ package fr.esialrobotik.detection;
 
 
 import esialrobotik.ia.detection.DetectionInterface;
+import esialrobotik.ia.utils.log.LoggerFactory;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
@@ -10,29 +12,33 @@ import javax.inject.Inject;
  */
 public class UltraSoundManager {
     private DetectionInterface detectionInterface;
+    private Logger logger;
     private int threshold;
 
     private Thread thread;
-    private boolean hasBeenDetected;
+    private int detection;
 
     @Inject
     public UltraSoundManager(DetectionInterface detectionInterface) {
-        this.hasBeenDetected = false;
-
+        detection = 0;
+        logger = LoggerFactory.getLogger(UltraSoundManager.class);
     }
 
     public void start() {
         thread = new Thread(new Runnable() {
             public void run() {
                 while(!thread.isInterrupted()){
+                    int tempDetection = 0;
+                    int mask = 1;
                     final long[] pull = detectionInterface.ultraSoundDetection();
-                    boolean pullRes = false;
                     for(long value : pull) {
-                        if(value < threshold) {
-                            pullRes = true;
+                        if (value < threshold) {
+                            tempDetection |= mask;
                         }
+                        mask <<= mask;
                     }
-                    hasBeenDetected = pullRes;
+                    detection = tempDetection;
+                    logger.info("Ultra sound detection result " + detection);
                 }
             }
         });
@@ -50,6 +56,10 @@ public class UltraSoundManager {
     }
 
     public boolean hasBeenDetected() {
-        return this.hasBeenDetected;
+        return detection != 0;
+    }
+
+    public int getDetectionResult() {
+        return this.detection;
     }
 }
