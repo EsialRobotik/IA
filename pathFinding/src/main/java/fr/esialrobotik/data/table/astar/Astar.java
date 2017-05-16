@@ -1,6 +1,7 @@
 package fr.esialrobotik.data.table.astar;
 
 import fr.esialrobotik.data.table.Point;
+import fr.esialrobotik.data.table.Table;
 
 import java.util.PriorityQueue;
 import java.util.Stack;
@@ -37,7 +38,7 @@ public class Astar {
    * @param dimX la taille de la grille en X
    * @param dimY la taille de la grille en Y
    */
-  public Astar(int dimX, int dimY) {
+  public Astar(int dimX, int dimY, Table table) {
 
     // Pour une taille N, on stocke les points de coordonnées 0 à N.
     // Cela fait donc N+1 points
@@ -47,7 +48,16 @@ public class Astar {
     grille = new Node[this.dimX][this.dimY];
     for(int x = 0; x < this.dimX; x++) {
       for(int y = 0; y < this.dimY; y++) {
-        grille[x][y] = new Node(x, y);
+        //If we can reach a case adjacent to a node, we declare it unreachable
+        if(table.isAreaForbiddenSafe(x, y)
+                || table.isAreaForbiddenSafe(x - 1, y)
+                || table.isAreaForbiddenSafe(x - 1, y - 1)
+                || table.isAreaForbiddenSafe(x, y - 1)) {
+          grille[x][y] = null;
+        }
+        else {
+          grille[x][y] = new Node(x, y);
+        }
       }
     }
 

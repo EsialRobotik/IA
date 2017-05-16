@@ -130,11 +130,15 @@ public class Table {
 
         for(int i = 0; i < boardLength; ++i) {
             for(int j = 0; j < boardWidth; ++j) {
-                if(forbiddenArea[i][j] || i == 0 || j == 0 || i == boardLength -1 || j == boardWidth - 1) {
+                if(forbiddenArea[i][j]) {// || i == 0 || j == 0 || i == boardLength -1 || j == boardWidth - 1) {
                     for(int i1 = 0; i1 < shapeBuffer.length; ++i1) {
                         for(int j1 = 0; j1 < shapeBuffer[0].length; ++j1) {
                             if(shapeBuffer[i1][j1]){
                                 buffer[i + 1 + i1][j + 1 + j1] = true;
+                                buffer[i + 2 + i1][j + 1 + j1] = true;
+                                buffer[i + 1 + i1][j + 2 + j1] = true;
+                                buffer[i + 2 + i1][j + 2 + j1] = true;
+
                             }
                         }
                     }
@@ -147,6 +151,29 @@ public class Table {
                 if(buffer[i1][j1]){
                     forbiddenArea[i1 - rectifiedMargin -  1][j1 - rectifiedMargin - 1] = true;
                 }
+            }
+        }
+
+        //Now we disable table side we draw directly in the main buffer
+        for(int i = 0; i < rectifiedMargin; ++i) {
+            for(int j = 0; j < rectifiedWidth; ++j) {
+                forbiddenArea[i][j] = true;
+            }
+        }
+
+        for(int i = rectifiedLength - rectifiedMargin; i < rectifiedLength; ++i) {
+            for(int j = 0; j < rectifiedWidth; ++j) {
+                forbiddenArea[i][j] = true;
+            }
+        }
+
+        for(int i = 0; i < rectifiedLength; ++i) {
+            for(int j = 0; j < rectifiedMargin; ++j) {
+                forbiddenArea[i][j] = true;
+            }
+
+            for(int j = rectifiedWidth - rectifiedMargin; j < rectifiedWidth; ++j) {
+                forbiddenArea[i][j] = true;
             }
         }
 
@@ -243,6 +270,13 @@ public class Table {
     }
 
     public boolean isAreaForbidden(int x, int y) {
+        return forbiddenArea[x][y];
+    }
+
+    public boolean isAreaForbiddenSafe(int x, int y) {
+        if(x < 0 || y < 0 || x >= rectifiedLength || y >= rectifiedWidth ) {
+            return false;
+        }
         return forbiddenArea[x][y];
     }
 

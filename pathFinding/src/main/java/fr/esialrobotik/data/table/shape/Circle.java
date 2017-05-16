@@ -10,6 +10,7 @@ import fr.esialrobotik.data.table.Point;
 public class Circle extends Shape{
     private Point center;
     private int radius;
+    private static double epsilon = 0.00001;
 
     public Circle(JsonObject jsonObject){
       this.center = new Point(jsonObject.get("centre").getAsJsonObject());
@@ -34,12 +35,19 @@ public class Circle extends Shape{
 
         //We divide the circle in 1k part and compute point each time.
         // We work with the original millimetric table and will convert in cm when drawing
-        final double radSplit = Math.PI / 1000;
+        final double radSplit = Math.PI / 100;
         double currentValue = 0;
         while(currentValue < (Math.PI* 2)) {
-            final int x = (int)(center.getX() + radius * Math.cos(currentValue)) / 10;
-            final int y = (int)(center.getY() + radius * Math.sin(currentValue)) / 10;
-            board[x][y] = true;
+            double xFloat = (center.getX() + radius * Math.cos(currentValue)) / 10.;
+            double yFloat = ((center.getY() + radius * Math.sin(currentValue)) / 10.);
+
+            final int x = (int)(xFloat);
+            final int y = (int)(yFloat);
+
+            if((xFloat - x) > epsilon && (yFloat -y) > epsilon) {
+                board[x][y] = true;
+            }
+            //System.out.println(x + " " + y);
             currentValue += radSplit;
         }
         ShapeFiller shapeFiller = new ShapeFiller(board);
