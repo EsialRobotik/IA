@@ -24,7 +24,9 @@ import java.util.List;
 public class Table {
     private Gson gson; // Gson object used to deserialize content of configuration
     private int length;
+    private int rectifiedLength;
     private int width;
+    private int rectifiedWidth;
     private TableColor positiveStart;
     private TableColor negativeStart;
 
@@ -50,7 +52,9 @@ public class Table {
     private void loadConfig(JsonObject rootElement){
         shapeList = new ArrayList<Shape>();
         length = rootElement.get("longueur").getAsInt();
+        rectifiedLength = length / 10;
         width = rootElement.get("largeur").getAsInt();
+        rectifiedWidth = width / 10;
         positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXPositif").getAsString());
         negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXNegatif").getAsString());
 
@@ -67,6 +71,14 @@ public class Table {
         return width;
     }
 
+    public int getRectifiedLength() {
+        return rectifiedLength;
+    }
+
+    public int getRectifiedWidth() {
+        return rectifiedWidth;
+    }
+
     public TableColor getPositiveStartColor(){
         return positiveStart;
     }
@@ -80,9 +92,6 @@ public class Table {
     }
 
     public void drawTable() {
-        int rectifiedLength = length / 10;
-        int rectifiedWidth = width / 10;
-
         this.forbiddenArea = new boolean[rectifiedLength][rectifiedWidth];
         for(int i = 0; i < forbiddenArea.length; ++i) {
             for(int j = 0; j < forbiddenArea[0].length; ++j) {
@@ -201,9 +210,11 @@ public class Table {
             line = br.readLine();
             String[] temp = line.split(" ");
             this.length = Integer.parseInt(temp[0]);
+            this.rectifiedLength = length / 10;
             this.width = Integer.parseInt(temp[1]);
+            this.rectifiedWidth = width / 10;
 
-            this.forbiddenArea = new boolean[this.length / 10][this.width / 10];
+            this.forbiddenArea = new boolean[rectifiedLength][rectifiedWidth];
             int acc = 0;
             while ((line = br.readLine()) != null) {
                 for(int j = 0; j < forbiddenArea[0].length ; ++j) {
