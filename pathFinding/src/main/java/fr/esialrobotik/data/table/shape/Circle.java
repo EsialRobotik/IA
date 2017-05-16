@@ -1,6 +1,5 @@
 package fr.esialrobotik.data.table.shape;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import fr.esialrobotik.data.table.Point;
 
@@ -35,7 +34,7 @@ public class Circle extends Shape{
 
         //We divide the circle in 1k part and compute point each time.
         // We work with the original millimetric table and will convert in cm when drawing
-        final double radSplit = Math.PI / 100;
+        final double radSplit = Math.PI / 1000;
         double currentValue = 0;
         while(currentValue < (Math.PI* 2)) {
             double xFloat = (center.getX() + radius * Math.cos(currentValue)) / 10.;
@@ -47,7 +46,6 @@ public class Circle extends Shape{
             if((xFloat - x) > epsilon && (yFloat -y) > epsilon) {
                 board[x][y] = true;
             }
-            //System.out.println(x + " " + y);
             currentValue += radSplit;
         }
         ShapeFiller shapeFiller = new ShapeFiller(board);
