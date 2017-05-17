@@ -37,6 +37,7 @@ public class MasterLoop implements Runnable {
         if(direction == AsservInterface.MovementDirection.FORWARD
                 && (detected & 0x7) != 0) {
           //We detect something. That's horrible
+
         }
         else if (direction == AsservInterface.MovementDirection.BACKWARD
                 && (detected & 0x8) != 0) {
