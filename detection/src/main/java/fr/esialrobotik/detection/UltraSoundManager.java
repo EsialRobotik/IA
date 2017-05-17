@@ -3,6 +3,7 @@ package fr.esialrobotik.detection;
 
 import esialrobotik.ia.detection.DetectionInterface;
 import esialrobotik.ia.utils.log.LoggerFactory;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
@@ -21,6 +22,7 @@ public class UltraSoundManager {
     @Inject
     public UltraSoundManager(DetectionInterface detectionInterface) {
         detection = 0;
+        LoggerFactory.init(Level.TRACE);
         logger = LoggerFactory.getLogger(UltraSoundManager.class);
     }
 
