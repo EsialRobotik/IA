@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "points": 4,
+    "temps": 6,
+    "taches": [
+      {
+        "id" : 1,
+        "positionX" : 200,
+        "positionY" : 500,
+        "theta": 0,
+        "type" : "deplacement",
+        "actionId" : -1
+      },
+      {
+        "id" : 2,
+        "positionX" : 200,
+        "positionY" : 500,
+        "theta": 0,
+        "type" : "manipulation",
+        "actionId" : 1
+      },
+      {
+        "id" : 3,
+        "positionX" : 1000,
+        "positionY" : 500,
+        "theta": 0,
+        "type" : "deplacement",
+        "actionId" : -1
+      },
+      {
+        "id" : 4,
+        "positionX" : 1000,
+        "positionY" : 500,
+        "theta": 0,
+        "type" : "manipulation",
+        "actionId" : 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "points": 4,
+    "temps": 6,
+    "taches": [
+      {
+        "id" : 1,
+        "positionX" : 300,
+        "positionY" : 300,
+        "theta": 0,
+        "type" : "deplacement",
+        "actionId" : -1
+      },
+      {
+        "id" : 2,
+        "positionX" : 300,
+        "positionY" : 200,
+        "theta": 0,
+        "type" : "deplacement",
+        "actionId" : 1
+      }
+    ]
+  }
+]
