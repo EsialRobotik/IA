@@ -6,6 +6,8 @@ import com.google.inject.Inject;
 import esialrobotik.ia.asserv.AsservAPIConfiguration;
 import esialrobotik.ia.detection.DetectionModuleConfiguration;
 import fr.esialrobotik.data.table.TableColor;
+import fr.esialrobotik.pathFinding.PathFindingConfiguration;
+import fr.esialrobotik.pathFinding.PathFindingModule;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,14 +19,19 @@ import java.io.FileReader;
 public class ConfigurationManager {
     private int colorGpio;
     private int tiretteGpio;
+    private String tableDescriptionFilePath;
 
     private AsservAPIConfiguration asservAPIConfiguration;
     private DetectionModuleConfiguration detectionConfiguration;
+    private PathFindingConfiguration pathFindingConfiguration;
 
     @Inject
-    public ConfigurationManager(AsservAPIConfiguration asservAPIConfiguration, DetectionModuleConfiguration detectionConfiguration) {
+    public ConfigurationManager(AsservAPIConfiguration asservAPIConfiguration,
+                                DetectionModuleConfiguration detectionConfiguration,
+                                PathFindingConfiguration pathFindingConfiguration) {
         this.asservAPIConfiguration = asservAPIConfiguration;
         this.detectionConfiguration = detectionConfiguration;
+        this.pathFindingConfiguration = pathFindingConfiguration;
     }
 
     public void loadConfiguration(String path) throws FileNotFoundException {
@@ -33,10 +40,10 @@ public class ConfigurationManager {
 
         this.asservAPIConfiguration.loadConfig(configRootNode.get("asserv").getAsJsonObject());
         this.detectionConfiguration.loadConfiguration(configRootNode.get("detection").getAsJsonObject());
+        this.pathFindingConfiguration.loadConfig(configRootNode);
 
         this.colorGpio = configRootNode.get("gpioColorSelector").getAsInt();
         this.tiretteGpio = configRootNode.get("gpioTirette").getAsInt();
-
     }
 
     public int getColorGpio() {
@@ -47,11 +54,19 @@ public class ConfigurationManager {
         return this.tiretteGpio;
     }
 
+    public String getTableDescriptionFilePath() {
+        return this.tableDescriptionFilePath;
+    }
+
     public AsservAPIConfiguration getAsservAPIConfiguration() {
         return this.asservAPIConfiguration;
     }
 
     public DetectionModuleConfiguration getDetectionConfiguration() {
         return detectionConfiguration;
+    }
+
+    public PathFindingConfiguration getPathFindingConfiguration() {
+        return this.pathFindingConfiguration;
     }
 }

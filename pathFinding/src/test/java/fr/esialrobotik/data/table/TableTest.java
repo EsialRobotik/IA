@@ -86,18 +86,10 @@ public class TableTest {
     private Table table;
     private Table toLoad;
 
-    public class TableModuleTest extends AbstractModule{
-        protected void configure() {
-            bind(Gson.class);
-            bind(Table.class);
-        }
-    }
-
     @Before
     public void setUp(){
-        Injector injector = Guice.createInjector(new TableModuleTest());
-        table = injector.getInstance(Table.class);
-        toLoad = injector.getInstance(Table.class);
+        table = new Table();
+        toLoad = new Table();
     }
 
     @Test

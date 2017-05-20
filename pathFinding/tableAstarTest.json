@@ -1,0 +1,29 @@
+{
+  "longueur": 3000,
+  "largeur": 2000,
+  "couleurDepartXPositif": "Rouge",
+  "couleurDepartXNegatif": "Bleu",
+  "zonesInterdites" : [
+    {
+      "forme" : "polygone",
+      "points" : [
+        {
+          "x" : 100,
+          "y" : 100
+        },
+        {
+          "x" : 100,
+          "y" : 800
+        },
+        {
+          "x" : 200,
+          "y" : 800
+        },
+        {
+          "x" : 200,
+          "y" : 100
+        }
+      ]
+    }
+  ]
+}

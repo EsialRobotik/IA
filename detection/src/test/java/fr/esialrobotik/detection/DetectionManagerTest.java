@@ -28,7 +28,8 @@ public class DetectionManagerTest {
         JsonParser parser = new JsonParser();
         JsonObject object = parser.parse(configure).getAsJsonObject();
 
-        DetectionModuleConfiguration config = new DetectionModuleConfiguration(object);
+        DetectionModuleConfiguration config = new DetectionModuleConfiguration();
+        config.loadConfiguration(object);
 
         Injector injector = Guice.createInjector(new DetectionModule(config));
         DetectionManager detectionManager = injector.getInstance(DetectionManager.class);

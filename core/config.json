@@ -2,6 +2,7 @@
   "gpioColorSelector": 12,
   "gpioTirette": 13,
   "matchDuration": 90,
+  "tablePath": "table.tbl",
 
 
   "asserv": {

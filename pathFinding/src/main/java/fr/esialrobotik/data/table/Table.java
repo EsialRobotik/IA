@@ -11,6 +11,7 @@ import com.google.inject.Singleton;
 import fr.esialrobotik.data.table.shape.Circle;
 import fr.esialrobotik.data.table.shape.Shape;
 import fr.esialrobotik.data.table.shape.ShapeFactory;
+import fr.esialrobotik.pathFinding.PathFindingConfiguration;
 
 import javax.inject.Inject;
 import java.io.*;
@@ -22,7 +23,6 @@ import java.util.List;
  */
 @Singleton
 public class Table {
-    private Gson gson; // Gson object used to deserialize content of configuration
     private int length;
     private int rectifiedLength;
     private int width;
@@ -34,9 +34,13 @@ public class Table {
 
     private List<Shape> shapeList;
 
+    public Table(){
+
+    }
+
     @Inject
-    public Table(Gson gson){
-        this.gson = gson;
+    public Table(PathFindingConfiguration pathFindingConfiguration) throws IOException {
+        this.loadFromSaveFile(pathFindingConfiguration.getTableConfigurationPath());
     }
 
     public void loadJsonFromFile(String filePath) throws FileNotFoundException {
