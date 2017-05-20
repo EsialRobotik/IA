@@ -1,10 +1,10 @@
 package fr.esialrobotik;
 
 import esialrobotik.ia.asserv.AsservInterface;
+import esialrobotik.ia.asserv.Position;
 import fr.esialrobotik.data.table.Point;
 
 import javax.inject.Inject;
-import javax.swing.text.Position;
 import java.util.List;
 
 /**

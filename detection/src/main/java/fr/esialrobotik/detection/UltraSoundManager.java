@@ -5,6 +5,7 @@ import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.detection.DetectionInterface;
 import esialrobotik.ia.utils.log.LoggerFactory;
+import fr.esialrobotik.MovementManager;
 import fr.esialrobotik.data.table.Table;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
@@ -22,16 +23,17 @@ public class UltraSoundManager {
     private Thread thread;
     private int detection;
 
-    private AsservInterface asservInterface;
+    private MovementManager movementManager;
     private Table table;
 
     @Inject
-    public UltraSoundManager(DetectionInterface detectionInterface, Table table, AsservInterface asservInterface) {
+    public UltraSoundManager(DetectionInterface detectionInterface, Table table, MovementManager movementManager) {
         detection = 0;
         LoggerFactory.init(Level.TRACE);
         logger = LoggerFactory.getLogger(UltraSoundManager.class);
 
-        this.asservInterface = asservInterface;
+        this.movementManager = movementManager;
+        this.detectionInterface = detectionInterface;
         this.table = table;
 
     }
@@ -42,7 +44,7 @@ public class UltraSoundManager {
                 while(!thread.isInterrupted()){
                     int tempDetection = 0;
                     final long[] pull = detectionInterface.ultraSoundDetection();
-                    Position position = asservInterface.getPosition();
+                    Position position = movementManager.getPosition();
                     int x, y;
 
                     //First one is front left
