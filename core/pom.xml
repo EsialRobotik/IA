@@ -42,5 +42,11 @@
       <artifactId>pathFinding</artifactId>
       <version>1.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>fr.esialrobotik.ia</groupId>
+      <artifactId>movement</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>

@@ -9,8 +9,8 @@ import javax.inject.Inject;
 /**
  * Created by Guillaume on 17/05/2017.
  */
-public class MasterLoop implements Runnable {
-  private AsservInterface asservInterface;
+public class MasterLoop {
+  private MovementManager movementManager;
   private DetectionManager detectionManager;
   private ActionCollection actionCollection;
   private ActionDescriptor currentAction;
@@ -21,24 +21,25 @@ public class MasterLoop implements Runnable {
   private boolean interrupted;
 
   @Inject
-  public MasterLoop(AsservInterface asservInterface,
+  public MasterLoop(MovementManager movementManager,
                     DetectionManager detectionManager,
                     ActionCollection actionCollection,
                     PathFinding pathFinding,
                     ColorDetector colorDetector,
                     Chrono chrono) {
-    this.asservInterface = asservInterface;
+    this.movementManager = movementManager;
     this.detectionManager = detectionManager;
     this.actionCollection = actionCollection;
     this.pathFinding = pathFinding;
     this.colorDetector = colorDetector;
+    this.chrono = chrono;
 
     this.interrupted = true;
   }
 
 
   //NOTE robot is at starting point before reaching this
-  public void run() {
+  public void mainLoop() {
     //When we arrived here everything is set up so we just need to launch the first path finding,
     // and wait for the beginning of the match
 
@@ -70,7 +71,7 @@ public class MasterLoop implements Runnable {
       int detected = this.detectionManager.getEmergencyDetectionMap();
       if(detected != 0) {
         //We detect something, we get the movement direction and we check if we detect it in the right side
-        AsservInterface.MovementDirection direction = this.asservInterface.getMovementDirection();
+        AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
 
         if(direction == AsservInterface.MovementDirection.FORWARD
                 && (detected & 0x7) != 0) {
@@ -82,10 +83,7 @@ public class MasterLoop implements Runnable {
           // something is sneaking on us, grab the rocket launcher
         }
 
-        // 2/ if the timer ended
-
-
-        // 3/ Check if the current task Status
+        // 2/ Check if the current task Status
         //   a if an action was being executed and have finished => let's start the new one
         //   b A path was being calculate, let's check if the computation is terminated => let's send it to asserv
       }
@@ -100,6 +98,10 @@ public class MasterLoop implements Runnable {
   }
 
   public void matchEnd() {
+    //Stop the asserv here
 
+    interrupted = true;
+
+    //Launch the funny action if needed
   }
 }

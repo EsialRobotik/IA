@@ -13,6 +13,16 @@
   <name>movement</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <dependency>
+      <groupId>fr.esialrobotik</groupId>
+      <artifactId>asserv</artifactId>
+      <version>1.0</version>
+    </dependency>
 
+    <dependency>
+      <groupId>fr.esialrobotik.ia</groupId>
+      <artifactId>pathFinding</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>
