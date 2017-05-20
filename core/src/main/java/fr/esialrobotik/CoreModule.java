@@ -29,5 +29,6 @@ public class CoreModule extends AbstractModule {
         bind(ColorDetector.class).in(Singleton.class);
         bind(Chrono.class).in(Singleton.class);
         bind(MovementManager.class).in(Singleton.class);
+        bind(Tirette.class).in(Singleton.class);
     }
 }

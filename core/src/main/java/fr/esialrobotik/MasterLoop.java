@@ -20,6 +20,7 @@ public class MasterLoop {
   private PathFinding pathFinding;
   private ColorDetector colorDetector;
   private Chrono chrono;
+  private Tirette tirette;
 
   private boolean interrupted;
 
@@ -29,13 +30,15 @@ public class MasterLoop {
                     ActionCollection actionCollection,
                     PathFinding pathFinding,
                     ColorDetector colorDetector,
-                    Chrono chrono) {
+                    Chrono chrono,
+                    Tirette tirette) {
     this.movementManager = movementManager;
     this.detectionManager = detectionManager;
     this.actionCollection = actionCollection;
     this.pathFinding = pathFinding;
     this.colorDetector = colorDetector;
     this.chrono = chrono;
+    this.tirette = tirette;
 
     this.interrupted = true;
   }
@@ -49,10 +52,10 @@ public class MasterLoop {
     // FIRST COMPUTATION HERE
     // 1/ We pull the first action to do
     currentAction = actionCollection.getNextActionToPerform();
-    Step step = currentAction.getNextStep(); //Should not be null
+    Step currentStep = currentAction.getNextStep(); //Should not be null
 
     // 2/ We launch the Astar (to spare time)
-    launchAstar(positionToPoint(step.getEndPosition()));
+    launchAstar(positionToPoint(currentStep.getEndPosition()));
     while(!pathFinding.isComputationEnded()) {
       try {
         Thread.sleep(100);
@@ -65,6 +68,7 @@ public class MasterLoop {
     movementManager.executeMovement(pathFinding.getLastComputedPath());
 
     // 4/ We wait for the beginning of the match
+    tirette.waitForTirette(false);
 
     // 5/ start of the timer start the main loop
     chrono.startMatch(this);
@@ -100,6 +104,7 @@ public class MasterLoop {
     // Calage bordure
 
     // Wait tirette remise
+    tirette.waitForTirette(true);
   }
 
   public void matchEnd() {
