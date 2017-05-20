@@ -48,6 +48,10 @@ public class Step {
     return this.actionType;
   }
 
+  public Position getEndPosition() {
+    return this.position;
+  }
+
 
   public String toString() {
     String res  = "id : " + stepId;

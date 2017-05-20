@@ -7,6 +7,7 @@ import fr.esialrobotik.data.table.astar.LineSimplificator;
 
 import javax.inject.Inject;
 import javax.swing.text.Position;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -31,10 +32,11 @@ public class PathFinding {
             public void run() {
                 Stack<Point> path = astar.getChemin(start, end);
                 computedPath = LineSimplificator.getSimpleLines(path);
+                Collections.reverse(computedPath);
                 computationEnded = true;
             }
         });
-        computationStart = false;
+        computationEnded = false;
         computedPath = null;
         t.start();
     }

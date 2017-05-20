@@ -1,10 +1,13 @@
 package fr.esialrobotik;
 
 import esialrobotik.ia.asserv.AsservInterface;
+import esialrobotik.ia.asserv.Position;
+import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.detection.DetectionManager;
 import fr.esialrobotik.pathFinding.PathFinding;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Guillaume on 17/05/2017.
@@ -49,7 +52,7 @@ public class MasterLoop {
     Step step = currentAction.getNextStep(); //Should not be null
 
     // 2/ We launch the Astar (to spare time)
-
+    launchAstar(positionToPoint(step.getEndPosition()));
     while(!pathFinding.isComputationEnded()) {
       try {
         Thread.sleep(100);
@@ -59,11 +62,13 @@ public class MasterLoop {
       }
     }
     // 3/ We send command to the asserv manager
+    movementManager.executeMovement(pathFinding.getLastComputedPath());
 
     // 4/ We wait for the beginning of the match
 
     // 5/ start of the timer start the main loop
     chrono.startMatch(this);
+    movementManager.resumeAsserv();
 
 
     while(!interrupted) {
@@ -103,5 +108,14 @@ public class MasterLoop {
     interrupted = true;
 
     //Launch the funny action if needed
+  }
+
+  //Start the computation of the path.
+  private void launchAstar(Point destination) {
+    pathFinding.computePath(positionToPoint(movementManager.getPosition()), destination);
+  }
+
+  private Point positionToPoint(Position p) {
+    return new Point(p.getX(), p.getY());
   }
 }
