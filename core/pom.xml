@@ -30,5 +30,11 @@
       <artifactId>detection</artifactId>
       <version>1.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>fr.esialrobotik.ia</groupId>
+      <artifactId>timer</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>

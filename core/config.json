@@ -1,6 +1,7 @@
 {
   "gpioColorSelector": 12,
   "gpioTirette": 13,
+  "matchDuration": 90,
 
 
   "asserv": {

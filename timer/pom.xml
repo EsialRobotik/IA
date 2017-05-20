@@ -14,5 +14,10 @@
   <url>http://maven.apache.org</url>
   <dependencies>
 
+    <dependency>
+      <groupId>fr.esialrobotik</groupId>
+      <artifactId>core</artifactId>
+      <version>1.0</version>
+    </dependency>
   </dependencies>
 </project>

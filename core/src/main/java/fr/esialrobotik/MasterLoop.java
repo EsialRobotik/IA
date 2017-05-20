@@ -15,21 +15,29 @@ public class MasterLoop implements Runnable {
   private ActionCollection actionCollection;
   private ActionDescriptor currentAction;
   private PathFinding pathFinding;
+  private ColorDetector colorDetector;
+  private Chrono chrono;
 
   private boolean interrupted;
 
   @Inject
-  public MasterLoop(AsservInterface asservInterface, DetectionManager detectionManager, ActionCollection actionCollection, PathFinding pathFinding) {
+  public MasterLoop(AsservInterface asservInterface,
+                    DetectionManager detectionManager,
+                    ActionCollection actionCollection,
+                    PathFinding pathFinding,
+                    ColorDetector colorDetector,
+                    Chrono chrono) {
     this.asservInterface = asservInterface;
     this.detectionManager = detectionManager;
     this.actionCollection = actionCollection;
     this.pathFinding = pathFinding;
+    this.colorDetector = colorDetector;
 
     this.interrupted = true;
   }
 
 
-
+  //NOTE robot is at starting point before reaching this
   public void run() {
     //When we arrived here everything is set up so we just need to launch the first path finding,
     // and wait for the beginning of the match
@@ -54,6 +62,8 @@ public class MasterLoop implements Runnable {
     // 4/ We wait for the beginning of the match
 
     // 5/ start of the timer start the main loop
+    chrono.startMatch(this);
+
 
     while(!interrupted) {
       // 1/ we check if we detect something
@@ -71,15 +81,25 @@ public class MasterLoop implements Runnable {
                 && (detected & 0x8) != 0) {
           // something is sneaking on us, grab the rocket launcher
         }
+
+        // 2/ if the timer ended
+
+
+        // 3/ Check if the current task Status
+        //   a if an action was being executed and have finished => let's start the new one
+        //   b A path was being calculate, let's check if the computation is terminated => let's send it to asserv
       }
-
-      // 2/ if the timer ended
-
-
-      // 3/ Check if the current task Status
-      //   a if an action was being executed and have finished => let's start the new one
-      //   b A path was being calculate, let's check if the computation is terminated => let's send it to asserv
-
     }
+  }
+
+  //Function to be call to set up the robot and lead him to starting point
+  public void init() {
+    // Calage bordure
+
+    // Wait tirette remise
+  }
+
+  public void matchEnd() {
+
   }
 }
