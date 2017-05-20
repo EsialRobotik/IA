@@ -44,6 +44,11 @@ public class Step {
     }
   }
 
+  public Type getActionType() {
+    return this.actionType;
+  }
+
+
   public String toString() {
     String res  = "id : " + stepId;
     res += "\nposition : " + position;

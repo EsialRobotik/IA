@@ -33,6 +33,11 @@ public class ActionCollection {
     return res;
   }
 
+  public ActionDescriptor getNextActionToPerform() {
+    //TODO implement fast solution
+    return null;
+  }
+
   public static void main(String args[]) throws FileNotFoundException {
     JsonParser parser = new JsonParser();
     JsonElement elt = parser.parse(new JsonReader(new FileReader("actionHandler/configCollection.json")));
