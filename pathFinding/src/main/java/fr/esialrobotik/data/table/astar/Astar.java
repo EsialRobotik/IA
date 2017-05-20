@@ -3,6 +3,7 @@ package fr.esialrobotik.data.table.astar;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
 
+import javax.inject.Inject;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -35,15 +36,14 @@ public class Astar {
 
   /**
    * Crée un calculateur de chemin basé sur l'algo Astar
-   * @param dimX la taille de la grille en X
-   * @param dimY la taille de la grille en Y
    */
-  public Astar(int dimX, int dimY, Table table) {
+  @Inject
+  public Astar(Table table) {
 
     // Pour une taille N, on stocke les points de coordonnées 0 à N.
     // Cela fait donc N+1 points
-    this.dimX = dimX + 1;
-    this.dimY = dimY + 1;
+    this.dimX = table.getRectifiedLength() + 1;
+    this.dimY = table.getRectifiedWidth() + 1;
 
     grille = new Node[this.dimX][this.dimY];
     for(int x = 0; x < this.dimX; x++) {

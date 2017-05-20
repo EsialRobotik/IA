@@ -22,8 +22,8 @@ public class PathFinding {
     private List<Point> computedPath;
 
     @Inject
-    public PathFinding(Table table) {
-        this.astar = new Astar(table.getRectifiedLength(), table.getRectifiedWidth(), table);
+    public PathFinding(Astar astar) {
+        this.astar = astar;
     }
 
     public void computePath(final Point start, final Point end) {

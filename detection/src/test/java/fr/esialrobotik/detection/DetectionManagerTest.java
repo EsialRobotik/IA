@@ -23,7 +23,7 @@ public class DetectionManagerTest {
             "  ]\n" +
             "}";
 
-    @Test
+    //@Test
     public void testInstantiation() {
         JsonParser parser = new JsonParser();
         JsonObject object = parser.parse(configure).getAsJsonObject();
