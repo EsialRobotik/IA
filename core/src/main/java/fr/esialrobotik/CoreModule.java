@@ -30,5 +30,6 @@ public class CoreModule extends AbstractModule {
         bind(Chrono.class).in(Singleton.class);
         bind(MovementManager.class).in(Singleton.class);
         bind(Tirette.class).in(Singleton.class);
+        bind(ActionSupervisor.class).in(Singleton.class);
     }
 }

@@ -1,7 +1,5 @@
 package fr.esialrobotik;
 
-import esialrobotik.ia.actions.ActionExecutor;
-import esialrobotik.ia.actions.ActionInterface;
 import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import fr.esialrobotik.data.table.Point;
@@ -24,9 +22,8 @@ public class MasterLoop {
 
   private boolean interrupted;
 
-  private ActionInterface actionInterface;
+  private ActionSupervisor actionSupervisor;
   private ActionDescriptor currentAction;
-  private ActionExecutor currentActionExecutor;
   private Step currentStep;
 
 
@@ -34,7 +31,7 @@ public class MasterLoop {
   public MasterLoop(MovementManager movementManager,
                     DetectionManager detectionManager,
                     ActionCollection actionCollection,
-                    ActionInterface actionInterface,
+                    ActionSupervisor actionSupervisor,
                     PathFinding pathFinding,
                     ColorDetector colorDetector,
                     Chrono chrono,
@@ -46,7 +43,7 @@ public class MasterLoop {
     this.colorDetector = colorDetector;
     this.chrono = chrono;
     this.tirette = tirette;
-    this.actionInterface = actionInterface;
+    this.actionSupervisor = actionSupervisor;
 
     this.interrupted = true;
   }
@@ -63,7 +60,6 @@ public class MasterLoop {
     // 1/ We pull the first action to do
     currentAction = actionCollection.getNextActionToPerform();
     currentStep = currentAction.getNextStep(); //Should not be null
-    currentActionExecutor = null;
 
     // 2/ We launch the Astar (to spare time)
     launchAstar(positionToPoint(currentStep.getEndPosition()));
@@ -112,7 +108,6 @@ public class MasterLoop {
         }
       }
       else if(currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
-        currentActionExecutor = null;
         currentStep = null;
         //Time to fetch the next one
         if(currentAction.hasNextStep()) {
@@ -129,8 +124,7 @@ public class MasterLoop {
         }
         //TODO add other type
         if(currentStep.getActionType() == Step.Type.MANIPULATION) {
-          currentActionExecutor = actionInterface.getActionExecutor(currentStep.getActionId());
-          currentActionExecutor.execute();
+          actionSupervisor.executeCommand(currentStep.getActionId());
         }
         else if(currentStep.getActionType() == Step.Type.DEPLACEMENT){
           // We need to launch the astar
@@ -149,8 +143,7 @@ public class MasterLoop {
     if(currentStep.getActionType() == Step.Type.DEPLACEMENT && movementManager.isLastOrderedMovementEnded()) {
       return true;
     }
-    else if(currentActionExecutor != null //A bit defensive but who cares
-            && currentStep.getActionType() == Step.Type.MANIPULATION && currentActionExecutor.finished()) {
+    else if(currentStep.getActionType() == Step.Type.MANIPULATION && actionSupervisor.isLastExecutionFinished()) {
       return true;
     }
     return false;
@@ -166,9 +159,11 @@ public class MasterLoop {
 
   public void matchEnd() {
     //Stop the asserv here
+    movementManager.haltAsserv(false);
+
+    //Don't forget action
 
     interrupted = true;
-
     //Launch the funny action if needed
   }
 

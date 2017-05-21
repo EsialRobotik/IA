@@ -69,6 +69,10 @@ public class MovementManager {
         return isFinished;
     }
 
+    public void setCap(double theta) {
+        
+    }
+
     public AsservInterface.MovementDirection getMovementDirection() {
         return this.asservInterface.getMovementDirection();
     }
