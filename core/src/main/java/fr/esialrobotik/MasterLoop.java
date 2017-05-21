@@ -56,24 +56,33 @@ public class MasterLoop {
     // and wait for the beginning of the match
     boolean everythingDone = false;
     boolean astarLaunch = false;
+    boolean somethingDetected = false;
+    boolean movingForward = false;
 
     // FIRST COMPUTATION HERE
     // 1/ We pull the first action to do
     currentAction = actionCollection.getNextActionToPerform();
     currentStep = currentAction.getNextStep(); //Should not be null
 
-    // 2/ We launch the Astar (to spare time)
-    launchAstar(positionToPoint(currentStep.getEndPosition()));
-    while(!pathFinding.isComputationEnded()) {
-      try {
-        Thread.sleep(100);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-        //We got interrupted, things are bad
+    //The first action is always a move straight or a path finding issue
+    // 2/ We launch the Astar (to spare time) if we have a non always.
+    if(currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+      launchAstar(positionToPoint(currentStep.getEndPosition()));
+      while(!pathFinding.isComputationEnded()) {
+        try {
+          Thread.sleep(100);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+          //We got interrupted, things are bad
+        }
       }
+      // 3/ We send command to the asserv manager
+      movementManager.executeMovement(pathFinding.getLastComputedPath());
     }
-    // 3/ We send command to the asserv manager
-    movementManager.executeMovement(pathFinding.getLastComputedPath());
+    else {//Straight line
+      movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
+    }
+
 
     // 4/ We wait for the beginning of the match
     tirette.waitForTirette(false);
@@ -83,63 +92,82 @@ public class MasterLoop {
     movementManager.resumeAsserv();
 
 
-    while(!interrupted && !everythingDone) {
-      // 1/ we check if we detect something
-      int detected = this.detectionManager.getEmergencyDetectionMap();
-      if(detected != 0) {
-        //We detect something, we get the movement direction and we check if we detect it in the right side
-        AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
+    while(!interrupted) {
+      if(!somethingDetected) {
+        // 1/ we check if we detect something
+        int detected = this.detectionManager.getEmergencyDetectionMap();
+        if(detected != 0) {
+          //We detect something, we get the movement direction and we check if we detect it in the right side
+          AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
 
-        if(direction == AsservInterface.MovementDirection.FORWARD
-                && (detected & 0x7) != 0) {
-          //We detect something. That's horrible
+          if(direction == AsservInterface.MovementDirection.FORWARD
+                  && (detected & 0x7) != 0) {
+            //We detect something. That's horrible
+            movementManager.haltAsserv(true);
+            movingForward = true;
 
-        }
-        else if (direction == AsservInterface.MovementDirection.BACKWARD
-                && (detected & 0x8) != 0) {
-          // something is sneaking on us, grab the rocket launcher
-        }
-      }
-
-      // 2/ Check if the current step Status
-      if(astarLaunch) { //We are computing a path let's check if it's ok now
-        if(pathFinding.isComputationEnded()) {
-          movementManager.executeMovement(pathFinding.getLastComputedPath());
-          astarLaunch = false;
-        }
-      }
-      else if(currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
-        currentStep = null;
-        //Time to fetch the next one
-        if(currentAction.hasNextStep()) {
-          currentStep = currentAction.getNextStep();
-        }
-        else { //Previous action has ended, time to fetch a new one
-          currentAction = actionCollection.getNextActionToPerform();
-          if(currentAction == null) {//Nothing more to do. #sadness
-            everythingDone = true;
           }
-          else {
+          else if (direction == AsservInterface.MovementDirection.BACKWARD
+                  && (detected & 0x8) != 0) {
+            // something is sneaking on us, grab the rocket launcher
+            movementManager.haltAsserv(true);
+            movingForward = false;
+          }
+        }
+
+        // 2/ Check if the current step Status
+        if(astarLaunch) { //We are computing a path let's check if it's ok now
+          if(pathFinding.isComputationEnded()) {
+            movementManager.executeMovement(pathFinding.getLastComputedPath());
+            astarLaunch = false;
+          }
+        }
+        else if(currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
+          currentStep = null;
+          //Time to fetch the next one
+          if(currentAction.hasNextStep()) {
             currentStep = currentAction.getNextStep();
           }
+          else { //Previous action has ended, time to fetch a new one
+            currentAction = actionCollection.getNextActionToPerform();
+            if(currentAction == null) {//Nothing more to do. #sadness
+              break;
+            }
+            else {
+              currentStep = currentAction.getNextStep();
+            }
+          }
+          //Switch... switch... switch, yeah I heard about htem once, but never met :P
+          if(currentStep.getActionType() == Step.Type.MANIPULATION) {
+            actionSupervisor.executeCommand(currentStep.getActionId());
+          }
+          else if(currentStep.getActionType() == Step.Type.DEPLACEMENT){
+            // We need to launch the astar
+            launchAstar(positionToPoint(currentStep.getEndPosition()));
+            astarLaunch = true;
+          }
+          else if(currentStep.getActionType() == Step.Type.ROTATION) {
+            movementManager.setCap(currentStep.getEndPosition());
+          }
+          else if(currentStep.getActionType() == Step.Type.DEPLACEMENT_ALWAYS) {//Forward until death
+            movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
+          }
         }
-        //Switch... switch... switch, yeah I heard about htem once, but never met :P
-        if(currentStep.getActionType() == Step.Type.MANIPULATION) {
-          actionSupervisor.executeCommand(currentStep.getActionId());
+      }
+      else { //We detect something last loop. let's check if we still see it, either let's resume the move
+        //If we want to put smart code, it's here
+        int detected = this.detectionManager.getEmergencyDetectionMap();
+        if(movingForward && ((detected & 0x7) == 0)) {
+          movementManager.resumeAsserv();
+          somethingDetected = false;
         }
-        else if(currentStep.getActionType() == Step.Type.DEPLACEMENT){
-          // We need to launch the astar
-          launchAstar(positionToPoint(currentStep.getEndPosition()));
-          astarLaunch = true;
-        }
-        else if(currentStep.getActionType() == Step.Type.ROTATION) {
-          movementManager.setCap(currentStep.getEndPosition());
-        }
-        else if(currentStep.getActionType() == Step.Type.DEPLACEMENT_ALWAYS) {//Forward until death
-          movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
+        else if(!movingForward && ((detected & 0x8) == 0)) {
+          movementManager.resumeAsserv();
+          somethingDetected = false;
         }
       }
     }
+
 
     return !interrupted;
   }
@@ -178,6 +206,10 @@ public class MasterLoop {
   //Start the computation of the path.
   private void launchAstar(Point destination) {
     pathFinding.computePath(positionToPoint(movementManager.getPosition()), destination);
+  }
+
+  public boolean isMatchFinished() {
+    return this.interrupted;
   }
 
   private Point positionToPoint(Position p) {

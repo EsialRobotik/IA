@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import com.google.inject.Inject;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ActionCollection {
   private List<ActionDescriptor> actionList;
 
+  @Inject
   public ActionCollection(JsonArray configurationNode) {
     actionList = new ArrayList<ActionDescriptor>();
 
