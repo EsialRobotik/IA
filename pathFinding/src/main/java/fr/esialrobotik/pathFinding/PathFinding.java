@@ -7,6 +7,7 @@ import fr.esialrobotik.data.table.astar.LineSimplificator;
 
 import javax.inject.Inject;
 import javax.swing.text.Position;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
@@ -30,9 +31,16 @@ public class PathFinding {
     public void computePath(final Point start, final Point end) {
         Thread t = new Thread(new Runnable() {
             public void run() {
-                Stack<Point> path = astar.getChemin(start, end);
-                computedPath = LineSimplificator.getSimpleLines(path);
+                //NOTE the astar work at a 1/10 resolution
+                Point rectifiedStart = new Point(start.getX() / 10, start.getY() / 10);
+                Point rectifiedEnd = new Point(end.getX() / 10, start.getY() / 10);
+                Stack<Point> path = astar.getChemin(rectifiedStart, rectifiedEnd);
+                List<Point> temp = LineSimplificator.getSimpleLines(path);
                 Collections.reverse(computedPath);
+                computedPath = new ArrayList<>();
+                for(Point p : temp) {
+                    computedPath.add(new Point(p.getX() * 10, p.getY() * 10));
+                }
                 computationEnded = true;
             }
         });

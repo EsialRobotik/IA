@@ -5,9 +5,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
 import fr.esialrobotik.data.table.TableTest;
+import org.apache.logging.log4j.Level;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -62,6 +64,7 @@ public class AstarTest {
 
     @Test
     public void testAstar() {
+        LoggerFactory.init(Level.TRACE);
         table = new Table();
         table.loadJsonFromString(config);
         table.drawTable();

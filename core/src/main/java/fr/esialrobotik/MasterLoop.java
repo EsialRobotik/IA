@@ -57,6 +57,7 @@ public class MasterLoop {
 
   //NOTE robot is at starting point before reaching this
   public boolean mainLoop() {
+    logger.debug("Begin of main loop");
     //When we arrived here everything is set up so we just need to launch the first path finding,
     // and wait for the beginning of the match
     boolean everythingDone = false;
@@ -69,9 +70,11 @@ public class MasterLoop {
     currentAction = actionCollection.getNextActionToPerform();
     currentStep = currentAction.getNextStep(); //Should not be null
 
+    logger.debug("Fetch of first acction");
     //The first action is always a move straight or a path finding issue
     // 2/ We launch the Astar (to spare time) if we have a non always.
     if(currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+      logger.debug("First action is a deplacement with astar, let's start computation");
       launchAstar(positionToPoint(currentStep.getEndPosition()));
       while(!pathFinding.isComputationEnded()) {
         try {
@@ -85,14 +88,16 @@ public class MasterLoop {
       movementManager.executeMovement(pathFinding.getLastComputedPath());
     }
     else {//Straight line
+      logger.debug("First deplacement is a straight line");
       movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
     }
 
-
+    logger.debug("Trajectory load, let's wait for tirette");
     // 4/ We wait for the beginning of the match
     tirette.waitForTirette(false);
 
     // 5/ start of the timer start the main loop
+    logger.debug("Tirette pull, begin of the match");
     chrono.startMatch(this);
     movementManager.resumeAsserv();
 

@@ -1,7 +1,9 @@
 package fr.esialrobotik.data.table.astar;
 
+import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.PriorityQueue;
@@ -17,6 +19,7 @@ public class Astar {
    */
   private static final int DIST_DIAGONALE = 14;
   private static final int DIST_H_V = 10;
+  private Logger logger;
 
   /**
    * La dimension de la grille
@@ -39,6 +42,7 @@ public class Astar {
    */
   @Inject
   public Astar(Table table) {
+    this.logger = LoggerFactory.getLogger(Astar.class);
 
     // Pour une taille N, on stocke les points de coordonnées 0 à N.
     // Cela fait donc N+1 points
@@ -268,6 +272,7 @@ public class Astar {
    * @return une pile de point, commençant par le point de départ
    */
   public Stack<Point> getChemin(Point start, Point objectif) {
+    logger.debug("Start astar to compute path between " + start + " and " + objectif);
 
     // Le chemin calculé
     Stack<Point> leChemin = new Stack<Point>();

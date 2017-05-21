@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class ActionCollection {
   private List<ActionDescriptor> actionList;
+  private int currentIndex;
 
   @Inject
   public ActionCollection(@Named("commandFile") String filepath) throws FileNotFoundException {
@@ -27,6 +28,7 @@ public class ActionCollection {
     for(JsonElement element : elt.getAsJsonArray()) {
       actionList.add(new ActionDescriptor(element.getAsJsonObject()));
     }
+    currentIndex = 0;
   }
 
   public String toString() {
@@ -38,8 +40,7 @@ public class ActionCollection {
   }
 
   public ActionDescriptor getNextActionToPerform() {
-    //TODO implement fast solution
-    return null;
+    return actionList.get(currentIndex++);
   }
 
   public static void main(String args[]) throws FileNotFoundException {
