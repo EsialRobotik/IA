@@ -16,6 +16,7 @@ public class Chrono {
     @Inject
     public Chrono(ConfigurationManager configurationManager) {
         timer = new Timer();
+        matchDuration = configurationManager.getMatchDuration();
     }
 
     //We should find a way to do other wise, but, well

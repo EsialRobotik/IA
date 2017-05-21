@@ -22,6 +22,7 @@ public class ConfigurationManager {
     private int tiretteGpio;
     private String tableDescriptionFilePath;
     private String commandFile;
+    private int matchDuration;
 
     private AsservAPIConfiguration asservAPIConfiguration;
     private DetectionModuleConfiguration detectionConfiguration;
@@ -51,6 +52,7 @@ public class ConfigurationManager {
         this.colorGpio = configRootNode.get("gpioColorSelector").getAsInt();
         this.tiretteGpio = configRootNode.get("gpioTirette").getAsInt();
         this.commandFile = configRootNode.get("commandFile").getAsString();
+        this.matchDuration = configRootNode.get("matchDuration").getAsInt();
     }
 
     public int getColorGpio() {
@@ -79,6 +81,10 @@ public class ConfigurationManager {
 
     public String getCommandFile() {
         return commandFile;
+    }
+
+    public int getMatchDuration() {
+        return this.matchDuration;
     }
 
     public PathFindingConfiguration getPathFindingConfiguration() {
