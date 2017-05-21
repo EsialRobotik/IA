@@ -21,6 +21,7 @@ public class ConfigurationManager {
     private int colorGpio;
     private int tiretteGpio;
     private String tableDescriptionFilePath;
+    private String commandFile;
 
     private AsservAPIConfiguration asservAPIConfiguration;
     private DetectionModuleConfiguration detectionConfiguration;
@@ -49,6 +50,7 @@ public class ConfigurationManager {
 
         this.colorGpio = configRootNode.get("gpioColorSelector").getAsInt();
         this.tiretteGpio = configRootNode.get("gpioTirette").getAsInt();
+        this.commandFile = configRootNode.get("commandFile").getAsString();
     }
 
     public int getColorGpio() {
@@ -73,6 +75,10 @@ public class ConfigurationManager {
 
     public ActionModuleConfiguration getActionModuleConfiguration() {
         return actionModuleConfiguration;
+    }
+
+    public String getCommandFile() {
+        return commandFile;
     }
 
     public PathFindingConfiguration getPathFindingConfiguration() {

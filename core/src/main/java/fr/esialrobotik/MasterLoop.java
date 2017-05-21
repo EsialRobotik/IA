@@ -2,9 +2,11 @@ package fr.esialrobotik;
 
 import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
+import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.detection.DetectionManager;
 import fr.esialrobotik.pathFinding.PathFinding;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -27,6 +29,8 @@ public class MasterLoop {
   private ActionDescriptor currentAction;
   private Step currentStep;
 
+  private Logger logger;
+
 
   @Inject
   public MasterLoop(MovementManager movementManager,
@@ -47,6 +51,7 @@ public class MasterLoop {
     this.actionSupervisor = actionSupervisor;
 
     this.interrupted = true;
+    this.logger = LoggerFactory.getLogger(MasterLoop.class);
   }
 
 
@@ -187,10 +192,14 @@ public class MasterLoop {
 
   //Function to be call to set up the robot and lead him to starting point
   public void init() {
+    logger.debug("Init mainLoop");
     // Calage bordure
+    logger.debug("Start calage bordure");
 
     // Wait tirette remise
+    logger.debug("Init ended, wait for tirette");
     tirette.waitForTirette(true);
+    logger.debug("Tirette inserted. End of initialization.");
   }
 
   public void matchEnd() {

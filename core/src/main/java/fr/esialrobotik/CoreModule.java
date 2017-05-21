@@ -2,6 +2,7 @@ package fr.esialrobotik;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
+import com.google.inject.name.Names;
 import esialrobotik.ia.actions.ActionModule;
 import esialrobotik.ia.asserv.AsservModule;
 import fr.esialrobotik.configuration.ConfigurationManager;
@@ -27,6 +28,7 @@ public class CoreModule extends AbstractModule {
         install(new ActionModule(configurationManager.getActionModuleConfiguration()));
 
         bind(ConfigurationManager.class).toInstance(configurationManager);
+        bind(String.class).annotatedWith(Names.named("commandFile")).toInstance(configurationManager.getCommandFile());
 
         bind(MasterLoop.class).in(Singleton.class);
         bind(ColorDetector.class).in(Singleton.class);

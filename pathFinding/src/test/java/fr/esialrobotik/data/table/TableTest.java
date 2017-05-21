@@ -125,13 +125,13 @@ public class TableTest {
         table.drawTable();
         table.computeForbiddenArea(67);
 
-        File f = new File("lala_random_improbable.txt");
+        File f = new File("table.tbl");
 
         table.saveToFile(f.getName());
         toLoad.loadFromSaveFile(f.getName());
 
         assertEquals(table.toString(), toLoad.toString());
 
-        f.delete();
+        //f.delete();
     }
 }

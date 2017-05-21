@@ -1,11 +1,10 @@
 package fr.esialrobotik;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,10 +18,13 @@ public class ActionCollection {
   private List<ActionDescriptor> actionList;
 
   @Inject
-  public ActionCollection(JsonArray configurationNode) {
+  public ActionCollection(@Named("commandFile") String filepath) throws FileNotFoundException {
+    JsonParser parser = new JsonParser();
+    JsonElement elt = parser.parse(new JsonReader(new FileReader(filepath)));
+
     actionList = new ArrayList<ActionDescriptor>();
 
-    for(JsonElement element : configurationNode) {
+    for(JsonElement element : elt.getAsJsonArray()) {
       actionList.add(new ActionDescriptor(element.getAsJsonObject()));
     }
   }
@@ -41,10 +43,7 @@ public class ActionCollection {
   }
 
   public static void main(String args[]) throws FileNotFoundException {
-    JsonParser parser = new JsonParser();
-    JsonElement elt = parser.parse(new JsonReader(new FileReader("actionHandler/configCollection.json")));
-
-    ActionCollection collection = new ActionCollection(elt.getAsJsonArray());
+    ActionCollection collection = new ActionCollection("actionHandler/configCollection.json");
     System.out.println(collection);
   }
 }
