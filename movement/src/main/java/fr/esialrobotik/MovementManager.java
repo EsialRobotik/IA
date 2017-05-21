@@ -69,7 +69,7 @@ public class MovementManager {
         return isFinished;
     }
 
-    public void setCap(double theta) {
+    public void setCap(Position position) {
 
     }
 

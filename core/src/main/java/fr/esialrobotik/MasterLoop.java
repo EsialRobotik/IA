@@ -7,6 +7,7 @@ import fr.esialrobotik.detection.DetectionManager;
 import fr.esialrobotik.pathFinding.PathFinding;
 
 import javax.inject.Inject;
+import java.util.Collections;
 
 /**
  * Created by Guillaume on 17/05/2017.
@@ -122,7 +123,7 @@ public class MasterLoop {
             currentStep = currentAction.getNextStep();
           }
         }
-        //TODO add other type
+        //Switch... switch... switch, yeah I heard about htem once, but never met :P
         if(currentStep.getActionType() == Step.Type.MANIPULATION) {
           actionSupervisor.executeCommand(currentStep.getActionId());
         }
@@ -130,6 +131,12 @@ public class MasterLoop {
           // We need to launch the astar
           launchAstar(positionToPoint(currentStep.getEndPosition()));
           astarLaunch = true;
+        }
+        else if(currentStep.getActionType() == Step.Type.ROTATION) {
+          movementManager.setCap(currentStep.getEndPosition());
+        }
+        else if(currentStep.getActionType() == Step.Type.DEPLACEMENT_ALWAYS) {//Forward until death
+          movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
         }
       }
     }
@@ -139,11 +146,12 @@ public class MasterLoop {
 
   //This function could be simplified but at least it keeps things readeable
   private boolean currentStepEnded() {
-    //TODO add other action type
-    if(currentStep.getActionType() == Step.Type.DEPLACEMENT && movementManager.isLastOrderedMovementEnded()) {
+    Step.Type type = currentStep.getActionType();
+    if((type == Step.Type.DEPLACEMENT || type == Step.Type.DEPLACEMENT_ALWAYS || type == Step.Type.ROTATION)
+            && movementManager.isLastOrderedMovementEnded()) {
       return true;
     }
-    else if(currentStep.getActionType() == Step.Type.MANIPULATION && actionSupervisor.isLastExecutionFinished()) {
+    else if(type == Step.Type.MANIPULATION && actionSupervisor.isLastExecutionFinished()) {
       return true;
     }
     return false;
