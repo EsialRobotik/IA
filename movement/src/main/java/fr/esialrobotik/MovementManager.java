@@ -62,7 +62,7 @@ public class MovementManager {
     }
 
     public boolean isLastOrderedMovementEnded() {
-        boolean isFinished = this.asservInterface.getQueueSize() == 0 && this.asservInterface.getAsservStatus() == AsservInterface.AsservStatus.STATUS_IDLE.ordinal();
+        boolean isFinished = this.asservInterface.getQueueSize() == 0 && this.asservInterface.getAsservStatus() == AsservInterface.AsservStatus.STATUS_IDLE;
         if (isFinished) {
             gotoQueue.clear();
         }
@@ -70,7 +70,7 @@ public class MovementManager {
     }
 
     public void setCap(double theta) {
-        
+
     }
 
     public AsservInterface.MovementDirection getMovementDirection() {
