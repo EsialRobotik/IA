@@ -12,6 +12,7 @@ import fr.esialrobotik.pathFinding.PathFindingModule;
  * Created by icule on 20/05/17.
  */
 public class CoreModule extends AbstractModule {
+
     public ConfigurationManager configurationManager;
 
     public CoreModule(ConfigurationManager configurationManager) {
@@ -35,4 +36,5 @@ public class CoreModule extends AbstractModule {
         bind(ActionSupervisor.class).in(Singleton.class);
 
     }
+
 }

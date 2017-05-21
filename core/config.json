@@ -1,25 +1,42 @@
 {
-  "gpioColorSelector": 12,
-  "gpioTirette": 13,
+  "desc" : "Configuration du robot 2017",
+  "gpioColorSelector": 4,
+  "gpioTirette": 5,
   "matchDuration": 90,
   "tablePath": "table.tbl",
 
-
   "asserv": {
-    "baud":115200,
-    "serie":"lala"
+    "baud":230400,
+    "serie":"/dev/serial/by-id/usb-mbed_Microcontroller_101000000000000000000002F7F2854A-if01"
   },
+
   "action": {
     "baud":115200,
-    "serie":"lili"
+    "serie":"/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"
   },
 
   "detection": {
     "type":"srf04",
     "gpioList":[
       {
-         "in" : 1,
+        "desc" : "Avant droit",
+         "in" : 0,
          "out": 2
+      },
+      {
+        "desc" : "Avant milieu",
+        "in" : 12,
+        "out": 13
+      },
+      {
+        "desc" : "Avant gauche",
+        "in" : 21,
+        "out": 22
+      },
+      {
+        "desc" : "Arrière",
+        "in" : 24,
+        "out": 25
       }
     ]
   }
