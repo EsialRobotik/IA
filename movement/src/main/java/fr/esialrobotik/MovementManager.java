@@ -5,6 +5,7 @@ import esialrobotik.ia.asserv.Position;
 import fr.esialrobotik.data.table.Point;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,8 +20,19 @@ public class MovementManager {
         this.asservInterface = asservInterface;
     }
 
-    public void haltAsserv(boolean temporary) {
+    /**
+     * Liste de la série de commande GoTo à enchainer
+     */
+    private List<Point> gotoQueue = new ArrayList<Point>();
 
+    public void haltAsserv(boolean temporary) {
+        if (!temporary) {
+            gotoQueue.clear();
+        }
+        if (gotoQueue.size() > 0 && gotoQueue.size() - this.asservInterface.getQueueSize() > 0 && this.asservInterface.getQueueSize() > 0) {
+            gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size() - 1);
+        }
+        this.asservInterface.emergencyStop();
     }
 
     /**
@@ -28,23 +40,37 @@ public class MovementManager {
      * @return true if the resume was successful, false otherwise
      */
     public boolean resumeAsserv() {
-        return true;
+        this.asservInterface.emergencyReset();
+        if (gotoQueue.size() > 0) {
+            executeMovement(gotoQueue);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void executeMovement(List<Point> trajectory) {
-
+        gotoQueue.clear();
+        for (Point point : trajectory) {
+            gotoQueue.add(point);
+            this.asservInterface.goTo(new Position(point.x, point.y));
+        }
     }
 
     public Position getPosition() {
-        return null;
+        return this.asservInterface.getPosition();
     }
 
     public boolean isLastOrderedMovementEnded() {
-        return false;
+        boolean isFinished = this.asservInterface.getQueueSize() == 0 && this.asservInterface.getAsservStatus() == AsservInterface.AsservStatus.STATUS_IDLE.ordinal();
+        if (isFinished) {
+            gotoQueue.clear();
+        }
+        return isFinished;
     }
 
     public AsservInterface.MovementDirection getMovementDirection() {
-        return null;
+        return this.asservInterface.getMovementDirection();
     }
 
 
