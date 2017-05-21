@@ -70,12 +70,23 @@ public class MovementManager {
     }
 
     public void setCap(Position position) {
-
+        this.asservInterface.face(position);
     }
 
     public AsservInterface.MovementDirection getMovementDirection() {
         return this.asservInterface.getMovementDirection();
     }
 
+    /**
+     * Lance la callage du robot
+     * @param isYPositive true si la couleur est pour le Y positif, false sinon
+     */
+    public void callage(boolean isYPositive) {
+        try {
+            this.asservInterface.calage(isYPositive);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

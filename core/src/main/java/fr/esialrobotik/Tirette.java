@@ -25,8 +25,12 @@ public class Tirette {
         return this.tirette.isHigh();
     }
 
+    /**
+     * Attends un état de la tirette
+     * @param state true pour attendre la présence de la tirette, false pour attendre le retrait
+     */
     public void waitForTirette(boolean state) {
-        while(true) { //While true masterrace
+        while(getTiretteState() != state) { //While true masterrace
             //Test value of tirette
             try {
                 Thread.sleep(100);

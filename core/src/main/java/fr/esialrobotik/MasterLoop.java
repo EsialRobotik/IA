@@ -4,6 +4,7 @@ import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
+import fr.esialrobotik.data.table.TableColor;
 import fr.esialrobotik.detection.DetectionManager;
 import fr.esialrobotik.pathFinding.PathFinding;
 import org.apache.logging.log4j.Logger;
@@ -198,13 +199,23 @@ public class MasterLoop {
   //Function to be call to set up the robot and lead him to starting point
   public void init() {
     logger.debug("Init mainLoop");
+
     // Calage bordure
+    // TODO Ecrire "Tirette pour callage bordure + couleur" sur le lcd
+    logger.debug("Attente mise en place tirette pour init callage");
+    tirette.waitForTirette(true);
+    logger.debug("Attente retrait tirette pour init callage");
+    tirette.waitForTirette(false);
     logger.debug("Start calage bordure");
+    // TODO Ecrire "Lanceent callage bordure" sur le lcd
+    movementManager.callage(colorDetector.getSelectedColor() == TableColor.BLUE); // TODO l'ia ne devrait pas connaitre les couleurs mais seulement le sens du Y
 
     // Wait tirette remise
+    // TODO Ecritre "Attente remise tirette" sur le LCD
     logger.debug("Init ended, wait for tirette");
     tirette.waitForTirette(true);
     logger.debug("Tirette inserted. End of initialization.");
+    // TODO Ecrire "Attente retrait tirette pour lancement match" sur le LCD
   }
 
   public void matchEnd() {

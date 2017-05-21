@@ -3,7 +3,7 @@
   "gpioColorSelector": 4,
   "gpioTirette": 5,
   "matchDuration": 90,
-  "tablePath": "table.tbl",
+  "tablePath": "table.json",
   "commandFile": "configCollection.json",
 
   "asserv": {
