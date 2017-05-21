@@ -3,6 +3,7 @@ package fr.esialrobotik.configuration;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.inject.Inject;
+import esialrobotik.ia.actions.ActionModuleConfiguration;
 import esialrobotik.ia.asserv.AsservAPIConfiguration;
 import esialrobotik.ia.detection.DetectionModuleConfiguration;
 import fr.esialrobotik.data.table.TableColor;
@@ -24,14 +25,17 @@ public class ConfigurationManager {
     private AsservAPIConfiguration asservAPIConfiguration;
     private DetectionModuleConfiguration detectionConfiguration;
     private PathFindingConfiguration pathFindingConfiguration;
+    private ActionModuleConfiguration actionModuleConfiguration;
 
     @Inject
     public ConfigurationManager(AsservAPIConfiguration asservAPIConfiguration,
                                 DetectionModuleConfiguration detectionConfiguration,
-                                PathFindingConfiguration pathFindingConfiguration) {
+                                PathFindingConfiguration pathFindingConfiguration,
+                                ActionModuleConfiguration actionModuleConfiguration) {
         this.asservAPIConfiguration = asservAPIConfiguration;
         this.detectionConfiguration = detectionConfiguration;
         this.pathFindingConfiguration = pathFindingConfiguration;
+        this.actionModuleConfiguration = actionModuleConfiguration;
     }
 
     public void loadConfiguration(String path) throws FileNotFoundException {
@@ -40,6 +44,7 @@ public class ConfigurationManager {
 
         this.asservAPIConfiguration.loadConfig(configRootNode.get("asserv").getAsJsonObject());
         this.detectionConfiguration.loadConfiguration(configRootNode.get("detection").getAsJsonObject());
+        this.actionModuleConfiguration.loadConfig(configRootNode.get("action").getAsJsonObject());
         this.pathFindingConfiguration.loadConfig(configRootNode);
 
         this.colorGpio = configRootNode.get("gpioColorSelector").getAsInt();
@@ -64,6 +69,10 @@ public class ConfigurationManager {
 
     public DetectionModuleConfiguration getDetectionConfiguration() {
         return detectionConfiguration;
+    }
+
+    public ActionModuleConfiguration getActionModuleConfiguration() {
+        return actionModuleConfiguration;
     }
 
     public PathFindingConfiguration getPathFindingConfiguration() {

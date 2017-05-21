@@ -9,6 +9,10 @@
     "baud":115200,
     "serie":"lala"
   },
+  "action": {
+    "baud":115200,
+    "serie":"lili"
+  },
 
   "detection": {
     "type":"srf04",

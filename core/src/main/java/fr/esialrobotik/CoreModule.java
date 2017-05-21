@@ -2,6 +2,7 @@ package fr.esialrobotik;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
+import esialrobotik.ia.actions.ActionModule;
 import esialrobotik.ia.asserv.AsservModule;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.detection.DetectionModule;
@@ -22,6 +23,7 @@ public class CoreModule extends AbstractModule {
         install(new DetectionModule(configurationManager.getDetectionConfiguration()));
         install(new AsservModule(configurationManager.getAsservAPIConfiguration()));
         install(new PathFindingModule(configurationManager.getPathFindingConfiguration()));
+        install(new ActionModule(configurationManager.getActionModuleConfiguration()));
 
         bind(ConfigurationManager.class).toInstance(configurationManager);
 
@@ -31,5 +33,6 @@ public class CoreModule extends AbstractModule {
         bind(MovementManager.class).in(Singleton.class);
         bind(Tirette.class).in(Singleton.class);
         bind(ActionSupervisor.class).in(Singleton.class);
+
     }
 }
