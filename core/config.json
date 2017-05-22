@@ -1,9 +1,9 @@
 {
   "desc" : "Configuration du robot 2017",
-  "gpioColorSelector": 4,
-  "gpioTirette": 5,
+  "gpioColorSelector": 5,
+  "gpioTirette": 4,
   "matchDuration": 90,
-  "tablePath": "table.json",
+  "tablePath": "table.tbl",
   "commandFile": "configCollection.json",
 
   "asserv": {

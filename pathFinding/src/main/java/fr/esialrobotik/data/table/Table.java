@@ -300,6 +300,7 @@ public class Table {
 //        saved.loadFromSaveFile("test.tbl");
 
         Table table = new Table();
+//        table.loadJsonFromFile("pathfinding/table.json");
         table.loadJsonFromFile("pathfinding/table.json");
 
         table.drawTable();

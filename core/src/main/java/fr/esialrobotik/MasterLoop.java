@@ -58,7 +58,7 @@ public class MasterLoop {
 
   //NOTE robot is at starting point before reaching this
   public boolean mainLoop() {
-    logger.debug("Begin of main loop");
+    logger.info("Begin of main loop");
     //When we arrived here everything is set up so we just need to launch the first path finding,
     // and wait for the beginning of the match
     boolean everythingDone = false;
@@ -71,11 +71,11 @@ public class MasterLoop {
     currentAction = actionCollection.getNextActionToPerform();
     currentStep = currentAction.getNextStep(); //Should not be null
 
-    logger.debug("Fetch of first acction");
+    logger.info("Fetch of first acction");
     //The first action is always a move straight or a path finding issue
     // 2/ We launch the Astar (to spare time) if we have a non always.
     if(currentStep.getActionType() == Step.Type.DEPLACEMENT) {
-      logger.debug("First action is a deplacement with astar, let's start computation");
+      logger.info("First action is a deplacement with astar, let's start computation");
       launchAstar(positionToPoint(currentStep.getEndPosition()));
       while(!pathFinding.isComputationEnded()) {
         try {
@@ -89,16 +89,16 @@ public class MasterLoop {
       movementManager.executeMovement(pathFinding.getLastComputedPath());
     }
     else {//Straight line
-      logger.debug("First deplacement is a straight line");
+      logger.info("First deplacement is a straight line");
       movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
     }
 
-    logger.debug("Trajectory load, let's wait for tirette");
+    logger.info("Trajectory load, let's wait for tirette");
     // 4/ We wait for the beginning of the match
     tirette.waitForTirette(false);
 
     // 5/ start of the timer start the main loop
-    logger.debug("Tirette pull, begin of the match");
+    logger.info("Tirette pull, begin of the match");
     chrono.startMatch(this);
     movementManager.resumeAsserv();
 
@@ -198,23 +198,23 @@ public class MasterLoop {
 
   //Function to be call to set up the robot and lead him to starting point
   public void init() {
-    logger.debug("Init mainLoop");
+    logger.info("Init mainLoop");
 
     // Calage bordure
     // TODO Ecrire "Tirette pour callage bordure + couleur" sur le lcd
-    logger.debug("Attente mise en place tirette pour init callage");
+    logger.info("Attente mise en place tirette pour init callage");
     tirette.waitForTirette(true);
-    logger.debug("Attente retrait tirette pour init callage");
+    logger.info("Attente retrait tirette pour init callage");
     tirette.waitForTirette(false);
-    logger.debug("Start calage bordure");
+    logger.info("Start calage bordure");
     // TODO Ecrire "Lanceent callage bordure" sur le lcd
     movementManager.callage(colorDetector.getSelectedColor() == TableColor.BLUE); // TODO l'ia ne devrait pas connaitre les couleurs mais seulement le sens du Y
 
     // Wait tirette remise
     // TODO Ecritre "Attente remise tirette" sur le LCD
-    logger.debug("Init ended, wait for tirette");
+    logger.info("Init ended, wait for tirette");
     tirette.waitForTirette(true);
-    logger.debug("Tirette inserted. End of initialization.");
+    logger.info("Tirette inserted. End of initialization.");
     // TODO Ecrire "Attente retrait tirette pour lancement match" sur le LCD
   }
 
