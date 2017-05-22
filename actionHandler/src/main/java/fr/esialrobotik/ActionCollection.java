@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import esialrobotik.ia.actions.ActionExecutor;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -45,6 +46,21 @@ public class ActionCollection {
 
   public static void main(String args[]) throws FileNotFoundException {
     ActionCollection collection = new ActionCollection("actionHandler/configCollection.json");
-    System.out.println(collection);
+    //System.out.println(collection);
+    ActionDescriptor actionDescriptor = collection.getNextActionToPerform();
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
   }
 }

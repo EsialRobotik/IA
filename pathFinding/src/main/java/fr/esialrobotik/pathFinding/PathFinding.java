@@ -33,10 +33,10 @@ public class PathFinding {
             public void run() {
                 //NOTE the astar work at a 1/10 resolution
                 Point rectifiedStart = new Point(start.getX() / 10, start.getY() / 10);
-                Point rectifiedEnd = new Point(end.getX() / 10, start.getY() / 10);
+                Point rectifiedEnd = new Point(end.getX() / 10, end.getY() / 10);
                 Stack<Point> path = astar.getChemin(rectifiedStart, rectifiedEnd);
                 List<Point> temp = LineSimplificator.getSimpleLines(path);
-                Collections.reverse(computedPath);
+                Collections.reverse(temp);
                 computedPath = new ArrayList<>();
                 for(Point p : temp) {
                     computedPath.add(new Point(p.getX() * 10, p.getY() * 10));

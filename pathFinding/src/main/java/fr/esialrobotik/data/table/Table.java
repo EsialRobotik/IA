@@ -317,7 +317,8 @@ public class Table {
         table.loadJsonFromFile("pathFinding/table.json");
 
         table.drawTable();
-        table.computeForbiddenArea(182);
+//        table.computeForbiddenArea(182);
+        table.computeForbiddenArea(160);
 
         File f = new File("table.tbl");
 
