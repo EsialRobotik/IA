@@ -51,7 +51,7 @@ public class LidarReceiver implements RpLidarListener {
 
     @Override
     public void handleMeasurement(RpLidarMeasurement rpLidarMeasurement) {
-        double deg = rpLidarMeasurement.angle / 64.0;
+        double deg = (rpLidarMeasurement.angle / 64.0) * Math.PI / 160;
         double r = rpLidarMeasurement.distance / 4.0;
         if(rpLidarMeasurement.start) {
             lastCompletedTrame = currentTrame;
