@@ -11,7 +11,7 @@ public class LidarManager {
     private RpLidarLowLevelDriver driver;
 
     @Inject
-    public LidarManager(RpLidarLowLevelDriver driver) {
+    public LidarManager(RpLidarLowLevelDriver driver, RpLidarListener rpLidarListenerner) {
         this.driver = driver;
     }
 
