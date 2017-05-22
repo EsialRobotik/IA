@@ -107,22 +107,31 @@ public class MasterLoop {
         movementManager.resumeAsserv();
         lcdDisplay.println("LET'S ROCK !");
 
+        logger.debug("Début de la masterLoop : " + !interrupted);
         while (!interrupted) {
+
             if (!somethingDetected) {
+
+                logger.debug("On n'a rien détecter");
+
                 // 1/ we check if we detect something
                 int detected = this.detectionManager.getEmergencyDetectionMap();
+
                 if (detected != 0) {
+                    logger.debug("On a vu un truc");
                     //We detect something, we get the movement direction and we check if we detect it in the right side
                     AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
 
                     if (direction == AsservInterface.MovementDirection.FORWARD
                             && (detected & 0x7) != 0) {
+                        logger.debug("Il y a un truc devant, STOP !");
                         //We detect something. That's horrible
                         movementManager.haltAsserv(true);
                         movingForward = true;
 
                     } else if (direction == AsservInterface.MovementDirection.BACKWARD
                             && (detected & 0x8) != 0) {
+                        logger.debug("Il y a un truc derriere, STOP !");
                         // something is sneaking on us, grab the rocket launcher
                         movementManager.haltAsserv(true);
                         movingForward = false;
@@ -131,11 +140,13 @@ public class MasterLoop {
 
                 // 2/ Check if the current step Status
                 if (astarLaunch) { //We are computing a path let's check if it's ok now
+                    logger.debug("Astar tourne, on va voir s'il a fini");
                     if (pathFinding.isComputationEnded()) {
                         movementManager.executeMovement(pathFinding.getLastComputedPath());
                         astarLaunch = false;
                     }
                 } else if (currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
+                    logger.debug("On a fini notre step, on passe à la suite");
                     currentStep = null;
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
@@ -163,6 +174,7 @@ public class MasterLoop {
                     }
                 }
             } else { //We detect something last loop. let's check if we still see it, either let's resume the move
+                logger.debug("On voit un truc, peut être on se remettra en route");
                 //If we want to put smart code, it's here
                 int detected = this.detectionManager.getEmergencyDetectionMap();
                 if (movingForward && ((detected & 0x7) == 0)) {
