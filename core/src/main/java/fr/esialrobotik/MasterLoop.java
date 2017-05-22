@@ -24,6 +24,7 @@ public class MasterLoop {
   private ColorDetector colorDetector;
   private Chrono chrono;
   private Tirette tirette;
+  private LCD lcdDisplay;
 
   private boolean interrupted;
 
@@ -51,6 +52,7 @@ public class MasterLoop {
     this.colorDetector = colorDetector;
     this.chrono = chrono;
     this.tirette = tirette;
+    this.lcdDisplay = lcdDisplay;
     this.actionSupervisor = actionSupervisor;
 
     this.interrupted = true;
@@ -203,21 +205,24 @@ public class MasterLoop {
     logger.info("Init mainLoop");
 
     // Calage bordure
-    // TODO Ecrire "Tirette pour callage bordure + couleur" sur le lcd
+    lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
     logger.info("Attente mise en place tirette pour init callage");
+    lcdDisplay.println("tirette callage");
     tirette.waitForTirette(true);
     logger.info("Attente retrait tirette pour init callage");
+    lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
+    lcdDisplay.println("tirette callage");
     tirette.waitForTirette(false);
     logger.info("Start calage bordure");
-    // TODO Ecrire "Lanceent callage bordure" sur le lcd
+    lcdDisplay.println("Lancement callage bordure");
     movementManager.callage(colorDetector.getSelectedColor() == TableColor.BLUE); // TODO l'ia ne devrait pas connaitre les couleurs mais seulement le sens du Y
 
     // Wait tirette remise
-    // TODO Ecritre "Attente remise tirette" sur le LCD
+    lcdDisplay.println("Attente remise tirette");
     logger.info("Init ended, wait for tirette");
     tirette.waitForTirette(true);
     logger.info("Tirette inserted. End of initialization.");
-    // TODO Ecrire "Attente retrait tirette pour lancement match" sur le LCD
+    lcdDisplay.println("LET'S ROCK !");
   }
 
   public void matchEnd() {
