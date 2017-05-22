@@ -50,7 +50,7 @@
       },
       {
         "desc": "largage vertical",
-        "id" : 5,
+        "id" : 6,
         "positionX" : 200,
         "positionY" : 800,
         "type" : "manipulation",
@@ -58,8 +58,8 @@
       },
       {
         "desc": "on recule",
-        "id" : 6,
-        "dist": "-200",
+        "id" : 7,
+        "dist": -200,
         "type" : "deplacement",
         "subtype": "go",
         "actionId" : -1

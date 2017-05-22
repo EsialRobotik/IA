@@ -20,8 +20,8 @@ public class ConfigurationManagerTest {
         ConfigurationManager configurationManager = injector.getInstance(ConfigurationManager.class);
 
         configurationManager.loadConfiguration("config.json");
-        assertEquals(4, configurationManager.getColorGpio());
-        assertEquals(5, configurationManager.getTiretteGpio());
+        assertEquals(5, configurationManager.getColorGpio());
+        assertEquals(4, configurationManager.getTiretteGpio());
 
         //We check one value per sub module
         assertEquals(SRF04.class, configurationManager.getDetectionConfiguration().getUltraSoundClass());

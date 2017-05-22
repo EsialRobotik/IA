@@ -23,8 +23,8 @@ import static org.junit.Assert.*;
  */
 public class AstarTest {
     String config = "{\n" +
-            "  \"longueur\": 200,\n" +
-            "  \"largeur\": 200,\n" +
+            "  \"tailleX\": 200,\n" +
+            "  \"tailleY\": 200,\n" +
             "  \"couleurDepartYPositif\": \"Rouge\",\n" +
             "  \"couleurDepartYNegatif\": \"Bleu\",\n" +
             "  \"zonesInterdites\" : [\n" +

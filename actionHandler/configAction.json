@@ -1,39 +1,68 @@
-{
-  "id": 1,
-  "points": 4,
-  "priorite": 6,
-  "taches": [
-    {
-      "id" : 1,
-      "positionX" : 200,
-      "positionY" : 500,
-      "theta": 0,
-      "type" : "deplacement",
-      "actionId" : -1
-    },
-    {
-      "id" : 2,
-      "positionX" : 200,
-      "positionY" : 500,
-      "theta": 0,
-      "type" : "manipulation",
-      "actionId" : 1
-    },
-    {
-      "id" : 3,
-      "positionX" : 1000,
-      "positionY" : 500,
-      "theta": 0,
-      "type" : "deplacement",
-      "actionId" : -1
-    },
-    {
-      "id" : 4,
-      "positionX" : 1000,
-      "positionY" : 500,
-      "theta": 0,
-      "type" : "manipulation",
-      "actionId" : 2
-    }
-  ]
-}
+
+  {
+    "desc": "Module bicolore juste à la sortie de la zone de départ",
+    "id": 1,
+    "points": 2,
+    "priorite": 1000,
+    "taches": [
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 600,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "face",
+        "id" : 2,
+        "positionX" : 600,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype": "face",
+        "actionId" : -1
+      },
+      {
+        "desc": "saisir module",
+        "id" : 3,
+        "positionX" : 600,
+        "positionY" : 1000,
+        "type" : "manipulation",
+        "actionId" : 1
+      },
+      {
+        "desc": "rentrer bras",
+        "id" : 4,
+        "positionX" : 600,
+        "positionY" : 1000,
+        "type" : "manipulation",
+        "actionId" : 2
+      },
+      {
+        "desc": "goto depose",
+        "id" : 5,
+        "positionX" : 200,
+        "positionY" : 800,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "largage vertical",
+        "id" : 6,
+        "positionX" : 200,
+        "positionY" : 800,
+        "type" : "manipulation",
+        "actionId" : 3
+      },
+      {
+        "desc": "on recule",
+        "id" : 7,
+        "dist": -200,
+        "type" : "deplacement",
+        "subtype": "go",
+        "actionId" : -1
+      }
+    ]
+  }

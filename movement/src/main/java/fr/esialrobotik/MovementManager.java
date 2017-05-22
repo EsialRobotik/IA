@@ -50,11 +50,16 @@ public class MovementManager {
     }
 
     public void executeMovement(List<Point> trajectory) {
+        //Call for a goto solved by astar
         gotoQueue.clear();
         for (Point point : trajectory) {
             gotoQueue.add(point);
             this.asservInterface.goTo(new Position(point.x, point.y));
         }
+    }
+
+    public void executeStepDeplacement(Step step) {
+        //Here we receive a GO or a FACE
     }
 
     public Position getPosition() {

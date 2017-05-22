@@ -78,7 +78,7 @@ public class MasterLoop {
     logger.info("Fetch of first acction");
     //The first action is always a move straight or a path finding issue
     // 2/ We launch the Astar (to spare time) if we have a non always.
-    if(currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+    if(currentStep.getActionType() == Step.Type.DEPLACEMENT && currentStep.getSubType() == Step.SubType.GOTO) {
       logger.info("First action is a deplacement with astar, let's start computation");
       launchAstar(positionToPoint(currentStep.getEndPosition()));
       while(!pathFinding.isComputationEnded()) {
@@ -92,9 +92,9 @@ public class MasterLoop {
       // 3/ We send command to the asserv manager
       movementManager.executeMovement(pathFinding.getLastComputedPath());
     }
-    else {//Straight line
+    else if(currentStep.getSubType() == Step.SubType.GO){//Straight line
       logger.info("First deplacement is a straight line");
-      movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
+      movementManager.executeStepDeplacement(currentStep);
     }
 
     logger.info("Trajectory load, let's wait for tirette");
@@ -156,16 +156,16 @@ public class MasterLoop {
           if(currentStep.getActionType() == Step.Type.MANIPULATION) {
             actionSupervisor.executeCommand(currentStep.getActionId());
           }
-          else if(currentStep.getActionType() == Step.Type.DEPLACEMENT){
-            // We need to launch the astar
-            launchAstar(positionToPoint(currentStep.getEndPosition()));
-            astarLaunch = true;
-          }
-          else if(currentStep.getActionType() == Step.Type.ROTATION) {
-            movementManager.setCap(currentStep.getEndPosition());
-          }
-          else if(currentStep.getActionType() == Step.Type.DEPLACEMENT_ALWAYS) {//Forward until death
-            movementManager.executeMovement(Collections.singletonList(positionToPoint(currentStep.getEndPosition())));
+          else if(currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+            if(currentStep.getSubType() == Step.SubType.GOTO) {
+              // We need to launch the astar
+              launchAstar(positionToPoint(currentStep.getEndPosition()));
+              astarLaunch = true;
+            }
+            else {
+              movementManager.executeStepDeplacement(currentStep);
+            }
+
           }
         }
       }
@@ -190,7 +190,7 @@ public class MasterLoop {
   //This function could be simplified but at least it keeps things readeable
   private boolean currentStepEnded() {
     Step.Type type = currentStep.getActionType();
-    if((type == Step.Type.DEPLACEMENT || type == Step.Type.DEPLACEMENT_ALWAYS || type == Step.Type.ROTATION)
+    if((type == Step.Type.DEPLACEMENT)
             && movementManager.isLastOrderedMovementEnded()) {
       return true;
     }

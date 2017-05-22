@@ -76,5 +76,11 @@ public class ActionDescriptor {
     System.out.println(actionDescriptor.hasNextStep());
     System.out.println(actionDescriptor.getNextStep().toString());
     System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(actionDescriptor.getNextStep().toString());
+    System.out.println(actionDescriptor.hasNextStep());
   }
 }
