@@ -109,7 +109,7 @@ public class MasterLoop {
         logger.debug("while " + !interrupted);
         while (!interrupted) {
             if (!somethingDetected) {
-                logger.debug("!somethingDetected");
+                logger.trace("!somethingDetected");
                 // 1/ we check if we detect something
                 int detected = this.detectionManager.getEmergencyDetectionMap();
                 if (detected != 0) {
@@ -145,19 +145,25 @@ public class MasterLoop {
                     currentStep = null;
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
+                        logger.debug("currentAction.hasNextStep()");
                         currentStep = currentAction.getNextStep();
                     } else { //Previous action has ended, time to fetch a new one
+                        logger.debug("Fecth new action");
                         currentAction = actionCollection.getNextActionToPerform();
                         if (currentAction == null) {//Nothing more to do. #sadness
+                            logger.debug("Plus rien à faire :'(");
                             break;
                         } else {
+                            logger.debug("Nouvelle step");
                             currentStep = currentAction.getNextStep();
                         }
                     }
                     //Switch... switch... switch, yeah I heard about htem once, but never met :P
                     if (currentStep.getActionType() == Step.Type.MANIPULATION) {
+                        logger.debug("Manip");
                         actionSupervisor.executeCommand(currentStep.getActionId());
                     } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+                        logger.debug("Déplacement");
                         if (currentStep.getSubType() == Step.SubType.GOTO) {
                             // We need to launch the astar
                             launchAstar(positionToPoint(currentStep.getEndPosition()));
