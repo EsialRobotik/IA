@@ -14,6 +14,8 @@ import java.util.List;
  * Created by Guillaume on 18/05/2017.
  */
 public class ActionDescriptor {
+
+  private String desc;
   private int objectiveId;
   private int points;
   private int priority;
@@ -25,6 +27,7 @@ public class ActionDescriptor {
     stepList = new ArrayList<Step>();
     stepIndex = -1;
 
+    desc = object.get("desc").getAsString();
     objectiveId = object.get("id").getAsInt();
     points = object.get("points").getAsInt();
     priority = object.get("priorite").getAsInt();
@@ -59,6 +62,10 @@ public class ActionDescriptor {
 
   public Step getCurrentStep() {
     return stepList.get(stepIndex);
+  }
+
+  public String getDesc() {
+    return desc;
   }
 
   public static void main(String[] args) throws FileNotFoundException {

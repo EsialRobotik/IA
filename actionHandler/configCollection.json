@@ -8,7 +8,7 @@
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 384,
+        "positionX" : 320,
         "positionY" : 930,
         "type" : "deplacement",
         "subtype": "goto",
@@ -34,7 +34,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 20,
+        "dist" : 100,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -75,7 +75,7 @@
       {
         "desc": "on recule",
         "id" : 9,
-        "dist": -50,
+        "dist": -100,
         "type" : "deplacement",
         "subtype": "go",
         "actionId" : -1
@@ -94,6 +94,23 @@
         "dist": -100,
         "type" : "deplacement",
         "subtype": "go",
+        "actionId" : -1
+      }
+    ]
+  },
+  {
+    "desc": "Test détection",
+    "id": 2,
+    "points": 2,
+    "priorite": 100,
+    "taches": [
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1000,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype": "goto",
         "actionId" : -1
       }
     ]

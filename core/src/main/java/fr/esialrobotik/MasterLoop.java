@@ -145,17 +145,17 @@ public class MasterLoop {
                     currentStep = null;
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
-                        logger.debug("currentAction.hasNextStep()");
                         currentStep = currentAction.getNextStep();
+                        logger.debug("Suite de l'action, step = " + currentStep.getDesc());
                     } else { //Previous action has ended, time to fetch a new one
-                        logger.debug("Fecth new action");
                         currentAction = actionCollection.getNextActionToPerform();
                         if (currentAction == null) {//Nothing more to do. #sadness
                             logger.debug("Plus rien à faire :'(");
                             break;
                         } else {
-                            logger.debug("Nouvelle step");
                             currentStep = currentAction.getNextStep();
+                            logger.debug("Nouvelle action = " + currentAction.getDesc());
+                            logger.debug("Nouvelle step = " + currentStep.getDesc());
                         }
                     }
                     //Switch... switch... switch, yeah I heard about htem once, but never met :P

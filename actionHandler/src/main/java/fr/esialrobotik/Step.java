@@ -20,6 +20,7 @@ public class Step {
     GOTO
   }
 
+  private String desc;
   private int stepId;
 
   //THis id is to specify which action to call
@@ -33,7 +34,7 @@ public class Step {
   public Step(JsonObject configNode) {
     this.distance = -1;
 
-
+    this.desc = configNode.get("desc").getAsString();
     this.stepId = configNode.get("id").getAsInt();
     this.idAction = configNode.get("actionId").getAsInt();
     String type = configNode.get("type").getAsString();
@@ -64,6 +65,10 @@ public class Step {
     else {
       subType = SubType.NONE;
     }
+  }
+
+  public String getDesc() {
+    return desc;
   }
 
   public Type getActionType() {
