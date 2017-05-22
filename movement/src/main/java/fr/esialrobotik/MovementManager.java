@@ -2,7 +2,9 @@ package fr.esialrobotik;
 
 import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
+import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -13,11 +15,16 @@ import java.util.List;
  * Created by icule on 20/05/17.
  */
 public class MovementManager {
+
     private AsservInterface asservInterface;
+    private boolean isMatchStarted = false;
+
+    private Logger logger;
 
     @Inject
     public MovementManager(AsservInterface asservInterface) {
         this.asservInterface = asservInterface;
+        this.logger = LoggerFactory.getLogger(MovementManager.class);
     }
 
     /**
@@ -40,9 +47,10 @@ public class MovementManager {
      * @return true if the resume was successful, false otherwise
      */
     public boolean resumeAsserv() {
+        logger.info("resumeAsserv, gotoQueue.size() = " + gotoQueue.size());
         this.asservInterface.emergencyReset();
         if (gotoQueue.size() > 0) {
-            executeMovement(gotoQueue);
+            executeMovement(new ArrayList<>(gotoQueue));
             return true;
         } else {
             return false;
@@ -51,11 +59,16 @@ public class MovementManager {
 
     public void executeMovement(List<Point> trajectory) {
         //Call for a goto solved by astar
+        logger.info("executeMovement = " + trajectory);
+        logger.info("isMatchStarted = " + isMatchStarted);
         gotoQueue.clear();
         for (Point point : trajectory) {
             gotoQueue.add(point);
-            this.asservInterface.goTo(new Position(point.x, point.y));
+            if (isMatchStarted) {
+                this.asservInterface.goTo(new Position(point.x, point.y));
+            }
         }
+        logger.info("executeMovement gotoQueue = " + gotoQueue);
     }
 
     public void executeStepDeplacement(Step step) {
@@ -99,4 +112,7 @@ public class MovementManager {
         }
     }
 
+    public void setMatchStarted(boolean matchStarted) {
+        isMatchStarted = matchStarted;
+    }
 }

@@ -104,8 +104,9 @@ public class MasterLoop {
     // 5/ start of the timer start the main loop
     logger.info("Tirette pull, begin of the match");
     chrono.startMatch(this);
+    movementManager.setMatchStarted(true);
     movementManager.resumeAsserv();
-
+    lcdDisplay.println("LET'S ROCK !");
 
     while(!interrupted) {
       if(!somethingDetected) {
@@ -222,7 +223,7 @@ public class MasterLoop {
     logger.info("Init ended, wait for tirette");
     tirette.waitForTirette(true);
     logger.info("Tirette inserted. End of initialization.");
-    lcdDisplay.println("LET'S ROCK !");
+    lcdDisplay.println("Pret pour le match");
   }
 
   public void matchEnd() {
