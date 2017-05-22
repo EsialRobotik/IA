@@ -27,14 +27,15 @@ public class Polygon extends Shape {
     }
 
     public boolean[][] drawShapeEdges(int length, int width) {
-        boolean[][] board = this.getEmptyBoard(length, width);
+        //We double the buffer to be large
+        boolean[][] board = this.getEmptyBoard(length * 3, width * 3);
 
         //We draw the shape edges segment by segment
         for(int i =0; i < vertexList.size() - 1 ; ++i) {
-            drawSegment(board, vertexList.get(i), vertexList.get(i+1));
+            drawSegment(board, vertexList.get(i), vertexList.get(i+1), length, width);
         }
         //Only the last segment is left
-        drawSegment(board, vertexList.get(0), vertexList.get(vertexList.size() - 1));
+        drawSegment(board, vertexList.get(0), vertexList.get(vertexList.size() - 1), length, width);
 
         ShapeFiller shapeFiller = new ShapeFiller(board);
         shapeFiller.fillBoard();
@@ -42,15 +43,17 @@ public class Polygon extends Shape {
         return board;
     }
 
-    private void drawSegment(boolean[][] board, final Point a, final Point b) {
-        board[a.getX()/10][a.getY()/10] = true;
-        board[b.getX()/10][b.getY()/10] = true;
+    private void drawSegment(boolean[][] board, final Point a, final Point b, int length, int width) {
+        System.out.println("Drawing segment " + a + " " + b);
+        board[a.getX()/10 + length][a.getY()/10 + width] = true;
+        board[b.getX()/10 + length][b.getY()/10 + width] = true;
         //We divide the segment in a 1k point.
         double deltaX = (b.getX() - a.getX()) / 10000.;
         double deltaY = (b.getY() - a.getY()) / 10000.;
 
-        double x = a.getX() / 10.;
-        double y = a.getY() / 10.;
+        double x = a.getX() / 10. + length;
+        double y = a.getY() / 10. + width;
+        System.out.println(x + "  " + y);
         for(int i = 0; i < 1000; ++i) {
             board[(int)x][(int)y] = true;
             x += deltaX;

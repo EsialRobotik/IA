@@ -102,16 +102,24 @@ public class Table {
                 this.forbiddenArea[i][j] = false;
             }
         }
+
         for(Shape shape : shapeList) {
             boolean[][] temp = shape.drawShapeEdges(rectifiedLength, rectifiedWidth);
 
             for(int i = 0; i < rectifiedLength; ++i) {
                 for(int j = 0; j < rectifiedWidth; ++j) {
-                    if(temp[i][j]){
+                    if(temp[i + rectifiedLength][j + rectifiedWidth]){
+
                         this.forbiddenArea[i][j] = true;
                     }
                 }
             }
+        }
+    }
+
+    private void setValue(boolean[][] board, int x, int y, boolean val) {
+        if(x >= 0 && y >= 0 && x <= board.length && y <= board[0].length) {
+            board[x][y] = val;
         }
     }
 
@@ -130,19 +138,19 @@ public class Table {
         }
 
         Circle circle = new Circle(rectifiedMargin * 10, rectifiedMargin * 10, rectifiedMargin * 10);
+        int bufferSize = (rectifiedMargin + 1) * 2;
         boolean[][] shapeBuffer = circle.drawShapeEdges((rectifiedMargin + 1) * 2, (rectifiedMargin + 1) * 2);
-
+        printBuffer(shapeBuffer);
         for(int i = 0; i < boardLength; ++i) {
             for(int j = 0; j < boardWidth; ++j) {
-                if(forbiddenArea[i][j]) {// || i == 0 || j == 0 || i == boardLength -1 || j == boardWidth - 1) {
-                    for(int i1 = 0; i1 < shapeBuffer.length; ++i1) {
-                        for(int j1 = 0; j1 < shapeBuffer[0].length; ++j1) {
+                if(forbiddenArea[i][j]) {
+                    for(int i1 = bufferSize; i1 < bufferSize * 2; ++i1) {
+                        for(int j1 = bufferSize; j1 < bufferSize * 2; ++j1) {
                             if(shapeBuffer[i1][j1]){
-                                buffer[i + 1 + i1][j + 1 + j1] = true;
-                                buffer[i + 2 + i1][j + 1 + j1] = true;
-                                buffer[i + 1 + i1][j + 2 + j1] = true;
-                                buffer[i + 2 + i1][j + 2 + j1] = true;
-
+                                setValue(buffer, i + 1 + i1 - bufferSize, j + 1 + j1 - bufferSize, true);
+                                setValue(buffer, i + 2 + i1 - bufferSize, j + 1 + j1 - bufferSize, true);
+                                setValue(buffer, i + 1 + i1 - bufferSize, j + 2 + j1 - bufferSize, true);
+                                setValue(buffer, i + 2 + i1 - bufferSize, j + 2 + j1 - bufferSize, true);
                             }
                         }
                     }
@@ -187,6 +195,15 @@ public class Table {
         for(int i = 0; i < forbiddenArea.length; ++i) {
             for(int j = 0; j < forbiddenArea[0].length; ++j){
                 System.out.print(forbiddenArea[i][j]?"x":"o");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public void printBuffer(boolean[][] buffer) {
+        for(int i = 0; i < buffer.length; ++i) {
+            for(int j = 0; j < buffer[0].length; ++j){
+                System.out.print(buffer[i][j]?"x":"o");
             }
             System.out.print("\n");
         }
@@ -300,8 +317,7 @@ public class Table {
 //        saved.loadFromSaveFile("test.tbl");
 
         Table table = new Table();
-//        table.loadJsonFromFile("pathfinding/table.json");
-        table.loadJsonFromFile("pathfinding/table.json");
+        table.loadJsonFromFile("pathFinding/table.json");
 
         table.drawTable();
         table.computeForbiddenArea(67);

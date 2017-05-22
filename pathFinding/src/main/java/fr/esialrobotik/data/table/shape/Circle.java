@@ -30,15 +30,18 @@ public class Circle extends Shape{
     }
 
     public boolean[][] drawShapeEdges(int length, int width) {
-        boolean[][] board = this.getEmptyBoard(length, width);
+        boolean[][] board = this.getEmptyBoard(length * 3, width * 3);
 
         //We divide the circle in 1k part and compute point each time.
         // We work with the original millimetric table and will convert in cm when drawing
         final double radSplit = Math.PI / 1000;
         double currentValue = 0;
+        int shiftedXCenter = center.getX() + length * 10;
+        int shiftedYCenter = center.getY() + length * 10;
+        System.out.println(shiftedXCenter + " " + shiftedYCenter + " | " + center.getX() + " " +center.getY());
         while(currentValue < (Math.PI* 2)) {
-            double xFloat = (center.getX() + radius * Math.cos(currentValue)) / 10.;
-            double yFloat = ((center.getY() + radius * Math.sin(currentValue)) / 10.);
+            double xFloat = (shiftedXCenter + radius * Math.cos(currentValue)) / 10.;
+            double yFloat = (shiftedYCenter + radius * Math.sin(currentValue)) / 10.;
 
             final int x = (int)(xFloat);
             final int y = (int)(yFloat);
