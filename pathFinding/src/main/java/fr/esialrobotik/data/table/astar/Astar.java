@@ -67,6 +67,7 @@ public class Astar {
     }
 
     ouverts = new PriorityQueue<Node>(this.dimX * this.dimY);
+    updateVoisinageInfo();
   }
 
   /**
