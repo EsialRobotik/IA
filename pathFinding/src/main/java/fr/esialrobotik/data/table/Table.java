@@ -5,8 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import fr.esialrobotik.data.table.shape.Circle;
 import fr.esialrobotik.data.table.shape.Shape;
@@ -23,10 +21,10 @@ import java.util.List;
  */
 @Singleton
 public class Table {
-    private int length;
-    private int rectifiedLength;
-    private int width;
-    private int rectifiedWidth;
+    private int xSize;
+    private int rectifiedXSize;
+    private int ySize;
+    private int rectifiedYSize;
     private TableColor positiveStart;
     private TableColor negativeStart;
 
@@ -55,10 +53,10 @@ public class Table {
 
     private void loadConfig(JsonObject rootElement){
         shapeList = new ArrayList<Shape>();
-        length = rootElement.get("longueur").getAsInt();
-        rectifiedLength = length / 10;
-        width = rootElement.get("largeur").getAsInt();
-        rectifiedWidth = width / 10;
+        xSize = rootElement.get("tailleX").getAsInt();
+        rectifiedXSize = xSize / 10;
+        ySize = rootElement.get("tailleY").getAsInt();
+        rectifiedYSize = ySize / 10;
         positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYPositif").getAsString());
         negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYNegatif").getAsString());
 
@@ -67,20 +65,20 @@ public class Table {
         }
     }
 
-    public int getLength(){
-        return length;
+    public int getxSize(){
+        return xSize;
     }
 
-    public int getWidth(){
-        return width;
+    public int getySize(){
+        return ySize;
     }
 
-    public int getRectifiedLength() {
-        return rectifiedLength;
+    public int getRectifiedXSize() {
+        return rectifiedXSize;
     }
 
-    public int getRectifiedWidth() {
-        return rectifiedWidth;
+    public int getRectifiedYSize() {
+        return rectifiedYSize;
     }
 
     public TableColor getPositiveStartColor(){
@@ -96,20 +94,19 @@ public class Table {
     }
 
     public void drawTable() {
-        this.forbiddenArea = new boolean[rectifiedLength][rectifiedWidth];
-        for(int i = 0; i < forbiddenArea.length; ++i) {
-            for(int j = 0; j < forbiddenArea[0].length; ++j) {
+        this.forbiddenArea = new boolean[rectifiedXSize][rectifiedYSize];
+        for(int i = 0; i < rectifiedXSize; ++i) {
+            for(int j = 0; j < rectifiedYSize; ++j) {
                 this.forbiddenArea[i][j] = false;
             }
         }
 
         for(Shape shape : shapeList) {
-            boolean[][] temp = shape.drawShapeEdges(rectifiedLength, rectifiedWidth);
+            boolean[][] temp = shape.drawShapeEdges(rectifiedXSize, rectifiedYSize);
 
-            for(int i = 0; i < rectifiedLength; ++i) {
-                for(int j = 0; j < rectifiedWidth; ++j) {
-                    if(temp[i + rectifiedLength][j + rectifiedWidth]){
-
+            for(int i = 0; i < rectifiedXSize; ++i) {
+                for(int j = 0; j < rectifiedYSize; ++j) {
+                    if(temp[i + rectifiedXSize][j + rectifiedYSize]){
                         this.forbiddenArea[i][j] = true;
                     }
                 }
@@ -168,23 +165,23 @@ public class Table {
 
         //Now we disable table side we draw directly in the main buffer
         for(int i = 0; i < rectifiedMargin; ++i) {
-            for(int j = 0; j < rectifiedWidth; ++j) {
+            for(int j = 0; j < rectifiedYSize; ++j) {
                 forbiddenArea[i][j] = true;
             }
         }
 
-        for(int i = rectifiedLength - rectifiedMargin; i < rectifiedLength; ++i) {
-            for(int j = 0; j < rectifiedWidth; ++j) {
+        for(int i = rectifiedXSize - rectifiedMargin; i < rectifiedXSize; ++i) {
+            for(int j = 0; j < rectifiedYSize; ++j) {
                 forbiddenArea[i][j] = true;
             }
         }
 
-        for(int i = 0; i < rectifiedLength; ++i) {
+        for(int i = 0; i < rectifiedXSize; ++i) {
             for(int j = 0; j < rectifiedMargin; ++j) {
                 forbiddenArea[i][j] = true;
             }
 
-            for(int j = rectifiedWidth - rectifiedMargin; j < rectifiedWidth; ++j) {
+            for(int j = rectifiedYSize - rectifiedMargin; j < rectifiedYSize; ++j) {
                 forbiddenArea[i][j] = true;
             }
         }
@@ -227,7 +224,7 @@ public class Table {
         try {
             fw = new FileWriter(filename);
             bw = new BufferedWriter(fw);
-            bw.write(this.getLength() + " " + this.getWidth() + "\n");
+            bw.write(this.getxSize() + " " + this.getySize() + "\n");
             bw.write(this.toString());
         }
         catch (IOException e) {
@@ -257,12 +254,12 @@ public class Table {
             String line;
             line = br.readLine();
             String[] temp = line.split(" ");
-            this.length = Integer.parseInt(temp[0]);
-            this.rectifiedLength = length / 10;
-            this.width = Integer.parseInt(temp[1]);
-            this.rectifiedWidth = width / 10;
+            this.xSize = Integer.parseInt(temp[0]);
+            this.rectifiedXSize = xSize / 10;
+            this.ySize = Integer.parseInt(temp[1]);
+            this.rectifiedYSize = ySize / 10;
 
-            this.forbiddenArea = new boolean[rectifiedLength][rectifiedWidth];
+            this.forbiddenArea = new boolean[rectifiedXSize][rectifiedYSize];
             int acc = 0;
             while ((line = br.readLine()) != null) {
                 for(int j = 0; j < forbiddenArea[0].length ; ++j) {
@@ -295,7 +292,7 @@ public class Table {
     }
 
     public boolean isAreaForbiddenSafe(int x, int y) {
-        if(x < 0 || y < 0 || x >= rectifiedLength || y >= rectifiedWidth ) {
+        if(x < 0 || y < 0 || x >= rectifiedXSize || y >= rectifiedYSize) {
             return false;
         }
         return forbiddenArea[x][y];

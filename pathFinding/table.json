@@ -1,6 +1,6 @@
 {
-  "longueur": 2000,
-  "largeur": 3000,
+  "tailleX": 2000,
+  "tailleY": 3000,
   "couleurDepartYPositif": "Bleu",
   "couleurDepartYNegatif": "Jaune",
   "zonesInterdites": [
