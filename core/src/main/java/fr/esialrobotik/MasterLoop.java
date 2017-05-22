@@ -120,6 +120,7 @@ public class MasterLoop {
             //We detect something. That's horrible
             movementManager.haltAsserv(true);
             movingForward = true;
+            somethingDetected = true;
 
           }
           else if (direction == AsservInterface.MovementDirection.BACKWARD
@@ -127,6 +128,7 @@ public class MasterLoop {
             // something is sneaking on us, grab the rocket launcher
             movementManager.haltAsserv(true);
             movingForward = false;
+            somethingDetected = true;
           }
         }
 
