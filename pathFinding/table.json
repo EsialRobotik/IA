@@ -86,7 +86,7 @@
         "x" : 540,
         "y" : 650
       },
-      "rayon": 230
+      "rayon": 115
     },
     {
       "forme" : "cercle",
@@ -96,7 +96,7 @@
         "x" : 540,
         "y" : 2350
       },
-      "rayon": 230
+      "rayon": 115
     },
     {
       "forme": "polygone",

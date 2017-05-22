@@ -1,7 +1,7 @@
 {
   "id": 1,
   "points": 4,
-  "temps": 6,
+  "priorite": 6,
   "taches": [
     {
       "id" : 1,

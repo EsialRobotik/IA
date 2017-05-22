@@ -16,7 +16,7 @@ import java.util.List;
 public class ActionDescriptor {
   private int objectiveId;
   private int points;
-  private int time;
+  private int priority;
 
   private List<Step> stepList;
   private int stepIndex;
@@ -27,7 +27,7 @@ public class ActionDescriptor {
 
     objectiveId = object.get("id").getAsInt();
     points = object.get("points").getAsInt();
-    time = object.get("temps").getAsInt();
+    priority = object.get("priorite").getAsInt();
 
     for(JsonElement elt : object.get("taches").getAsJsonArray()) {
       stepList.add(new Step(elt.getAsJsonObject()));
@@ -37,7 +37,7 @@ public class ActionDescriptor {
   public String toString() {
     String res = "id : " + objectiveId;
     res += "\npoints: " + points;
-    res += "\ntemps : " + time;
+    res += "\ntemps : " + priority;
     for(Step s : stepList) {
       res += "\n" + s.toString();
     }
