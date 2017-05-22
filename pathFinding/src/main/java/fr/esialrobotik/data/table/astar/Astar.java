@@ -48,6 +48,7 @@ public class Astar {
     // Cela fait donc N+1 points
     this.dimX = table.getRectifiedXSize() + 1;
     this.dimY = table.getRectifiedYSize() + 1;
+    this.logger.info("Initialize the algorithm with a dimension: " + dimX + " x " + dimY);
 
     grille = new Node[this.dimX][this.dimY];
     for(int x = 0; x < this.dimX; x++) {
@@ -272,7 +273,7 @@ public class Astar {
    * @return une pile de point, commençant par le point de départ
    */
   public Stack<Point> getChemin(Point start, Point objectif) {
-    logger.debug("Start astar to compute path between " + start + " and " + objectif);
+    logger.info("Start astar to compute path between " + start + " and " + objectif);
 
     // Le chemin calculé
     Stack<Point> leChemin = new Stack<Point>();

@@ -1,6 +1,8 @@
 package fr.esialrobotik.data.table.astar;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -9,10 +11,13 @@ import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
 import fr.esialrobotik.data.table.TableTest;
+import fr.esialrobotik.pathFinding.PathFindingConfiguration;
+import fr.esialrobotik.pathFinding.PathFindingModule;
 import org.apache.logging.log4j.Level;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.List;
 import java.util.Stack;
 
@@ -89,6 +94,48 @@ public class AstarTest {
             System.out.println(p);
             assertFalse(table.isAreaForbidden(p.getX(), p.getY()));
         }
+
+    }
+
+    private String configModule = "{" +
+            "\"tablePath\": \"table_test.tbl\"" +
+            "}";
+
+
+    @Test
+    public void testAstarFromInjector() {
+        LoggerFactory.init(Level.TRACE);
+        table = new Table();
+        table.loadJsonFromString(config);
+        table.drawTable();
+        String ref = table.toString();
+        table.computeForbiddenArea(10);
+        shapePrinter(ref, table.toString());
+        table.saveToFile("table_test.tbl");
+
+
+        JsonParser parser = new JsonParser();
+        JsonObject rootConfig = parser.parse(configModule).getAsJsonObject();
+        PathFindingConfiguration configuration = new PathFindingConfiguration();
+        configuration.loadConfig(rootConfig);
+
+        Astar astar = Guice.createInjector(new PathFindingModule(configuration)).getInstance(Astar.class);
+        astar.updateVoisinageInfo();
+
+        assertFalse(table.isAreaForbiddenSafe(3, 3));
+        assertFalse(table.isAreaForbiddenSafe(12, 5));
+        Stack<Point> trajectory = astar.getChemin(new Point(3, 3), new Point(9, 5));
+        System.out.println(trajectory.size());
+        List<Point> simplified = LineSimplificator.getSimpleLines(trajectory);
+        System.out.println(simplified.size());
+
+
+        for(Point p : simplified) {
+            System.out.println(p);
+            assertFalse(table.isAreaForbidden(p.getX(), p.getY()));
+        }
+
+        (new File("table_test.tbl")).delete();
 
     }
 
