@@ -25,7 +25,7 @@ public class DetectionManager {
 
     public void startDetection() {
         this.ultraSoundManager.start();
-        this.lidarManager.start();
+        //this.lidarManager.start();
     }
 
     public void stopDetection() {
@@ -42,7 +42,7 @@ public class DetectionManager {
         return this.ultraSoundManager.hasBeenDetected();
     }
 
-    public int getEmergencyDetectionMap() {
+    public boolean[] getEmergencyDetectionMap() {
         return this.ultraSoundManager.getDetectionResult();
     }
 }

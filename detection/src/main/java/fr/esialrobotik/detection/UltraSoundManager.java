@@ -21,14 +21,14 @@ public class UltraSoundManager {
     private int threshold = 300;
 
     private Thread thread;
-    private int detection;
+    private boolean[] detection;
 
     private MovementManager movementManager;
     private Table table;
 
     @Inject
     public UltraSoundManager(DetectionInterface detectionInterface, Table table, MovementManager movementManager) {
-        detection = 0;
+        detection = new boolean[4];
         LoggerFactory.init(Level.TRACE);
         logger = LoggerFactory.getLogger(UltraSoundManager.class);
 
@@ -42,48 +42,51 @@ public class UltraSoundManager {
         thread = new Thread(new Runnable() {
             public void run() {
                 while(!thread.isInterrupted()){
-                    int tempDetection = 0;
+                    boolean[] tempDetection = new boolean[4];
                     final long[] pull = detectionInterface.ultraSoundDetection();
                     Position position = movementManager.getPosition();
                     int x, y;
 
                     //First one is front left
+                    logger.debug("Avant gauche : " + pull[0]);
                     if(pull[0] < threshold) {
                         x = (int) (position.getX() + 130 + Math.cos(position.getTheta() + Math.PI/6) * pull[0]);
                         y = (int) (position.getY() + 140 + Math.sin(position.getTheta() + Math.PI/6) * pull[0]);
                         if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-                           tempDetection += 1;
+                           tempDetection[0] = true;
                         }
                     }
 
                     //frnt middle
+                    logger.debug("Avant milieu : " + pull[1]);
                     if(pull[1] < threshold) {
                         x = (int) (position.getX() + 130 + Math.cos(position.getTheta()) * pull[1]);
                         y = (int) (position.getY() + Math.sin(position.getTheta()) * pull[1]);
                         if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-                            tempDetection += 2;
+                            tempDetection[1] = true;
                         }
                     }
 
                     //frnt right
+                    logger.debug("Avant droit : " + pull[2]);
                     if(pull[2] < threshold) {
                         x = (int) (position.getX() + 130 + Math.cos(position.getTheta() - Math.PI/6) * pull[2]);
                         y = (int) (position.getY() - 140 + Math.sin(position.getTheta() - Math.PI/6) * pull[2]);
                         if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-                            tempDetection += 4;
+                            tempDetection[2] = true;
                         }
                     }
 
                     //back middle
+                    logger.debug("Arriere : " + pull[3]);
                     if(pull[3] < threshold) {
                         x = (int) (position.getX() - 130 - Math.cos(position.getTheta()) * pull[1]);
                         y = (int) (position.getY() - Math.sin(position.getTheta()) * pull[1]);
                         if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-                            tempDetection += 8;
+                            tempDetection[3] = true;
                         }
                     }
                     detection = tempDetection;
-                    logger.info("Ultra sound detection result " + detection);
                 }
             }
         });
@@ -101,10 +104,10 @@ public class UltraSoundManager {
     }
 
     public boolean hasBeenDetected() {
-        return detection != 0;
+        return detection[0] || detection[1] || detection[3] || detection[4];
     }
 
-    public int getDetectionResult() {
+    public boolean[] getDetectionResult() {
         return this.detection;
     }
 }

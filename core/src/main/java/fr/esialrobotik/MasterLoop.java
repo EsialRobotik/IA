@@ -111,21 +111,22 @@ public class MasterLoop {
             if (!somethingDetected) {
                 logger.trace("!somethingDetected");
                 // 1/ we check if we detect something
-                int detected = this.detectionManager.getEmergencyDetectionMap();
-                if (detected != 0) {
-                    logger.debug("On voit un truc");
+                boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
+                if (detected[0] || detected[1] || detected[2] || detected[3]) {
                     //We detect something, we get the movement direction and we check if we detect it in the right side
                     AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
 
-                    if (direction == AsservInterface.MovementDirection.FORWARD
-                            && (detected & 0x7) != 0) {
+                    if (direction.equals(AsservInterface.MovementDirection.FORWARD)
+                            && (detected[0] || detected[1] || detected[2])) {
+                        logger.debug("C'est devant, faut s'arrêter");
                         //We detect something. That's horrible
                         movementManager.haltAsserv(true);
                         movingForward = true;
                         somethingDetected = true;
 
-                    } else if (direction == AsservInterface.MovementDirection.BACKWARD
-                            && (detected & 0x8) != 0) {
+                    } else if (direction.equals(AsservInterface.MovementDirection.BACKWARD)
+                            && detected[3]) {
+                        logger.debug("C'est derrière, faut s'arrêter");
                         // something is sneaking on us, grab the rocket launcher
                         movementManager.haltAsserv(true);
                         movingForward = false;
@@ -175,13 +176,12 @@ public class MasterLoop {
                     }
                 }
             } else { //We detect something last loop. let's check if we still see it, either let's resume the move
-                logger.debug("somethingDetected");
                 //If we want to put smart code, it's here
-                int detected = this.detectionManager.getEmergencyDetectionMap();
-                if (movingForward && ((detected & 0x7) == 0)) {
+                boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
+                if (movingForward && !detected[0] && !detected[1] && !detected[2]) {
                     movementManager.resumeAsserv();
                     somethingDetected = false;
-                } else if (!movingForward && ((detected & 0x8) == 0)) {
+                } else if (!movingForward && !detected[3]) {
                     movementManager.resumeAsserv();
                     somethingDetected = false;
                 }
@@ -226,6 +226,8 @@ public class MasterLoop {
         logger.info("Init ended, wait for tirette");
         tirette.waitForTirette(true);
         logger.info("Tirette inserted. End of initialization.");
+        detectionManager.initAPI();
+        detectionManager.startDetection();
         lcdDisplay.println("LET'S ROCK !");
     }
 
