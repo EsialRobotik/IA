@@ -59,8 +59,8 @@ public class Table {
         rectifiedLength = length / 10;
         width = rootElement.get("largeur").getAsInt();
         rectifiedWidth = width / 10;
-        positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXPositif").getAsString());
-        negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartXNegatif").getAsString());
+        positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYPositif").getAsString());
+        negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYNegatif").getAsString());
 
         for(JsonElement jsonElement : rootElement.getAsJsonArray("zonesInterdites")){
             shapeList.add(ShapeFactory.getShape(jsonElement.getAsJsonObject()));
@@ -285,21 +285,29 @@ public class Table {
     }
 
     public static void main(String[] args) throws IOException {
-        File f = new File("l");
-        System.out.println(f.getAbsoluteFile());
-        Injector injector = Guice.createInjector(new TableModule());
-        Table table = injector.getInstance(Table.class);
-        table.loadJsonFromFile(args[0]);
+//        File f = new File("l");
+//        System.out.println(f.getAbsoluteFile());
+//        Injector injector = Guice.createInjector(new TableModule());
+//        Table table = injector.getInstance(Table.class);
+//        table.loadJsonFromFile(args[0]);
+//
+//        table.drawTable();
+//        //TODO get the dimension by the robot file
+//        table.computeForbiddenArea(Integer.parseInt(args[1]));
+//        table.saveToFile("test.tbl");
+//
+//        Table saved = injector.getInstance(Table.class);
+//        saved.loadFromSaveFile("test.tbl");
+
+        Table table = new Table();
+        table.loadJsonFromFile("pathfinding/table.json");
 
         table.drawTable();
-        //TODO get the dimension by the robot file
-        table.computeForbiddenArea(Integer.parseInt(args[1]));
-        table.saveToFile("test.tbl");
+        table.computeForbiddenArea(67);
 
-        Table saved = injector.getInstance(Table.class);
-        saved.loadFromSaveFile("test.tbl");
-        if(saved.toString().equals(table.toString())) {
-            System.out.println("Generation of the table succesfull.");
-        }
+        File f = new File("table.tbl");
+
+        table.saveToFile(f.getName());
+        System.out.println("Generation of the table succesfull.");
     }
 }

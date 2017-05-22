@@ -1,8 +1,8 @@
 {
   "longueur": 3000,
   "largeur": 2000,
-  "couleurDepartXPositif": "Rouge",
-  "couleurDepartXNegatif": "Bleu",
+  "couleurDepartYPositif": "Rouge",
+  "couleurDepartYNegatif": "Bleu",
   "zonesInterdites" : [
     {
       "forme" : "polygone",

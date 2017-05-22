@@ -22,8 +22,8 @@ public class TableTest {
     private String loadingExample = "{\n" +
             "  \"longueur\": 3000,\n" +
             "  \"largeur\": 2000,\n" +
-            "  \"couleurDepartXPositif\": \"Rouge\",\n" +
-            "  \"couleurDepartXNegatif\": \"Bleu\",\n" +
+            "  \"couleurDepartYPositif\": \"Rouge\",\n" +
+            "  \"couleurDepartYNegatif\": \"Bleu\",\n" +
             "  \"zonesInterdites\" : [\n" +
             "    {\n" +
             "      \"forme\" : \"cercle\",\n" +

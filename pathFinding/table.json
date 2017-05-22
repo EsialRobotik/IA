@@ -1,62 +1,144 @@
 {
-  "longueur": 3000,
-  "largeur": 2000,
-  "couleurDepartXPositif": "Rouge",
-  "couleurDepartXNegatif": "Bleu",
-  "zonesInterdites" : [
+  "longueur": 2000,
+  "largeur": 3000,
+  "couleurDepartYPositif": "Bleu",
+  "couleurDepartYNegatif": "Jaune",
+  "zonesInterdites": [
     {
-      "forme" : "cercle",
-      "centre" :
-      {
-        "x" : 1000,
-        "y" : 1500
-      },
-      "rayon": 200
-    },
-    {
-      "forme" : "cercle",
-      "centre" :
-      {
-        "x" : 300,
-        "y" : 1500
-      },
-      "rayon": 200
-    },
-    {
-      "forme" : "polygone",
-      "points" : [
+      "forme": "polygone",
+      "desc": "Depart Bleu",
+      "points": [
         {
-          "x" : 100,
-          "y" : 100
+          "x": 0,
+          "y": 0
         },
         {
-          "x" : 100,
-          "y" : 200
+          "x": 382,
+          "y": 0
         },
         {
-          "x" : 200,
-          "y" : 100
+          "x": 382,
+          "y": 710
+        },
+        {
+          "x": 0,
+          "y": 710
         }
       ]
     },
     {
-      "forme" : "polygone",
-      "points" : [
+      "forme": "polygone",
+      "desc": "Depart Jaune",
+      "points": [
         {
-          "x" : 1000,
-          "y" : 100
+          "x": 0,
+          "y": 3000
         },
         {
-          "x" : 1000,
-          "y" : 200
+          "x": 382,
+          "y": 3000
         },
         {
-          "x" : 1200,
-          "y" : 300
+          "x": 382,
+          "y": 2290
         },
         {
-          "x" : 1200,
-          "y" : 50
+          "x": 0,
+          "y": 2290
+        }
+      ]
+    },
+    {
+      "forme" : "cercle",
+      "desc": "Grand cratère bleu",
+      "centre" :
+      {
+        "x" : 2000,
+        "y" : 0
+      },
+      "rayon": 540
+    },
+    {
+      "forme" : "cercle",
+      "desc": "Grand cratère jaune",
+      "centre" :
+      {
+        "x" : 2000,
+        "y" : 3000
+      },
+      "rayon": 540
+    },
+    {
+      "forme" : "cercle",
+      "desc": "Base lunaire",
+      "centre" :
+      {
+        "x" : 2000,
+        "y" : 1500
+      },
+      "rayon": 800
+    },
+    {
+      "forme" : "cercle",
+      "desc": "Petit cratere bleu",
+      "centre" :
+      {
+        "x" : 540,
+        "y" : 650
+      },
+      "rayon": 230
+    },
+    {
+      "forme" : "cercle",
+      "desc": "Petit cratere jaune",
+      "centre" :
+      {
+        "x" : 540,
+        "y" : 2350
+      },
+      "rayon": 230
+    },
+    {
+      "forme": "polygone",
+      "desc": "Largage module bleu",
+      "points": [
+        {
+          "x": 678,
+          "y": 0
+        },
+        {
+          "x": 1172,
+          "y": 0
+        },
+        {
+          "x": 1172,
+          "y": 108
+        },
+        {
+          "x": 678,
+          "y": 108
+        }
+      ]
+    },
+    {
+      "forme": "polygone",
+      "desc": "Largage module jaune",
+      "points": [
+        {
+          "x": 678,
+          "y": 3000
+        },
+        {
+          "x": 1172,
+          "y": 3000
+        },
+        {
+          "x": 1172,
+          "y": 2892
+        },
+        {
+          "x": 678,
+          "y": 2892
         }
       ]
     }

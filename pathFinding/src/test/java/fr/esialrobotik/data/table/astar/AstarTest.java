@@ -25,8 +25,8 @@ public class AstarTest {
     String config = "{\n" +
             "  \"longueur\": 200,\n" +
             "  \"largeur\": 200,\n" +
-            "  \"couleurDepartXPositif\": \"Rouge\",\n" +
-            "  \"couleurDepartXNegatif\": \"Bleu\",\n" +
+            "  \"couleurDepartYPositif\": \"Rouge\",\n" +
+            "  \"couleurDepartYNegatif\": \"Bleu\",\n" +
             "  \"zonesInterdites\" : [\n" +
             "    {\n" +
             "      \"forme\" : \"polygone\",\n" +
