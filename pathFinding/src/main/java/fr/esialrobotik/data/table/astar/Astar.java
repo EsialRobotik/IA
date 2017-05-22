@@ -46,8 +46,8 @@ public class Astar {
 
     // Pour une taille N, on stocke les points de coordonnées 0 à N.
     // Cela fait donc N+1 points
-    this.dimX = table.getRectifiedLength() + 1;
-    this.dimY = table.getRectifiedWidth() + 1;
+    this.dimX = table.getRectifiedXSize() + 1;
+    this.dimY = table.getRectifiedYSize() + 1;
 
     grille = new Node[this.dimX][this.dimY];
     for(int x = 0; x < this.dimX; x++) {

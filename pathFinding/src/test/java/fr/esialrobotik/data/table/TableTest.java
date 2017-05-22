@@ -1,9 +1,5 @@
 package fr.esialrobotik.data.table;
 
-import com.google.gson.Gson;
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import fr.esialrobotik.data.table.shape.*;
 import fr.esialrobotik.data.table.shape.Polygon;
 import org.junit.Before;
@@ -20,8 +16,8 @@ import static org.junit.Assert.*;
 public class TableTest {
     //This example is extract from the esialrobotik wiki documentation
     private String loadingExample = "{\n" +
-            "  \"longueur\": 3000,\n" +
-            "  \"largeur\": 2000,\n" +
+            "  \"tailleX\": 3000,\n" +
+            "  \"tailleY\": 2000,\n" +
             "  \"couleurDepartYPositif\": \"Rouge\",\n" +
             "  \"couleurDepartYNegatif\": \"Bleu\",\n" +
             "  \"zonesInterdites\" : [\n" +
@@ -95,8 +91,8 @@ public class TableTest {
     @Test
     public void testLoading() throws IOException {
         table.loadJsonFromString(loadingExample);
-        assertEquals(3000, table.getLength());
-        assertEquals(2000, table.getWidth());
+        assertEquals(3000, table.getxSize());
+        assertEquals(2000, table.getySize());
         assertEquals(TableColor.RED, table.getPositiveStartColor());
         assertEquals(TableColor.BLUE, table.getNegativeStartColor());
 
