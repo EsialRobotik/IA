@@ -17,28 +17,33 @@
   },
 
   "detection": {
-    "type":"srf04",
-    "gpioList":[
-      {
-        "desc" : "Avant droit",
-         "in" : 0,
-         "out": 2
-      },
-      {
-        "desc" : "Avant milieu",
-        "in" : 12,
-        "out": 13
-      },
-      {
-        "desc" : "Avant gauche",
-        "in" : 21,
-        "out": 22
-      },
-      {
-        "desc" : "Arrière",
-        "in" : 24,
-        "out": 25
-      }
-    ]
+    "ultrasound" : {
+      "type":"srf04",
+      "gpioList":[
+        {
+          "desc" : "Avant droit",
+          "in" : 0,
+          "out": 2
+        },
+        {
+          "desc" : "Avant milieu",
+          "in" : 12,
+          "out": 13
+        },
+        {
+          "desc" : "Avant gauche",
+          "in" : 21,
+          "out": 22
+        },
+        {
+          "desc" : "Arrière",
+          "in" : 24,
+          "out": 25
+        }
+      ]
+    },
+    "lidar": {
+      "port": "/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0"
+    }
   }
 }
