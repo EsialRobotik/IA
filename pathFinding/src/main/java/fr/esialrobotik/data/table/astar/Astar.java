@@ -192,6 +192,9 @@ public class Astar {
   }
 
   private void calculChemin(int startX, int startY, int objectifX, int objectifY) {
+    if(grille[objectifX][objectifY] == null) {
+      logger.error("Objectif is in forbiden area.");
+    }
 
     // ON VIDE TOUT !!!
     for(int x = 0; x < dimX; x++) {
