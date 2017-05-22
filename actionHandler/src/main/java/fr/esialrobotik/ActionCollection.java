@@ -41,6 +41,9 @@ public class ActionCollection {
   }
 
   public ActionDescriptor getNextActionToPerform() {
+    if (currentIndex >= actionList.size()) {
+      return null;
+    }
     return actionList.get(currentIndex++);
   }
 
