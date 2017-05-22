@@ -2,6 +2,7 @@ package fr.esialrobotik;
 
 import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
+import esialrobotik.ia.utils.lcd.LCD;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.TableColor;
@@ -41,7 +42,8 @@ public class MasterLoop {
                     PathFinding pathFinding,
                     ColorDetector colorDetector,
                     Chrono chrono,
-                    Tirette tirette) {
+                    Tirette tirette,
+                    LCD lcdDisplay) {
     this.movementManager = movementManager;
     this.detectionManager = detectionManager;
     this.actionCollection = actionCollection;

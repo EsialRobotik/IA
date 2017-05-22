@@ -44,7 +44,6 @@ public class Polygon extends Shape {
     }
 
     private void drawSegment(boolean[][] board, final Point a, final Point b, int length, int width) {
-        System.out.println("Drawing segment " + a + " " + b);
         board[a.getX()/10 + length][a.getY()/10 + width] = true;
         board[b.getX()/10 + length][b.getY()/10 + width] = true;
         //We divide the segment in a 1k point.
@@ -53,7 +52,7 @@ public class Polygon extends Shape {
 
         double x = a.getX() / 10. + length;
         double y = a.getY() / 10. + width;
-        System.out.println(x + "  " + y);
+
         for(int i = 0; i < 1000; ++i) {
             board[(int)x][(int)y] = true;
             x += deltaX;

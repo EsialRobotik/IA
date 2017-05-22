@@ -5,6 +5,8 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import esialrobotik.ia.actions.ActionModule;
 import esialrobotik.ia.asserv.AsservModule;
+import esialrobotik.ia.utils.lcd.LCD;
+import esialrobotik.ia.utils.lcd.raspberry.LCD_I2C;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.detection.DetectionModule;
 import fr.esialrobotik.pathFinding.PathFindingModule;
@@ -35,6 +37,7 @@ public class CoreModule extends AbstractModule {
         bind(Chrono.class).in(Singleton.class);
         bind(MovementManager.class).in(Singleton.class);
         bind(Tirette.class).in(Singleton.class);
+        bind(LCD.class).to(LCD_I2C.class).in(Singleton.class);
         //bind(Tirette.class).to(DummyTirette.class).in(Singleton.class);
         bind(ActionSupervisor.class).in(Singleton.class);
 

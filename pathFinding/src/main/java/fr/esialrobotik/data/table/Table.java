@@ -140,7 +140,7 @@ public class Table {
         Circle circle = new Circle(rectifiedMargin * 10, rectifiedMargin * 10, rectifiedMargin * 10);
         int bufferSize = (rectifiedMargin + 1) * 2;
         boolean[][] shapeBuffer = circle.drawShapeEdges((rectifiedMargin + 1) * 2, (rectifiedMargin + 1) * 2);
-        printBuffer(shapeBuffer);
+
         for(int i = 0; i < boardLength; ++i) {
             for(int j = 0; j < boardWidth; ++j) {
                 if(forbiddenArea[i][j]) {
