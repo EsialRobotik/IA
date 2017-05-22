@@ -320,7 +320,7 @@ public class Table {
         table.loadJsonFromFile("pathFinding/table.json");
 
         table.drawTable();
-        table.computeForbiddenArea(67);
+        table.computeForbiddenArea(182);
 
         File f = new File("table.tbl");
 
