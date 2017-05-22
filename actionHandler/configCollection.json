@@ -8,8 +8,8 @@
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 600,
-        "positionY" : 1000,
+        "positionX" : 384,
+        "positionY" : 930,
         "type" : "deplacement",
         "subtype": "goto",
         "actionId" : -1
@@ -24,42 +24,74 @@
         "actionId" : -1
       },
       {
-        "desc": "saisir module",
+        "desc": "sortir bras",
         "id" : 3,
         "positionX" : 600,
         "positionY" : 1000,
         "type" : "manipulation",
-        "actionId" : 1
+        "actionId" : 3
       },
       {
-        "desc": "rentrer bras",
+        "desc": "mise en position pour saisir le module",
         "id" : 4,
+        "dist" : 20,
+        "type" : "deplacement",
+        "subtype" : "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "saisir module",
+        "id" : 5,
         "positionX" : 600,
         "positionY" : 1000,
         "type" : "manipulation",
-        "actionId" : 2
+        "actionId" : 4
+      },
+      {
+        "desc": "rentrer bras",
+        "id" : 6,
+        "positionX" : 600,
+        "positionY" : 1000,
+        "type" : "manipulation",
+        "actionId" : 5
       },
       {
         "desc": "goto depose",
-        "id" : 5,
+        "id" : 7,
         "positionX" : 200,
         "positionY" : 800,
         "type" : "deplacement",
-        "subtype": "goto",
+        "subtype": "face",
         "actionId" : -1
       },
       {
         "desc": "largage vertical",
-        "id" : 6,
+        "id" : 8,
         "positionX" : 200,
         "positionY" : 800,
         "type" : "manipulation",
-        "actionId" : 3
+        "actionId" : 7
       },
       {
         "desc": "on recule",
-        "id" : 7,
-        "dist": -200,
+        "id" : 9,
+        "dist": -50,
+        "type" : "deplacement",
+        "subtype": "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "on rentre le bras",
+        "id" : 10,
+        "positionX" : 200,
+        "positionY" : 800,
+        "type" : "manipulation",
+        "actionId" : 5
+      },
+      {
+        "desc": "on recule",
+        "id" : 11,
+        "dist": -100,
         "type" : "deplacement",
         "subtype": "go",
         "actionId" : -1

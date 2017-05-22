@@ -60,6 +60,11 @@ public class MovementManager {
 
     public void executeStepDeplacement(Step step) {
         //Here we receive a GO or a FACE
+        if (step.getSubType() == Step.SubType.FACE) {
+            this.asservInterface.face(step.getEndPosition());
+        } else if (step.getSubType() == Step.SubType.GO) {
+            this.asservInterface.go(step.getDistance());
+        }
     }
 
     public Position getPosition() {
