@@ -55,7 +55,7 @@ public class MasterLoop {
         this.lcdDisplay = lcdDisplay;
         this.actionSupervisor = actionSupervisor;
 
-        this.interrupted = true;
+        this.interrupted = false; // Chiotte de bordel de saloperie d'enflure de connerie !
         this.logger = LoggerFactory.getLogger(MasterLoop.class);
     }
 
@@ -103,14 +103,17 @@ public class MasterLoop {
         // 5/ start of the timer start the main loop
         logger.info("Tirette pull, begin of the match");
         chrono.startMatch(this);
+        movementManager.setMatchStarted(true);
         movementManager.resumeAsserv();
 
-
+        logger.debug("while " + !interrupted);
         while (!interrupted) {
             if (!somethingDetected) {
+                logger.debug("!somethingDetected");
                 // 1/ we check if we detect something
                 int detected = this.detectionManager.getEmergencyDetectionMap();
                 if (detected != 0) {
+                    logger.debug("On voit un truc");
                     //We detect something, we get the movement direction and we check if we detect it in the right side
                     AsservInterface.MovementDirection direction = this.movementManager.getMovementDirection();
 
@@ -132,11 +135,13 @@ public class MasterLoop {
 
                 // 2/ Check if the current step Status
                 if (astarLaunch) { //We are computing a path let's check if it's ok now
+                    logger.debug("astarLaunch");
                     if (pathFinding.isComputationEnded()) {
                         movementManager.executeMovement(pathFinding.getLastComputedPath());
                         astarLaunch = false;
                     }
                 } else if (currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
+                    logger.debug("currentStepEnded");
                     currentStep = null;
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
@@ -164,6 +169,7 @@ public class MasterLoop {
                     }
                 }
             } else { //We detect something last loop. let's check if we still see it, either let's resume the move
+                logger.debug("somethingDetected");
                 //If we want to put smart code, it's here
                 int detected = this.detectionManager.getEmergencyDetectionMap();
                 if (movingForward && ((detected & 0x7) == 0)) {
