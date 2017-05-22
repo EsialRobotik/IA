@@ -38,7 +38,7 @@ public class Circle extends Shape{
         double currentValue = 0;
         int shiftedXCenter = center.getX() + length * 10;
         int shiftedYCenter = center.getY() + length * 10;
-        System.out.println(shiftedXCenter + " " + shiftedYCenter + " | " + center.getX() + " " +center.getY());
+
         while(currentValue < (Math.PI* 2)) {
             double xFloat = (shiftedXCenter + radius * Math.cos(currentValue)) / 10.;
             double yFloat = (shiftedYCenter + radius * Math.sin(currentValue)) / 10.;
