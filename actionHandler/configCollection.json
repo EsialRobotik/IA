@@ -108,7 +108,7 @@
         "desc": "goto",
         "id" : 1,
         "positionX" : 1000,
-        "positionY" : 1000,
+        "positionY" : 900,
         "type" : "deplacement",
         "subtype": "goto",
         "actionId" : -1

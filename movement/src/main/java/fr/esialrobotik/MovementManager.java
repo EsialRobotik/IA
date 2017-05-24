@@ -51,6 +51,12 @@ public class MovementManager {
         this.asservInterface.emergencyReset();
         if (gotoQueue.size() > 0) {
             executeMovement(new ArrayList<>(gotoQueue));
+            // On attends un peu pour être certains que l'asserv à reçut au moins une nouvelle commande et est à jour
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return true;
         } else {
             return false;

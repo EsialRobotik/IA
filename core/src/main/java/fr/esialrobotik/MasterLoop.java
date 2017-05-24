@@ -109,7 +109,6 @@ public class MasterLoop {
         logger.debug("while " + !interrupted);
         while (!interrupted) {
             if (!somethingDetected) {
-                logger.trace("!somethingDetected");
                 // 1/ we check if we detect something
                 boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
                 if (detected[0] || detected[1] || detected[2] || detected[3]) {

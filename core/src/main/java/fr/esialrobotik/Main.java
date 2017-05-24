@@ -46,7 +46,7 @@ public class Main {
 
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-        LoggerFactory.init(Level.DEBUG);
+        LoggerFactory.init(Level.TRACE);
         new Main();
     }
 }
