@@ -231,10 +231,15 @@ public class MasterLoop {
     }
 
     public void matchEnd() {
+        logger.info("End of the match");
+        lcdDisplay.println("End of match");
         //Stop the asserv here
+        logger.info("Shutting done asserv");
         movementManager.haltAsserv(false);
 
         //Don't forget action
+        logger.info("Shutting done detection");
+        detectionManager.stopDetection();
 
         interrupted = true;
         //Launch the funny action if needed
