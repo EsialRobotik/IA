@@ -21,4 +21,8 @@ public class ColorDetector {
         return this.colorDetector.isLow() ? TableColor.BLUE : TableColor.RED;
     }
 
+    public boolean isYPositive() {
+        return this.colorDetector.isLow();
+    }
+
 }

@@ -21,6 +21,8 @@ public class MovementManager {
 
     private Logger logger;
 
+    private boolean isYPositive;
+
     @Inject
     public MovementManager(AsservInterface asservInterface) {
         this.asservInterface = asservInterface;
@@ -71,7 +73,7 @@ public class MovementManager {
         for (Point point : trajectory) {
             gotoQueue.add(point);
             if (isMatchStarted) {
-                this.asservInterface.goTo(new Position(point.x, point.y));
+                this.asservInterface.goTo(new Position(point.x, point.y * (isYPositive ? 1 : -1)));
             }
         }
         logger.info("executeMovement gotoQueue = " + gotoQueue);
@@ -80,14 +82,18 @@ public class MovementManager {
     public void executeStepDeplacement(Step step) {
         //Here we receive a GO or a FACE
         if (step.getSubType() == Step.SubType.FACE) {
-            this.asservInterface.face(step.getEndPosition());
+            this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY() * (isYPositive ? 1 : -1)));
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
         }
     }
 
     public Position getPosition() {
-        return this.asservInterface.getPosition();
+        Position position = this.asservInterface.getPosition();
+        if (!isYPositive) {
+            position = new Position(position.getX(), position.getY()*-1);
+        }
+        return position;
     }
 
     public boolean isLastOrderedMovementEnded() {
@@ -120,5 +126,9 @@ public class MovementManager {
 
     public void setMatchStarted(boolean matchStarted) {
         isMatchStarted = matchStarted;
+    }
+
+    public void setYPositive(boolean YPositive) {
+        isYPositive = YPositive;
     }
 }

@@ -11,7 +11,6 @@ import fr.esialrobotik.pathFinding.PathFinding;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.util.Collections;
 
 /**
  * Created by Guillaume on 17/05/2017.
@@ -69,6 +68,8 @@ public class MasterLoop {
         boolean astarLaunch = false;
         boolean somethingDetected = false;
         boolean movingForward = false;
+
+        movementManager.setYPositive(colorDetector.isYPositive());
 
         // FIRST COMPUTATION HERE
         // 1/ We pull the first action to do
