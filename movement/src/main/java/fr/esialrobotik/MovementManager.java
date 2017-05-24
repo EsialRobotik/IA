@@ -39,7 +39,7 @@ public class MovementManager {
             gotoQueue.clear();
         }
         if (gotoQueue.size() > 0 && gotoQueue.size() - this.asservInterface.getQueueSize() > 0 && this.asservInterface.getQueueSize() > 0) {
-            gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size() - 1);
+            gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size());
         }
         this.asservInterface.emergencyStop();
     }
