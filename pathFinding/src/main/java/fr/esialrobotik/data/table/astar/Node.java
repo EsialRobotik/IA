@@ -39,11 +39,6 @@ public class Node implements Comparable<Node> {
   public Node parent;
 
   /**
-   * Le noeud est-il ouvert ?
-   */
-  public boolean ouvert;
-
-  /**
    * Le noeud est-il fermé ?
    */
   public boolean ferme;

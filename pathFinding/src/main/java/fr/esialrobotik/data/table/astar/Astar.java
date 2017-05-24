@@ -171,14 +171,12 @@ public class Astar {
     int nouveauCout = suivant.heuristique + cout;
 
     // Si on n'a pas examiné le point, ou que le chemin améliore le cout...
-    if(!suivant.ouvert || nouveauCout < suivant.coutHeuristique) {
+    if(nouveauCout < suivant.coutHeuristique) {
 
       // ... on met à jour les couts...
       suivant.cout = cout;
       suivant.coutHeuristique = nouveauCout;
 
-      // ... on ajoute aux ouverts...
-      suivant.ouvert = true;
 			/* Il y a un risque d'ajouter un noeud déjà existant dans la file des ouverts, mais:
 			 * - La file ne se re-trie pas si un noeud est modifié ;
 			 * - Supprimer un noeud existant est lent : temps en O(n) ;
@@ -208,7 +206,6 @@ public class Astar {
           temp.cout = Integer.MAX_VALUE;
           temp.coutHeuristique = Integer.MAX_VALUE;
           temp.parent = null;
-          temp.ouvert = false;
           temp.ferme = false;
 
           // Cout estimé entre le noeud et l'arrivé: distance de Manhattan
@@ -225,7 +222,6 @@ public class Astar {
 
     // On ajoute le noeud de départ à la liste des ouverts
     ouverts.add(start);
-    start.ouvert = true;
 
     // Boucle de calcul
     while(true) {
@@ -246,7 +242,6 @@ public class Astar {
 
       // On "ferme" le noeud
       courant.ferme = true;
-      courant.ouvert = false;
 
       // On vérifie si on arrivé
       if(courant.x == objectifX && courant.y == objectifY) {
@@ -278,7 +273,7 @@ public class Astar {
    */
   public Stack<Point> getChemin(Point start, Point objectif) {
     logger.info("Start astar to compute path between " + start + " and " + objectif);
-
+    long startTime = System.currentTimeMillis();
     // Le chemin calculé
     Stack<Point> leChemin = new Stack<Point>();
 
@@ -310,7 +305,7 @@ public class Astar {
       leChemin.add(new Point(courant.x, courant.y));
       courant = courant.parent;
     }
-
+    logger.info("Astar end computation in " + (System.currentTimeMillis() - startTime));
     return leChemin;
   }
 
