@@ -147,15 +147,6 @@
         "actionId" : -1
       },
       {
-        "desc": "goto hack",
-        "id" : 1,
-        "positionX" : 1000,
-        "positionY" : 950,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
         "desc": "goto",
         "id" : 1,
         "positionX" : 800,
@@ -565,7 +556,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 155,
+        "dist" : 156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -581,7 +572,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -155,
+        "dist" : -156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -597,7 +588,7 @@
       {
         "desc": "on calle bien le module",
         "id" : 4,
-        "dist" : 150,
+        "dist" : 50,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -613,7 +604,7 @@
       {
         "desc": "on calle bien le module",
         "id" : 4,
-        "dist" : -150,
+        "dist" : -50,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -705,7 +696,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 158,
+        "dist" : 156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -721,7 +712,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -158,
+        "dist" : -156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -845,7 +836,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 158,
+        "dist" : 156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -861,7 +852,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -158,
+        "dist" : -156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -985,7 +976,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 158,
+        "dist" : 156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -1001,7 +992,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -158,
+        "dist" : -156,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1

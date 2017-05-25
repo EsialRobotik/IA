@@ -79,24 +79,48 @@
       "rayon": 800
     },
     {
-      "forme" : "cercle",
+      "forme" : "polygone",
       "desc": "Petit cratere bleu",
-      "centre" :
-      {
-        "x" : 540,
-        "y" : 650
-      },
-      "rayon": 115
+      "points": [
+        {
+          "x": 425,
+          "y": 765
+        },
+        {
+          "x": 655,
+          "y": 765
+        },
+        {
+          "x": 655,
+          "y": 535
+        },
+        {
+          "x": 425,
+          "y": 535
+        }
+      ]
     },
     {
-      "forme" : "cercle",
+      "forme" : "polygone",
       "desc": "Petit cratere jaune",
-      "centre" :
-      {
-        "x" : 540,
-        "y" : 2350
-      },
-      "rayon": 115
+      "points": [
+        {
+          "x": 425,
+          "y": 2465
+        },
+        {
+          "x": 655,
+          "y": 2465
+        },
+        {
+          "x": 655,
+          "y": 2235
+        },
+        {
+          "x": 425,
+          "y": 2235
+        }
+      ]
     },
     {
       "forme": "polygone",
