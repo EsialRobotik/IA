@@ -26,6 +26,8 @@ public class UltraSoundManager {
     private MovementManager movementManager;
     private Table table;
 
+    private volatile boolean interrupted = false;
+
     @Inject
     public UltraSoundManager(DetectionInterface detectionInterface, Table table, MovementManager movementManager) {
         detection = new boolean[4];
@@ -41,7 +43,7 @@ public class UltraSoundManager {
     public void start() {
         thread = new Thread(new Runnable() {
             public void run() {
-                while(!thread.isInterrupted()){
+                while(!interrupted){
                     boolean[] tempDetection = new boolean[4];
                     final long[] pull = detectionInterface.ultraSoundDetection();
                     Position position = movementManager.getPosition();
@@ -95,12 +97,7 @@ public class UltraSoundManager {
     }
 
     public void stop() {
-        thread.interrupt();
-        try{
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        interrupted = true;
     }
 
     public boolean hasBeenDetected() {

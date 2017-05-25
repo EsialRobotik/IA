@@ -7,7 +7,7 @@
   "commandFile": "configCollection.json",
 
   "asserv": {
-    "baud":230400,
+    "baud":115200,
     "serie":"/dev/serial/by-id/usb-mbed_Microcontroller_101000000000000000000002F7F2854A-if01"
   },
 

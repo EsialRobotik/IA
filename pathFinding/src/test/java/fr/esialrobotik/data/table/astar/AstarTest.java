@@ -127,7 +127,7 @@ public class AstarTest {
         //assertFalse(table.isAreaForbiddenSafe(3, 3));
         //assertFalse(table.isAreaForbiddenSafe(12, 5));
         //Stack<Point> trajectory = astar.getChemin(new Point(3, 3), new Point(9, 5));
-        Stack<Point> trajectory = astar.getChemin(new Point(22, 91), new Point(100, 200));
+        Stack<Point> trajectory = astar.getChemin(new Point(100, 95), new Point(80, 46));
         System.out.println(trajectory.size());
         List<Point> simplified = LineSimplificator.getSimpleLines(trajectory);
         System.out.println(simplified.size());

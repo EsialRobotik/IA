@@ -37,9 +37,10 @@ public class MovementManager {
     public void haltAsserv(boolean temporary) {
         if (!temporary) {
             gotoQueue.clear();
-        }
-        if (gotoQueue.size() > 0 && gotoQueue.size() - this.asservInterface.getQueueSize() > 0 && this.asservInterface.getQueueSize() > 0) {
-            gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size());
+        } else {
+            if (gotoQueue.size() > 0 && gotoQueue.size() - this.asservInterface.getQueueSize() > 0 && this.asservInterface.getQueueSize() > 0) {
+                gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size());
+            }
         }
         this.asservInterface.emergencyStop();
     }
@@ -70,10 +71,16 @@ public class MovementManager {
         logger.info("executeMovement = " + trajectory);
         logger.info("isMatchStarted = " + isMatchStarted);
         gotoQueue.clear();
+        trajectory = trajectory.subList(1, trajectory.size()); // GaG parie un café qu'un jour on cherchera pourquoi la première commande disparait
         for (Point point : trajectory) {
             gotoQueue.add(point);
             if (isMatchStarted) {
                 this.asservInterface.goTo(new Position(point.x, point.y * (isYPositive ? 1 : -1)));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         logger.info("executeMovement gotoQueue = " + gotoQueue);

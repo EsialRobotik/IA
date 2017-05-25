@@ -25,7 +25,7 @@ public class MasterLoop {
     private Tirette tirette;
     private LCD lcdDisplay;
 
-    private boolean interrupted;
+    private volatile boolean interrupted;
 
     private ActionSupervisor actionSupervisor;
     private ActionDescriptor currentAction;
@@ -190,6 +190,11 @@ public class MasterLoop {
                     movementManager.resumeAsserv();
                     somethingDetected = false;
                 }
+            }
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
