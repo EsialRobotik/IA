@@ -556,9 +556,18 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 156,
+        "dist" : 150,
         "type" : "deplacement",
         "subtype" : "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1500,
+        "type" : "deplacement",
+        "subtype" : "face",
         "actionId" : -1
       },
       {
@@ -570,39 +579,7 @@
         "actionId" : 4
       },
       {
-        "desc": "on recule pour dégager le module",
-        "id" : 4,
-        "dist" : -156,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "ouvrir la pince",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "on calle bien le module",
-        "id" : 4,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on calle bien le module",
+        "desc": "on dégage",
         "id" : 4,
         "dist" : -50,
         "type" : "deplacement",
@@ -696,9 +673,18 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 156,
+        "dist" : 150,
         "type" : "deplacement",
         "subtype" : "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1500,
+        "type" : "deplacement",
+        "subtype" : "face",
         "actionId" : -1
       },
       {
@@ -710,39 +696,7 @@
         "actionId" : 4
       },
       {
-        "desc": "on recule pour dégager le module",
-        "id" : 4,
-        "dist" : -156,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "ouvrir la pince",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "on calle bien le module",
-        "id" : 4,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on calle bien le module",
+        "desc": "on dégage",
         "id" : 4,
         "dist" : -50,
         "type" : "deplacement",
@@ -836,9 +790,18 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 156,
+        "dist" : 150,
         "type" : "deplacement",
         "subtype" : "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1500,
+        "type" : "deplacement",
+        "subtype" : "face",
         "actionId" : -1
       },
       {
@@ -850,39 +813,7 @@
         "actionId" : 4
       },
       {
-        "desc": "on recule pour dégager le module",
-        "id" : 4,
-        "dist" : -156,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "ouvrir la pince",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "on calle bien le module",
-        "id" : 4,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on calle bien le module",
+        "desc": "on dégage",
         "id" : 4,
         "dist" : -50,
         "type" : "deplacement",
@@ -976,9 +907,18 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 156,
+        "dist" : 150,
         "type" : "deplacement",
         "subtype" : "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1500,
+        "type" : "deplacement",
+        "subtype" : "face",
         "actionId" : -1
       },
       {
@@ -990,39 +930,7 @@
         "actionId" : 4
       },
       {
-        "desc": "on recule pour dégager le module",
-        "id" : 4,
-        "dist" : -156,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "ouvrir la pince",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "on calle bien le module",
-        "id" : 4,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on calle bien le module",
+        "desc": "on dégage",
         "id" : 4,
         "dist" : -50,
         "type" : "deplacement",
