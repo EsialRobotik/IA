@@ -20,6 +20,7 @@ public class ActionSupervisor {
 
     public void executeCommand(int id) {
         currentActionExecutor = actionInterface.getActionExecutor(id);
+        currentActionExecutor.resetActionState();
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {

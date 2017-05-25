@@ -141,6 +141,11 @@ public class MasterLoop {
                         movementManager.executeMovement(pathFinding.getLastComputedPath());
                         astarLaunch = false;
                     }
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 } else if (currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
                     logger.debug("currentStepEnded");
                     currentStep = null;

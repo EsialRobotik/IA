@@ -318,7 +318,7 @@ public class Table {
 
         table.drawTable();
 //        table.computeForbiddenArea(182);
-        table.computeForbiddenArea(160);
+        table.computeForbiddenArea(180);
 
         File f = new File("table.tbl");
 

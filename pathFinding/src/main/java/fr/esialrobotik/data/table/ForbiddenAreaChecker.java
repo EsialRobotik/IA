@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-/**
- * Created by franc on 24/05/2017.
- */
 public class ForbiddenAreaChecker {
     private Table table;
     private JTextField response;

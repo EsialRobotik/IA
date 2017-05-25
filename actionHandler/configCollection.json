@@ -75,7 +75,7 @@
       {
         "desc": "on recule",
         "id" : 9,
-        "dist": -100,
+        "dist": -200,
         "type" : "deplacement",
         "subtype": "go",
         "actionId" : -1
@@ -87,14 +87,6 @@
         "positionY" : 800,
         "type" : "manipulation",
         "actionId" : 5
-      },
-      {
-        "desc": "on recule",
-        "id" : 11,
-        "dist": -100,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
       }
     ]
   },
@@ -147,6 +139,23 @@
         "actionId" : 2
       },
       {
+        "desc": "on avance pour sortir de la zone interdite",
+        "id" : 3,
+        "dist" : 90,
+        "type" : "deplacement",
+        "subtype": "go",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto hack",
+        "id" : 1,
+        "positionX" : 1000,
+        "positionY" : 950,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
         "desc": "goto",
         "id" : 1,
         "positionX" : 800,
@@ -159,7 +168,7 @@
         "desc": "face",
         "id" : 1,
         "positionX" : 600,
-        "positionY" : 460,
+        "positionY" : 200,
         "type" : "deplacement",
         "subtype": "face",
         "actionId" : -1
@@ -167,7 +176,7 @@
       {
         "desc": "sortir bras",
         "id" : 3,
-        "positionX" : 600,
+        "positionX" : 800,
         "positionY" : 460,
         "type" : "manipulation",
         "actionId" : 3
@@ -175,7 +184,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 120,
+        "dist" : 130,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -208,7 +217,7 @@
       {
         "desc": "mise en position pour larguer les minerais",
         "id" : 4,
-        "dist" : -250,
+        "dist" : -240,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -235,7 +244,7 @@
         "positionX" : 350,
         "positionY" : 460,
         "type" : "manipulation",
-        "actionId" : 3
+        "actionId" : 2
       },
       {
         "desc": "On sort de la zone interdite",
@@ -401,7 +410,7 @@
         "positionX" : 350,
         "positionY" : 460,
         "type" : "manipulation",
-        "actionId" : 3
+        "actionId" : 2
       },
       {
         "desc": "On sort de la zone interdite",
@@ -556,7 +565,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 155,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -572,7 +581,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -100,
+        "dist" : -155,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -588,7 +597,7 @@
       {
         "desc": "on calle bien le module",
         "id" : 4,
-        "dist" : 50,
+        "dist" : 150,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -600,6 +609,14 @@
         "positionY" : 1000,
         "type" : "manipulation",
         "actionId" : 4
+      },
+      {
+        "desc": "on calle bien le module",
+        "id" : 4,
+        "dist" : -150,
+        "type" : "deplacement",
+        "subtype" : "go",
+        "actionId" : -1
       },
       {
         "desc": "on rentre le bras",
@@ -688,7 +705,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -704,7 +721,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -100,
+        "dist" : -158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -732,6 +749,14 @@
         "positionY" : 1000,
         "type" : "manipulation",
         "actionId" : 4
+      },
+      {
+        "desc": "on calle bien le module",
+        "id" : 4,
+        "dist" : -50,
+        "type" : "deplacement",
+        "subtype" : "go",
+        "actionId" : -1
       },
       {
         "desc": "on rentre le bras",
@@ -820,7 +845,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -836,7 +861,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -100,
+        "dist" : -158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -864,6 +889,14 @@
         "positionY" : 1000,
         "type" : "manipulation",
         "actionId" : 4
+      },
+      {
+        "desc": "on calle bien le module",
+        "id" : 4,
+        "dist" : -50,
+        "type" : "deplacement",
+        "subtype" : "go",
+        "actionId" : -1
       },
       {
         "desc": "on rentre le bras",
@@ -952,7 +985,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -968,7 +1001,7 @@
       {
         "desc": "on recule pour dégager le module",
         "id" : 4,
-        "dist" : -100,
+        "dist" : -158,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -996,6 +1029,14 @@
         "positionY" : 1000,
         "type" : "manipulation",
         "actionId" : 4
+      },
+      {
+        "desc": "on calle bien le module",
+        "id" : 4,
+        "dist" : -50,
+        "type" : "deplacement",
+        "subtype" : "go",
+        "actionId" : -1
       },
       {
         "desc": "on rentre le bras",
