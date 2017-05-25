@@ -56,7 +56,7 @@
         "actionId" : 5
       },
       {
-        "desc": "goto depose",
+        "desc": "face depose",
         "id" : 7,
         "positionX" : 200,
         "positionY" : 800,
@@ -96,54 +96,63 @@
     "points": 15,
     "priorite": 100,
     "taches": [
+//      {
+//        "desc": "goto",
+//        "id" : 1,
+//        "positionX" : 540,
+//        "positionY" : 950,
+//        "type" : "deplacement",
+//        "subtype": "goto",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "face",
+//        "id" : 2,
+//        "positionX" : 540,
+//        "positionY" : 2000,
+//        "type" : "deplacement",
+//        "subtype": "face",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "on recule",
+//        "id" : 3,
+//        "dist" : -90,
+//        "type" : "deplacement",
+//        "subtype": "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "On ramasse les minerais",
+//        "id" : 1,
+//        "positionX" : 540,
+//        "positionY" : 900,
+//        "type" : "manipulation",
+//        "actionId" : 0
+//      },
+//      {
+//        "desc": "On stocke les minerais",
+//        "id" : 1,
+//        "positionX" : 540,
+//        "positionY" : 900,
+//        "type" : "manipulation",
+//        "actionId" : 2
+//      },
+//      {
+//        "desc": "on avance pour sortir de la zone interdite",
+//        "id" : 3,
+//        "dist" : 90,
+//        "type" : "deplacement",
+//        "subtype": "go",
+//        "actionId" : -1
+//      },
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 540,
-        "positionY" : 950,
+        "positionX" : 1000,
+        "positionY" : 1000,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 2,
-        "positionX" : 540,
-        "positionY" : 2000,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "on recule",
-        "id" : 3,
-        "dist" : -90,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "On ramasse les minerais",
-        "id" : 1,
-        "positionX" : 540,
-        "positionY" : 900,
-        "type" : "manipulation",
-        "actionId" : 0
-      },
-      {
-        "desc": "On stocke les minerais",
-        "id" : 1,
-        "positionX" : 540,
-        "positionY" : 900,
-        "type" : "manipulation",
-        "actionId" : 2
-      },
-      {
-        "desc": "on avance pour sortir de la zone interdite",
-        "id" : 3,
-        "dist" : 90,
-        "type" : "deplacement",
-        "subtype": "go",
         "actionId" : -1
       },
       {
@@ -196,55 +205,55 @@
         "type" : "manipulation",
         "actionId" : 5
       },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 1000,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "mise en position pour larguer les minerais",
-        "id" : 4,
-        "dist" : -240,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage minerai",
-        "id" : 6,
-        "positionX" : 350,
-        "positionY" : 360,
-        "type" : "manipulation",
-        "actionId" : 1
-      },
-      {
-        "desc": "on avance pour larguer les minerais",
-        "id" : 4,
-        "dist" : 130,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le ramasse minerai",
-        "id" : 6,
-        "positionX" : 350,
-        "positionY" : 460,
-        "type" : "manipulation",
-        "actionId" : 2
-      },
-      {
-        "desc": "On sort de la zone interdite",
-        "id" : 4,
-        "dist" : 100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
+//      {
+//        "desc": "face",
+//        "id" : 1,
+//        "positionX" : 1000,
+//        "positionY" : 360,
+//        "type" : "deplacement",
+//        "subtype": "face",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "mise en position pour larguer les minerais",
+//        "id" : 4,
+//        "dist" : -240,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "larguage minerai",
+//        "id" : 6,
+//        "positionX" : 350,
+//        "positionY" : 360,
+//        "type" : "manipulation",
+//        "actionId" : 1
+//      },
+//      {
+//        "desc": "on avance pour larguer les minerais",
+//        "id" : 4,
+//        "dist" : 130,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "on rentre le ramasse minerai",
+//        "id" : 6,
+//        "positionX" : 350,
+//        "positionY" : 460,
+//        "type" : "manipulation",
+//        "actionId" : 2
+//      },
+//      {
+//        "desc": "On sort de la zone interdite",
+//        "id" : 4,
+//        "dist" : 100,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      },
       {
         "desc": "goto",
         "id" : 1,
@@ -289,130 +298,130 @@
       }
     ]
   },
-  {
-    "desc": "Seconde moitié du cratère",
-    "id": 3,
-    "points": 5,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 750,
-        "positionY" : 310,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 2,
-        "positionX" : 2000,
-        "positionY" : 310,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "on recule",
-        "id" : 3,
-        "dist" : -180,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 2,
-        "positionX" : 550,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "on recule",
-        "id" : 3,
-        "dist" : -110,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "On ramasse les minerais",
-        "id" : 1,
-        "positionX" : 550,
-        "positionY" : 200,
-        "type" : "manipulation",
-        "actionId" : 0
-      },
-      {
-        "desc": "On stocke les minerais",
-        "id" : 1,
-        "positionX" : 550,
-        "positionY" : 200,
-        "type" : "manipulation",
-        "actionId" : 2
-      },
-      {
-        "desc": "go",
-        "id" : 1,
-        "dist" : 110,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 2000,
-        "positionY" : 310,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "mise en position pour larguer les minerais",
-        "id" : 4,
-        "dist" : -80,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage minerai",
-        "id" : 6,
-        "positionX" : 350,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 1
-      },
-      {
-        "desc": "on avance pour larguer les minerais",
-        "id" : 4,
-        "dist" : 110,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le ramasse minerai",
-        "id" : 6,
-        "positionX" : 350,
-        "positionY" : 460,
-        "type" : "manipulation",
-        "actionId" : 2
-      },
-      {
-        "desc": "On sort de la zone interdite",
-        "id" : 4,
-        "dist" : 100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      }
-    ]
-  },
+//  {
+//    "desc": "Seconde moitié du cratère",
+//    "id": 3,
+//    "points": 5,
+//    "priorite": 100,
+//    "taches": [
+//      {
+//        "desc": "goto",
+//        "id" : 1,
+//        "positionX" : 750,
+//        "positionY" : 310,
+//        "type" : "deplacement",
+//        "subtype": "goto",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "face",
+//        "id" : 2,
+//        "positionX" : 2000,
+//        "positionY" : 310,
+//        "type" : "deplacement",
+//        "subtype": "face",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "on recule",
+//        "id" : 3,
+//        "dist" : -180,
+//        "type" : "deplacement",
+//        "subtype": "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "face",
+//        "id" : 2,
+//        "positionX" : 550,
+//        "positionY" : 0,
+//        "type" : "deplacement",
+//        "subtype": "face",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "on recule",
+//        "id" : 3,
+//        "dist" : -110,
+//        "type" : "deplacement",
+//        "subtype": "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "On ramasse les minerais",
+//        "id" : 1,
+//        "positionX" : 550,
+//        "positionY" : 200,
+//        "type" : "manipulation",
+//        "actionId" : 0
+//      },
+//      {
+//        "desc": "On stocke les minerais",
+//        "id" : 1,
+//        "positionX" : 550,
+//        "positionY" : 200,
+//        "type" : "manipulation",
+//        "actionId" : 2
+//      },
+//      {
+//        "desc": "go",
+//        "id" : 1,
+//        "dist" : 110,
+//        "type" : "deplacement",
+//        "subtype": "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "face",
+//        "id" : 1,
+//        "positionX" : 2000,
+//        "positionY" : 310,
+//        "type" : "deplacement",
+//        "subtype": "face",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "mise en position pour larguer les minerais",
+//        "id" : 4,
+//        "dist" : -80,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "larguage minerai",
+//        "id" : 6,
+//        "positionX" : 350,
+//        "positionY" : 310,
+//        "type" : "manipulation",
+//        "actionId" : 1
+//      },
+//      {
+//        "desc": "on avance pour larguer les minerais",
+//        "id" : 4,
+//        "dist" : 110,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      },
+//      {
+//        "desc": "on rentre le ramasse minerai",
+//        "id" : 6,
+//        "positionX" : 350,
+//        "positionY" : 460,
+//        "type" : "manipulation",
+//        "actionId" : 2
+//      },
+//      {
+//        "desc": "On sort de la zone interdite",
+//        "id" : 4,
+//        "dist" : 100,
+//        "type" : "deplacement",
+//        "subtype" : "go",
+//        "actionId" : -1
+//      }
+//    ]
+//  },
   {
     "desc": "Module bicolore qui fait chier",
     "id": 4,
@@ -448,7 +457,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 120,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -468,6 +477,15 @@
         "positionY" : 410,
         "type" : "manipulation",
         "actionId" : 5
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1000,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
       },
       {
         "desc": "goto",
@@ -608,7 +626,16 @@
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 850,
+        "positionX" : 860,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 860,
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
@@ -617,7 +644,7 @@
       {
         "desc": "face",
         "id" : 1,
-        "positionX" : 850,
+        "positionX" : 860,
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
@@ -634,7 +661,7 @@
       {
         "desc": "larguage module horizontale",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 860,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 6
@@ -642,7 +669,7 @@
       {
         "desc": "on rentre le bras",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 860,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 5
@@ -658,6 +685,15 @@
       {
         "desc": "goto",
         "id" : 1,
+        "positionX" : 860,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
         "positionX" : 400,
         "positionY" : 1150,
         "type" : "deplacement",
@@ -736,7 +772,16 @@
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 950,
+        "positionX" : 970,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 970,
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
@@ -745,7 +790,7 @@
       {
         "desc": "face",
         "id" : 1,
-        "positionX" : 950,
+        "positionX" : 970,
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
@@ -762,7 +807,7 @@
       {
         "desc": "larguage module horizontale",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 970,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 6
@@ -770,7 +815,7 @@
       {
         "desc": "on rentre le bras",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 970,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 5
@@ -786,6 +831,15 @@
       {
         "desc": "goto",
         "id" : 1,
+        "positionX" : 970,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
         "positionX" : 400,
         "positionY" : 1150,
         "type" : "deplacement",
@@ -864,7 +918,16 @@
       {
         "desc": "goto",
         "id" : 1,
-        "positionX" : 1050,
+        "positionX" : 1100,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1100,
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
@@ -873,7 +936,7 @@
       {
         "desc": "face",
         "id" : 1,
-        "positionX" : 1050,
+        "positionX" : 1100,
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
@@ -890,7 +953,7 @@
       {
         "desc": "larguage module horizontale",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 1100,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 6
@@ -898,7 +961,7 @@
       {
         "desc": "on rentre le bras",
         "id" : 6,
-        "positionX" : 750,
+        "positionX" : 1100,
         "positionY" : 310,
         "type" : "manipulation",
         "actionId" : 5
@@ -911,6 +974,15 @@
     "points": 10,
     "priorite": 100,
     "taches": [
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1100,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1
+      },
       {
         "desc": "goto",
         "id" : 1,

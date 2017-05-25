@@ -71,7 +71,7 @@ public class MovementManager {
         logger.info("executeMovement = " + trajectory);
         logger.info("isMatchStarted = " + isMatchStarted);
         gotoQueue.clear();
-        trajectory = trajectory.subList(1, trajectory.size()); // GaG parie un café qu'un jour on cherchera pourquoi la première commande disparait
+        //trajectory = trajectory.subList(1, trajectory.size()); // GaG parie un café qu'un jour on cherchera pourquoi la première commande disparait
         for (Point point : trajectory) {
             gotoQueue.add(point);
             if (isMatchStarted) {
@@ -92,6 +92,8 @@ public class MovementManager {
             this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY() * (isYPositive ? 1 : -1)));
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
+        } else if (step.getSubType() == Step.SubType.GOTO) {
+            this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
         }
     }
 
