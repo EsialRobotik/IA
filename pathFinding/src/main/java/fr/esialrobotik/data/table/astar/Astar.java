@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+
 /**
  * Created by Guillaume on 15/05/2017.
  */
@@ -158,7 +159,7 @@ public class Astar {
     }
   }
 
-  private void updateCout(Node courant, Node suivant, int cout) {
+  private void updateCout(Node courant, Node suivant, int cout, Point.DIRECTION direction) {
 
     if(suivant == null || suivant.ferme || !suivant.accessible) {
       // Rien à faire
@@ -168,7 +169,8 @@ public class Astar {
 		 * Nouveau cout = (cout pour aller au noeud suivant)
 		 * 					+ (cout estimé du noeud suivant jusqu'à l'arrivé)
 		 */
-    int nouveauCout = suivant.heuristique + cout;
+		final int directionOverhead = (courant.parentDirection == direction) ? 0 : 12;
+    int nouveauCout = suivant.heuristique + cout + directionOverhead;
 
     // Si on n'a pas examiné le point, ou que le chemin améliore le cout...
     if(nouveauCout < suivant.coutHeuristique) {
@@ -176,6 +178,7 @@ public class Astar {
       // ... on met à jour les couts...
       suivant.cout = cout;
       suivant.coutHeuristique = nouveauCout;
+      suivant.parentDirection = direction;
 
 			/* Il y a un risque d'ajouter un noeud déjà existant dans la file des ouverts, mais:
 			 * - La file ne se re-trie pas si un noeud est modifié ;
@@ -219,6 +222,7 @@ public class Astar {
     final Node start = grille[startX][startY];
     start.cout = 0;
     start.coutHeuristique = start.heuristique;
+    start.parentDirection = Point.DIRECTION.NULL;
 
     // On ajoute le noeud de départ à la liste des ouverts
     ouverts.add(start);
@@ -252,15 +256,15 @@ public class Astar {
       final int cout_h_v = courant.cout + DIST_H_V;
       final int cout_diag = courant.cout + DIST_DIAGONALE;
 
-      updateCout(courant, courant.voisin_n, cout_h_v);
-      updateCout(courant, courant.voisin_s, cout_h_v);
-      updateCout(courant, courant.voisin_e, cout_h_v);
-      updateCout(courant, courant.voisin_w, cout_h_v);
+      updateCout(courant, courant.voisin_n, cout_h_v, Point.DIRECTION.N);
+      updateCout(courant, courant.voisin_s, cout_h_v, Point.DIRECTION.S);
+      updateCout(courant, courant.voisin_e, cout_h_v, Point.DIRECTION.E);
+      updateCout(courant, courant.voisin_w, cout_h_v, Point.DIRECTION.O);
 
-      updateCout(courant, courant.voisin_ne, cout_diag);
-      updateCout(courant, courant.voisin_nw, cout_diag);
-      updateCout(courant, courant.voisin_se, cout_diag);
-      updateCout(courant, courant.voisin_sw, cout_diag);
+      updateCout(courant, courant.voisin_ne, cout_diag, Point.DIRECTION.NE);
+      updateCout(courant, courant.voisin_nw, cout_diag, Point.DIRECTION.NO);
+      updateCout(courant, courant.voisin_se, cout_diag, Point.DIRECTION.SE);
+      updateCout(courant, courant.voisin_sw, cout_diag, Point.DIRECTION.SO);
     }
 
   }

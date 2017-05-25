@@ -1,5 +1,7 @@
 package fr.esialrobotik.data.table.astar;
 
+import fr.esialrobotik.data.table.Point;
+
 /**
  * Un noeud du graphe A*
  * @author jb
@@ -37,6 +39,8 @@ public class Node implements Comparable<Node> {
    * Le noeud précédent du chemin
    */
   public Node parent;
+
+  public Point.DIRECTION parentDirection;
 
   /**
    * Le noeud est-il fermé ?
