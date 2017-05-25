@@ -556,7 +556,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 150,
+        "dist" : 148,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -565,7 +565,7 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1500,
+        "positionY" : 1250,
         "type" : "deplacement",
         "subtype" : "face",
         "actionId" : -1
@@ -581,7 +581,7 @@
       {
         "desc": "on dégage",
         "id" : 4,
-        "dist" : -50,
+        "dist" : -100,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -673,7 +673,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 150,
+        "dist" : 148,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -682,7 +682,7 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1500,
+        "positionY" : 1250,
         "type" : "deplacement",
         "subtype" : "face",
         "actionId" : -1
@@ -698,7 +698,7 @@
       {
         "desc": "on dégage",
         "id" : 4,
-        "dist" : -50,
+        "dist" : -100,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -790,7 +790,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 150,
+        "dist" : 148,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -799,7 +799,7 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1500,
+        "positionY" : 1250,
         "type" : "deplacement",
         "subtype" : "face",
         "actionId" : -1
@@ -815,7 +815,7 @@
       {
         "desc": "on dégage",
         "id" : 4,
-        "dist" : -50,
+        "dist" : -100,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -907,7 +907,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 150,
+        "dist" : 148,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -916,7 +916,7 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1500,
+        "positionY" : 1250,
         "type" : "deplacement",
         "subtype" : "face",
         "actionId" : -1
@@ -932,7 +932,7 @@
       {
         "desc": "on dégage",
         "id" : 4,
-        "dist" : -50,
+        "dist" : -100,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
