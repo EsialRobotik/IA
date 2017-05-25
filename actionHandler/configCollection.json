@@ -224,7 +224,7 @@
       {
         "desc": "on avance pour larguer les minerais",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 130,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -316,7 +316,7 @@
       {
         "desc": "on recule",
         "id" : 3,
-        "dist" : -200,
+        "dist" : -180,
         "type" : "deplacement",
         "subtype": "go",
         "actionId" : -1
@@ -390,7 +390,7 @@
       {
         "desc": "on avance pour larguer les minerais",
         "id" : 4,
-        "dist" : 100,
+        "dist" : 110,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -556,7 +556,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 148,
+        "dist" : 146,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -565,10 +565,21 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1250,
+        "positionY" : 1300,
         "type" : "deplacement",
         "subtype" : "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype" : "face",
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
       {
         "desc": "saisir module",
@@ -673,7 +684,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 148,
+        "dist" : 146,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -682,10 +693,21 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1250,
+        "positionY" : 1300,
         "type" : "deplacement",
         "subtype" : "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype" : "face",
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
       {
         "desc": "saisir module",
@@ -790,7 +812,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 148,
+        "dist" : 146,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -799,10 +821,21 @@
         "desc": "sort de la putain de module !",
         "id" : 4,
         "positionX" : 0,
-        "positionY" : 1250,
+        "positionY" : 1300,
         "type" : "deplacement",
         "subtype" : "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype" : "face",
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
       {
         "desc": "saisir module",
@@ -913,29 +946,32 @@
         "actionId" : -1
       },
       {
-        "desc": "sort de la putain de module !",
+        "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1250,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on dégage",
-        "id" : 4,
-        "dist" : -100,
+        "dist" : 146,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1300,
+        "type" : "deplacement",
+        "subtype" : "face",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+      {
+        "desc": "sort de la putain de module !",
+        "id" : 4,
+        "positionX" : 0,
+        "positionY" : 1000,
+        "type" : "deplacement",
+        "subtype" : "face",
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
       {
         "desc": "on rentre le bras",

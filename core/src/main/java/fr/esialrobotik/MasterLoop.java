@@ -152,6 +152,10 @@ public class MasterLoop {
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
                         currentStep = currentAction.getNextStep();
+                        if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
+                                || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
+                            currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
+                        }
                         logger.debug("Suite de l'action, step = " + currentStep.getDesc());
                     } else { //Previous action has ended, time to fetch a new one
                         currentAction = actionCollection.getNextActionToPerform();
@@ -160,6 +164,10 @@ public class MasterLoop {
                             break;
                         } else {
                             currentStep = currentAction.getNextStep();
+                            if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
+                                    || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
+                                currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
+                            }
                             logger.debug("Nouvelle action = " + currentAction.getDesc());
                             logger.debug("Nouvelle step = " + currentStep.getDesc());
                         }

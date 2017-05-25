@@ -24,7 +24,7 @@ public class ActionCollection {
     JsonParser parser = new JsonParser();
     JsonElement elt = parser.parse(new JsonReader(new FileReader(filepath)));
 
-    actionList = new ArrayList<ActionDescriptor>();
+    actionList = new ArrayList<>();
 
     for(JsonElement element : elt.getAsJsonArray()) {
       actionList.add(new ActionDescriptor(element.getAsJsonObject()));
@@ -49,21 +49,6 @@ public class ActionCollection {
 
   public static void main(String args[]) throws FileNotFoundException {
     ActionCollection collection = new ActionCollection("actionHandler/configCollection.json");
-    //System.out.println(collection);
-    ActionDescriptor actionDescriptor = collection.getNextActionToPerform();
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
-    System.out.println(actionDescriptor.getNextStep().toString());
-    System.out.println(actionDescriptor.hasNextStep());
+    System.out.println(collection);
   }
 }

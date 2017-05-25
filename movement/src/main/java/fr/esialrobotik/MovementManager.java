@@ -135,6 +135,10 @@ public class MovementManager {
         isMatchStarted = matchStarted;
     }
 
+    public boolean isYPositive() {
+        return isYPositive;
+    }
+
     public void setYPositive(boolean YPositive) {
         isYPositive = YPositive;
     }
