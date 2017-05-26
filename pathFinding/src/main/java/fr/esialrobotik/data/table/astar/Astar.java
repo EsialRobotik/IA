@@ -169,7 +169,7 @@ public class Astar {
 		 * Nouveau cout = (cout pour aller au noeud suivant)
 		 * 					+ (cout estimé du noeud suivant jusqu'à l'arrivé)
 		 */
-		final int directionOverhead = (courant.parentDirection == direction) ? 0 : 50;
+		final int directionOverhead = (courant.parentDirection == direction) ? 0 : 500000000;
     int nouveauCout = suivant.heuristique + cout + directionOverhead;
 
     // Si on n'a pas examiné le point, ou que le chemin améliore le cout...
