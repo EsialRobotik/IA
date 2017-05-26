@@ -93,7 +93,7 @@ public class MovementManager {
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
         } else if (step.getSubType() == Step.SubType.GOTO) {
-            this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
+            this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY() * (isYPositive ? 1 : -1)));
         }
     }
 

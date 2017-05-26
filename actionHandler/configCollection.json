@@ -261,8 +261,21 @@
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 755,
+        "positionY" : 360,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "face",
         "id" : 1,
@@ -270,8 +283,20 @@
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "face",
+        "id" : 1,
+        "positionX" : 755,
+        "positionY" : 0,
+        "type" : "deplacement",
+        "subtype": "face",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
       {
         "desc": "go largage module",
         "id" : 1,
@@ -574,7 +599,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 146,
+        "dist" : 145,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -623,6 +648,8 @@
         "type" : "manipulation",
         "actionId" : 5
       },
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -630,8 +657,22 @@
         "positionY" : 1150,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 870,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -639,8 +680,21 @@
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 870,
+        "positionY" : 360,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "face",
         "id" : 1,
@@ -648,8 +702,21 @@
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "face",
+        "id" : 1,
+        "positionX" : 870,
+        "positionY" : 0,
+        "type" : "deplacement",
+        "subtype": "face",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "go largage module",
         "id" : 1,
@@ -720,7 +787,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 146,
+        "dist" : 145,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -769,6 +836,8 @@
         "type" : "manipulation",
         "actionId" : 5
       },
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -776,8 +845,21 @@
         "positionY" : 1150,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 980,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -785,8 +867,21 @@
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 980,
+        "positionY" : 360,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "face",
         "id" : 1,
@@ -794,8 +889,21 @@
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "face",
+        "id" : 1,
+        "positionX" : 980,
+        "positionY" : 0,
+        "type" : "deplacement",
+        "subtype": "face",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "go largage module",
         "id" : 1,
@@ -866,7 +974,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 146,
+        "dist" : 145,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -915,6 +1023,8 @@
         "type" : "manipulation",
         "actionId" : 5
       },
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -922,8 +1032,21 @@
         "positionY" : 1150,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1110,
+        "positionY" : 1150,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "goto",
         "id" : 1,
@@ -931,8 +1054,21 @@
         "positionY" : 360,
         "type" : "deplacement",
         "subtype": "goto",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "goto",
+        "id" : 1,
+        "positionX" : 1110,
+        "positionY" : 360,
+        "type" : "deplacement",
+        "subtype": "goto",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "face",
         "id" : 1,
@@ -940,8 +1076,21 @@
         "positionY" : 0,
         "type" : "deplacement",
         "subtype": "face",
-        "actionId" : -1
+        "actionId" : -1,
+        "yPositiveExclusive" : true
       },
+      {
+        "desc": "face",
+        "id" : 1,
+        "positionX" : 1110,
+        "positionY" : 0,
+        "type" : "deplacement",
+        "subtype": "face",
+        "actionId" : -1,
+        "yNegativeExclusive" : true
+      },
+
+
       {
         "desc": "go largage module",
         "id" : 1,
@@ -1020,7 +1169,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 146,
+        "dist" : 145,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1

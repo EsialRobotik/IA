@@ -38,12 +38,10 @@ public class ActionDescriptor {
   }
 
   public String toString() {
-    String res = "id : " + objectiveId;
+    String res = "\n\nid : " + objectiveId;
+    res += "\ndesc : " + desc;
     res += "\npoints: " + points;
-    res += "\ntemps : " + priority;
-    for(Step s : stepList) {
-      res += "\n" + s.toString();
-    }
+    res += "\npriority : " + priority;
     return res;
   }
 
@@ -70,77 +68,19 @@ public class ActionDescriptor {
 
   public static void main(String[] args) throws FileNotFoundException {
     ActionCollection actionCollection = new ActionCollection("actionHandler/configCollection.json");
-    ActionDescriptor actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
+    ActionDescriptor actionDescriptor;
     boolean positive = false;
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
+    while ((actionDescriptor = actionCollection.getNextActionToPerform()) != null) {
+      System.out.println(actionDescriptor);
+      while (actionDescriptor.hasNextStep()) {
+        Step step = actionDescriptor.getNextStep();
+        if ((step != null && step.isyPositiveExclusive() && !positive)
+                || (step != null && step.isyNegativeExclusive() && positive)) {
+          System.out.println("################################### step qui saute : " + step.getDesc());
+          step = actionDescriptor.getNextStep();
+        }
+        System.out.println(step);
       }
-      System.out.println(step);
-    }
-
-    actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
-      }
-      System.out.println(step);
-    }
-
-    actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
-      }
-      System.out.println(step);
-    }
-
-    actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
-      }
-      System.out.println(step);
-    }
-
-    actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
-      }
-      System.out.println(step);
-    }
-
-    actionDescriptor = actionCollection.getNextActionToPerform();
-    System.out.println(actionDescriptor);
-    while (actionDescriptor.hasNextStep()) {
-      Step step = actionDescriptor.getNextStep();
-      if ((step != null && step.isyPositiveExclusive() && !positive)
-              || (step != null && step.isyNegativeExclusive() && positive)) {
-        System.out.println("################################### step qui saute");
-        step = actionDescriptor.getNextStep();
-      }
-      System.out.println(step);
     }
   }
 }
