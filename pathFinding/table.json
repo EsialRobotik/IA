@@ -1,170 +1,130 @@
 {
   "tailleX": 2000,
   "tailleY": 3000,
-  "couleurDepartYPositif": "Bleu",
-  "couleurDepartYNegatif": "Jaune",
+  "couleurDepartYPositif": "Vert",
+  "couleurDepartYNegatif": "Orange",
   "zonesInterdites": [
     {
       "forme": "polygone",
-      "desc": "Depart Bleu",
+      "desc": "Depart Vert et zone construction",
       "points": [
         {
           "x": 0,
           "y": 0
         },
         {
-          "x": 382,
+          "x": 650,
           "y": 0
         },
         {
-          "x": 382,
-          "y": 700
+          "x": 650,
+          "y": 400
+        },
+        {
+          "x": 180,
+          "y": 400
+        },
+		{
+          "x": 180,
+          "y": 960
         },
         {
           "x": 0,
-          "y": 700
-        }
+          "y": 960
+		}
       ]
     },
     {
       "forme": "polygone",
-      "desc": "Depart Jaune",
+      "desc": "Depart Orange et zone construction",
       "points": [
         {
           "x": 0,
           "y": 3000
         },
         {
-          "x": 382,
+          "x": 650,
           "y": 3000
         },
         {
-          "x": 382,
-          "y": 2290
+          "x": 650,
+          "y": 2600
+        },
+        {
+          "x": 180,
+          "y": 2600
+        },
+        {
+          "x": 180,
+          "y": 2040
         },
         {
           "x": 0,
-          "y": 2290
-        }
-      ]
-    },
-    {
-      "forme" : "cercle",
-      "desc": "Grand cratère bleu",
-      "centre" :
-      {
-        "x" : 2000,
-        "y" : 0
-      },
-      "rayon": 540
-    },
-    {
-      "forme" : "cercle",
-      "desc": "Grand cratère jaune",
-      "centre" :
-      {
-        "x" : 2000,
-        "y" : 3000
-      },
-      "rayon": 540
-    },
-    {
-      "forme" : "cercle",
-      "desc": "Base lunaire",
-      "centre" :
-      {
-        "x" : 2000,
-        "y" : 1500
-      },
-      "rayon": 800
-    },
-    {
-      "forme" : "polygone",
-      "desc": "Petit cratere bleu",
-      "points": [
-        {
-          "x": 425,
-          "y": 765
-        },
-        {
-          "x": 655,
-          "y": 765
-        },
-        {
-          "x": 655,
-          "y": 535
-        },
-        {
-          "x": 425,
-          "y": 535
+          "y": 2040
         }
       ]
     },
     {
       "forme" : "polygone",
-      "desc": "Petit cratere jaune",
+      "desc": "stations epuration",
       "points": [
         {
-          "x": 425,
-          "y": 2465
+          "x": 1750,
+          "y": 894
         },
         {
-          "x": 655,
-          "y": 2465
+          "x": 2000,
+          "y": 894
         },
         {
-          "x": 655,
-          "y": 2235
+          "x": 2000,
+          "y": 2106
         },
         {
-          "x": 425,
-          "y": 2235
+          "x": 1750,
+          "y": 2100
         }
       ]
     },
-    {
-      "forme": "polygone",
-      "desc": "Largage module bleu",
-      "points": [
-        {
-          "x": 678,
-          "y": 0
-        },
-        {
-          "x": 1172,
-          "y": 0
-        },
-        {
-          "x": 1172,
-          "y": 98
-        },
-        {
-          "x": 678,
-          "y": 98
-        }
-      ]
-    },
-    {
-      "forme": "polygone",
-      "desc": "Largage module jaune",
-      "points": [
-        {
-          "x": 678,
-          "y": 3000
-        },
-        {
-          "x": 1172,
-          "y": 3000
-        },
-        {
-          "x": 1172,
-          "y": 2892
-        },
-        {
-          "x": 678,
-          "y": 2892
-        }
-      ]
-    }
+	{
+      "forme" : "cercle",
+      "desc": "distrib 1",
+      "centre" :
+      {
+        "x" : 840,
+        "y" : 53
+      },
+      "rayon": 53
+	},
+	{
+      "forme" : "cercle",
+      "desc": "distrib 2",
+      "centre" :
+      {
+        "x" : 1947,
+        "y" : 610
+      },
+      "rayon": 53
+	},
+	{
+      "forme" : "cercle",
+      "desc": "distrib 3",
+      "centre" :
+      {
+        "x" : 1947,
+        "y" : 2390
+      },
+      "rayon": 53
+	},
+	{
+      "forme" : "cercle",
+      "desc": "distrib 4",
+      "centre" :
+      {
+        "x" : 840,
+        "y" : 2947
+      },
+      "rayon": 53
+	}
   ]
 }
