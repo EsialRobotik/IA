@@ -25,8 +25,8 @@ public class Table {
     private int rectifiedXSize;
     private int ySize;
     private int rectifiedYSize;
-    private TableColor positiveStart;
-    private TableColor negativeStart;
+    private String color0;
+    private String color3000;
 
     private boolean[][] forbiddenArea;
 
@@ -57,8 +57,8 @@ public class Table {
         rectifiedXSize = xSize / 10;
         ySize = rootElement.get("tailleY").getAsInt();
         rectifiedYSize = ySize / 10;
-        positiveStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYPositif").getAsString());
-        negativeStart = TableColor.getTableColorFromConfigName(rootElement.get("couleurDepartYNegatif").getAsString());
+        color0 = rootElement.get("couleur0").getAsString();
+        color3000 = rootElement.get("couleur3000").getAsString();
 
         for(JsonElement jsonElement : rootElement.getAsJsonArray("zonesInterdites")){
             shapeList.add(ShapeFactory.getShape(jsonElement.getAsJsonObject()));
@@ -81,12 +81,12 @@ public class Table {
         return rectifiedYSize;
     }
 
-    public TableColor getPositiveStartColor(){
-        return positiveStart;
+    public String getColor0Name(){
+        return color0;
     }
 
-    public TableColor getNegativeStartColor(){
-        return negativeStart;
+    public String getColor3000Name(){
+        return color3000;
     }
 
     public List<Shape> getShapeList(){

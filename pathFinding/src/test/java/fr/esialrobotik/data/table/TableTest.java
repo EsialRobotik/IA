@@ -18,8 +18,8 @@ public class TableTest {
     private String loadingExample = "{\n" +
             "  \"tailleX\": 3000,\n" +
             "  \"tailleY\": 2000,\n" +
-            "  \"couleurDepartYPositif\": \"Rouge\",\n" +
-            "  \"couleurDepartYNegatif\": \"Bleu\",\n" +
+            "  \"couleur0\": \"Vert\",\n" +
+            "  \"couleur3000\": \"Orange\",\n" +
             "  \"zonesInterdites\" : [\n" +
             "    {\n" +
             "      \"forme\" : \"cercle\",\n" +
@@ -93,8 +93,8 @@ public class TableTest {
         table.loadJsonFromString(loadingExample);
         assertEquals(3000, table.getxSize());
         assertEquals(2000, table.getySize());
-        assertEquals(TableColor.RED, table.getPositiveStartColor());
-        assertEquals(TableColor.BLUE, table.getNegativeStartColor());
+        assertEquals(TableColor.COLOR_0.toString(), table.getColor0Name());
+        assertEquals(TableColor.COLOR_3000.toString(), table.getColor3000Name());
 
         assertTrue(table.getShapeList().get(0) instanceof Circle);
         Circle temp = (Circle)table.getShapeList().get(0);

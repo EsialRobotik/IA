@@ -18,18 +18,22 @@ import java.util.List;
 public class ActionCollection {
   private List<ActionDescriptor> actionList;
   private int currentIndex;
+  private JsonElement jsonElement;
 
   @Inject
   public ActionCollection(@Named("commandFile") String filepath) throws FileNotFoundException {
     JsonParser parser = new JsonParser();
-    JsonElement elt = parser.parse(new JsonReader(new FileReader(filepath)));
+    jsonElement = parser.parse(new JsonReader(new FileReader(filepath)));
 
+    currentIndex = 0;
+  }
+
+  public void prepareActionList(boolean isColor0) {
     actionList = new ArrayList<>();
 
-    for(JsonElement element : elt.getAsJsonArray()) {
+    for(JsonElement element : jsonElement.getAsJsonObject().getAsJsonArray(isColor0 ? "couleur0" : "couleur3000")) {
       actionList.add(new ActionDescriptor(element.getAsJsonObject()));
     }
-    currentIndex = 0;
   }
 
   public String toString() {

@@ -1,8 +1,8 @@
 {
   "tailleX": 2000,
   "tailleY": 3000,
-  "couleurDepartYPositif": "Vert",
-  "couleurDepartYNegatif": "Orange",
+  "couleur0": "Vert",
+  "couleur3000": "Orange",
   "zonesInterdites": [
     {
       "forme": "polygone",

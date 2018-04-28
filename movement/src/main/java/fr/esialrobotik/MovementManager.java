@@ -21,8 +21,6 @@ public class MovementManager {
 
     private Logger logger;
 
-    private boolean isYPositive;
-
     @Inject
     public MovementManager(AsservInterface asservInterface) {
         this.asservInterface = asservInterface;
@@ -75,7 +73,7 @@ public class MovementManager {
         for (Point point : trajectory) {
             gotoQueue.add(point);
             if (isMatchStarted) {
-                this.asservInterface.goTo(new Position(point.x, point.y * (isYPositive ? 1 : -1)));
+                this.asservInterface.goTo(new Position(point.x, point.y));
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -89,20 +87,16 @@ public class MovementManager {
     public void executeStepDeplacement(Step step) {
         //Here we receive a GO or a FACE
         if (step.getSubType() == Step.SubType.FACE) {
-            this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY() * (isYPositive ? 1 : -1)));
+            this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY()));
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
         } else if (step.getSubType() == Step.SubType.GOTO) {
-            this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY() * (isYPositive ? 1 : -1)));
+            this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
         }
     }
 
     public Position getPosition() {
-        Position position = this.asservInterface.getPosition();
-        if (!isYPositive) {
-            position = new Position(position.getX(), position.getY()*-1);
-        }
-        return position;
+        return this.asservInterface.getPosition();
     }
 
     public boolean isLastOrderedMovementEnded() {
@@ -123,11 +117,11 @@ public class MovementManager {
 
     /**
      * Lance la callage du robot
-     * @param isYPositive true si la couleur est pour le Y positif, false sinon
+     * @param isColor0 true si la couleur est pour le (x,y) en (0,0), false pour le (0,3000)
      */
-    public void callage(boolean isYPositive) {
+    public void callage(boolean isColor0) {
         try {
-            this.asservInterface.calage(isYPositive);
+            this.asservInterface.calage(isColor0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -137,11 +131,4 @@ public class MovementManager {
         isMatchStarted = matchStarted;
     }
 
-    public boolean isYPositive() {
-        return isYPositive;
-    }
-
-    public void setYPositive(boolean YPositive) {
-        isYPositive = YPositive;
-    }
 }

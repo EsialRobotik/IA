@@ -69,7 +69,7 @@ public class MasterLoop {
         boolean somethingDetected = false;
         boolean movingForward = false;
 
-        movementManager.setYPositive(colorDetector.isYPositive());
+        actionCollection.prepareActionList(colorDetector.isColor0());
 
         // FIRST COMPUTATION HERE
         // 1/ We pull the first action to do
@@ -153,10 +153,6 @@ public class MasterLoop {
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
                         currentStep = currentAction.getNextStep();
-                        if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
-                                || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
-                            currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
-                        }
                         logger.debug("Suite de l'action, step = " + currentStep.getDesc());
                     } else { //Previous action has ended, time to fetch a new one
                         currentAction = actionCollection.getNextActionToPerform();
@@ -165,10 +161,6 @@ public class MasterLoop {
                             break;
                         } else {
                             currentStep = currentAction.getNextStep();
-                            if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
-                                    || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
-                                currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
-                            }
                             logger.debug("Nouvelle action = " + currentAction.getDesc());
                             logger.debug("Nouvelle step = " + currentStep.getDesc());
                         }
@@ -228,17 +220,17 @@ public class MasterLoop {
         logger.info("Init mainLoop");
 
         // Calage bordure
-        lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
+        lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
         logger.info("Attente mise en place tirette pour init callage");
         lcdDisplay.println("tirette callage");
         tirette.waitForTirette(true);
         logger.info("Attente retrait tirette pour init callage");
-        lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
+        lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
         lcdDisplay.println("tirette callage");
         tirette.waitForTirette(false);
         logger.info("Start calage bordure");
         lcdDisplay.println("Lancement callage bordure");
-        movementManager.callage(colorDetector.getSelectedColor() == TableColor.BLUE); // TODO l'ia ne devrait pas connaitre les couleurs mais seulement le sens du Y
+        movementManager.callage(colorDetector.isColor0());
 
         // Wait tirette remise
         lcdDisplay.println("Attente remise tirette");

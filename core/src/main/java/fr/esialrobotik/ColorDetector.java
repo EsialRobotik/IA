@@ -17,11 +17,7 @@ public class ColorDetector {
         this.colorDetector = new GpioInput(configurationManager.getColorGpio(), false);
     }
 
-    public TableColor getSelectedColor() {
-        return this.colorDetector.isLow() ? TableColor.BLUE : TableColor.RED;
-    }
-
-    public boolean isYPositive() {
+    public boolean isColor0() {
         return this.colorDetector.isLow();
     }
 
