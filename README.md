@@ -18,7 +18,11 @@ Once done execute in the following in the cloned repository.
 
 ```bash
 mvn compile
+mvn install // Génère le jar contenant tout dans core/core-1.0-jar-with-dependencies.jar
 ```
 
+## Génération du fichier de table
+* Ecrire le fichier table.json dans pathFinding pour définir les zones interdites
+* Lancer le main dans pathFinding/../Table.json pour générer le fichier table.tbl
 
 
