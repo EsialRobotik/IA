@@ -22,8 +22,8 @@
       "gpioList":[
         {
           "desc" : "Avant droit",
-          "in" : 0,
-          "out": 2
+          "in" : 2,
+          "out": 0
         },
         {
           "desc" : "Avant milieu",
@@ -32,8 +32,8 @@
         },
         {
           "desc" : "Avant gauche",
-          "in" : 21,
-          "out": 22
+          "in" : 22,
+          "out": 21
         },
         {
           "desc" : "Arrière",

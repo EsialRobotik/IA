@@ -2,11 +2,13 @@ package fr.esialrobotik;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import esialrobotik.ia.detection.ultrasound.srf04.raspberry.SRF04;
 import esialrobotik.ia.utils.gpio.raspberry.Gpio;
 import esialrobotik.ia.utils.gpio.raspberry.GpioInput;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.configuration.ConfigurationModule;
+import fr.esialrobotik.detection.DetectionManager;
 import org.apache.logging.log4j.Level;
 
 import java.io.FileNotFoundException;
@@ -49,19 +51,6 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         LoggerFactory.init(Level.TRACE);
-//        new Main();
-        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
-        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
-        configurationManager.loadConfiguration("config.json");
-
-        //Loading the core
-        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
-
-        ColorDetector colorDetector = coreInjector.getInstance(ColorDetector.class);
-        Tirette tirette = coreInjector.getInstance(Tirette.class);
-        while (true) {
-            System.out.println("color0 = " + colorDetector.isColor0() + " - Tirette présente = " + tirette.getTiretteState());
-            Thread.sleep(200);
-        }
+        new Main();
     }
 }
