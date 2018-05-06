@@ -43,14 +43,13 @@ public class Main {
             }
         }
 
-
         //End of the game. Let's wait a few more seconds (for funny action and to be sure) and let's return
         Thread.sleep(9000);
     }
 
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-        LoggerFactory.init(Level.TRACE);
+        LoggerFactory.init(Level.INFO);
         new Main();
     }
 }

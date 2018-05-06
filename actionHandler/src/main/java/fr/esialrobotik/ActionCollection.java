@@ -51,6 +51,14 @@ public class ActionCollection {
     return actionList.get(currentIndex++);
   }
 
+  public List<ActionDescriptor> getActionList() {
+    return actionList;
+  }
+
+  public void setActionList(List<ActionDescriptor> actionList) {
+    this.actionList = actionList;
+  }
+
   public static void main(String args[]) throws FileNotFoundException {
     ActionCollection collection = new ActionCollection("actionHandler/configCollection.json");
     System.out.println(collection);

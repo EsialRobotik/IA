@@ -66,6 +66,14 @@ public class ActionDescriptor {
     return desc;
   }
 
+  public int getPoints() {
+    return points;
+  }
+
+  public void setPoints(int points) {
+    this.points = points;
+  }
+
   public static void main(String[] args) throws FileNotFoundException {
     ActionCollection actionCollection = new ActionCollection("actionHandler/configCollection.json");
     ActionDescriptor actionDescriptor;
