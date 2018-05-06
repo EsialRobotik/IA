@@ -52,28 +52,28 @@ public class UltraSoundManager {
                     //First one is front left
                     logger.debug("Avant gauche : " + pull[0]);
                     if(pull[0] < threshold) {
-//                        x = (int) (position.getX() + 130 + Math.cos(position.getTheta() + Math.PI/6) * pull[0]);
-//                        y = (int) (position.getY() + 140 + Math.sin(position.getTheta() + Math.PI/6) * pull[0]);
-//                        if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-//                           tempDetection[0] = true;
-//                        }
+                        x = (int) (position.getX() + 130 + Math.cos(position.getTheta() + Math.PI/6) * pull[0]);
+                        y = (int) (position.getY() + 140 + Math.sin(position.getTheta() + Math.PI/6) * pull[0]);
+                        if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
+                           tempDetection[0] = true;
+                        }
                     }
 
                     //frnt middle
                     logger.debug("Avant milieu : " + pull[1]);
                     if(pull[1] < threshold) {
-//                        x = (int) (position.getX() + 130 + Math.cos(position.getTheta()) * pull[1]);
-//                        y = (int) (position.getY() + Math.sin(position.getTheta()) * pull[1]);
-//                        if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
-//                            tempDetection[1] = true;
-//                        }
+                        x = (int) (position.getX() + 130 + Math.cos(position.getTheta()) * pull[1]);
+                        y = (int) (position.getY() + Math.sin(position.getTheta()) * pull[1]);
+                        if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
+                            tempDetection[1] = true;
+                        }
                     }
 
                     //frnt right
                     logger.debug("Avant droit : " + pull[2]);
                     if(pull[2] < threshold) {
-                        x = (int) (position.getX() + /*130*/100 + Math.cos(position.getTheta()/* - Math.PI/6*/) * pull[2]);
-                        y = (int) (position.getY() /*- 140*/ + Math.sin(position.getTheta()/* - Math.PI/6*/) * pull[2]);
+                        x = (int) (position.getX() + 130 + Math.cos(position.getTheta() - Math.PI/6) * pull[2]);
+                        y = (int) (position.getY() - 140 + Math.sin(position.getTheta() - Math.PI/6) * pull[2]);
                         if(!table.isAreaForbiddenSafe(x / 10, y / 10)) {
                             tempDetection[2] = true;
                         }
