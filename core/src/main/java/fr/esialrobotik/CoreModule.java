@@ -38,8 +38,8 @@ public class CoreModule extends AbstractModule {
         bind(Chrono.class).in(Singleton.class);
         bind(MovementManager.class).in(Singleton.class);
         bind(Tirette.class).in(Singleton.class);
-//        bind(LCD.class).to(LCD_I2C.class).in(Singleton.class);
-        bind(LCD.class).to(DummyLCD.class).in(Singleton.class);
+        bind(LCD.class).to(LCD_I2C.class).in(Singleton.class);
+//        bind(LCD.class).to(DummyLCD.class).in(Singleton.class);
         //bind(Tirette.class).to(DummyTirette.class).in(Singleton.class);
         bind(ActionSupervisor.class).in(Singleton.class);
 

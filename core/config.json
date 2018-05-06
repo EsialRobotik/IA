@@ -1,5 +1,5 @@
 {
-  "desc" : "Configuration du robot 2017",
+  "desc" : "Configuration du robot 2018",
   "gpioColorSelector": 5,
   "gpioTirette": 4,
   "matchDuration": 90,
