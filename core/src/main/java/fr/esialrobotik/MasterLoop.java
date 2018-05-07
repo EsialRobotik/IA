@@ -237,16 +237,16 @@ public class MasterLoop {
 
         // Calage bordure
         lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
-        logger.info("Attente mise en place tirette pour init callage");
-        lcdDisplay.println("tirette callage");
+        logger.info("Attente mise en place tirette pour init calage");
+        lcdDisplay.println("tirette calage");
         tirette.waitForTirette(true);
-        logger.info("Attente retrait tirette pour init callage");
+        logger.info("Attente retrait tirette pour init calage");
         lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
-        lcdDisplay.println("tirette callage");
+        lcdDisplay.println("tirette calage");
         tirette.waitForTirette(false);
         logger.info("Start calage bordure");
-        lcdDisplay.println("Lancement callage bordure");
-        movementManager.callage(colorDetector.isColor0());
+        lcdDisplay.println("Lancement calage bordure");
+        movementManager.calage(colorDetector.isColor0());
 
         // Wait tirette remise
         lcdDisplay.println("Attente remise tirette");

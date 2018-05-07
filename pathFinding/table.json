@@ -6,7 +6,7 @@
   "zonesInterdites": [
     {
       "forme": "polygone",
-      "desc": "Depart Vert et zone construction",
+      "desc": "Depart Vert",
       "points": [
         {
           "x": 0,
@@ -21,22 +21,38 @@
           "y": 400
         },
         {
-          "x": 180,
-          "y": 400
-        },
-		{
-          "x": 180,
-          "y": 960
-        },
-        {
           "x": 0,
-          "y": 960
-		}
+          "y": 400
+        }
       ]
     },
     {
       "forme": "polygone",
-      "desc": "Depart Orange et zone construction",
+      "desc": "Construction Vert",
+      "points": [
+        {
+          "x": 0,
+          "y": 400
+        },
+        {
+          "x": 180,
+          "y": 400
+        },
+        {
+          "x": 180,
+          "y": 960
+        },
+        {
+          "x": 0,
+          "y": 960
+        }
+      ]
+    },
+
+
+    {
+      "forme": "polygone",
+      "desc": "Depart Orange",
       "points": [
         {
           "x": 0,
@@ -48,6 +64,20 @@
         },
         {
           "x": 650,
+          "y": 2600
+        },
+        {
+          "x": 0,
+          "y": 2600
+        }
+      ]
+    },
+    {
+      "forme": "polygone",
+      "desc": "Construction Orange",
+      "points": [
+        {
+          "x": 0,
           "y": 2600
         },
         {
@@ -64,6 +94,7 @@
         }
       ]
     },
+
     {
       "forme" : "polygone",
       "desc": "stations epuration",
@@ -82,7 +113,7 @@
         },
         {
           "x": 1750,
-          "y": 2100
+          "y": 2106
         }
       ]
     },

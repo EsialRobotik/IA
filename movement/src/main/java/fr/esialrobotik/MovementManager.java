@@ -92,6 +92,8 @@ public class MovementManager {
             this.asservInterface.go(step.getDistance());
         } else if (step.getSubType() == Step.SubType.GOTO) {
             this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
+        } else if (step.getSubType() == Step.SubType.GOTO_BACK) {
+            this.asservInterface.goToReverse(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
         }
     }
 
@@ -116,10 +118,10 @@ public class MovementManager {
     }
 
     /**
-     * Lance la callage du robot
+     * Lance la calage du robot
      * @param isColor0 true si la couleur est pour le (x,y) en (0,0), false pour le (0,3000)
      */
-    public void callage(boolean isColor0) {
+    public void calage(boolean isColor0) {
         try {
             this.asservInterface.calage(isColor0);
         } catch (InterruptedException e) {

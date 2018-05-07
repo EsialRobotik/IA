@@ -2,7 +2,7 @@
   "desc" : "Configuration du robot 2018",
   "gpioColorSelector": 5,
   "gpioTirette": 4,
-  "matchDuration": 90,
+  "matchDuration": 100,
   "tablePath": "table.tbl",
   "commandFile": "configCollection.json",
 
