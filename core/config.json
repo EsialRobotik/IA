@@ -13,7 +13,7 @@
 
   "action": {
     "baud":115200,
-    "serie":"/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"
+    "serie":"/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A9M9DV3R-if00-port0"
   },
 
   "detection": {
@@ -22,8 +22,8 @@
       "gpioList":[
         {
           "desc" : "Avant droit",
-          "in" : 2,
-          "out": 0
+          "in" : 22,
+          "out": 21
         },
         {
           "desc" : "Avant milieu",
@@ -32,8 +32,8 @@
         },
         {
           "desc" : "Avant gauche",
-          "in" : 22,
-          "out": 21
+          "in" : 2,
+          "out": 0
         },
         {
           "desc" : "Arrière",
@@ -43,7 +43,7 @@
       ]
     },
     "lidar": {
-      "port": "/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0"
+      "port": "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A9M9DV3R-if00-port0"
     }
   }
 }

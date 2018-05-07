@@ -177,7 +177,7 @@ public class MasterLoop {
                     }
                     //Switch... switch... switch, yeah I heard about them once, but never met :P
                     if (currentStep.getActionType() == Step.Type.MANIPULATION) {
-                        logger.debug("Manip");
+                        logger.debug("Manip id : " + currentStep.getActionId());
                         actionSupervisor.executeCommand(currentStep.getActionId());
                     } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
                         logger.debug("Déplacement");
