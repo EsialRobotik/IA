@@ -17,7 +17,8 @@ public class Step {
         NONE,
         GO,
         FACE,
-        GOTO
+        GOTO,
+        GOTO_BACK
     }
 
     private String desc;
@@ -54,12 +55,13 @@ public class Step {
                 this.distance = configNode.get("dist").getAsInt();
             } else if (temp.equals("goto")) {
                 this.subType = SubType.GOTO;
-                this.position = new Position(configNode.get("positionX").getAsInt(),
-                        configNode.get("positionY").getAsInt());
+                this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
             } else if (temp.equals("face")) {
                 this.subType = SubType.FACE;
-                this.position = new Position(configNode.get("positionX").getAsInt(),
-                        configNode.get("positionY").getAsInt());
+                this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
+            } else if (temp.equals("goto_back")) {
+                this.subType = SubType.GOTO_BACK;
+                this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
             }
 
             if (configNode.has("yPositiveExclusive")) {
