@@ -19,6 +19,8 @@ public class MovementManager {
     private AsservInterface asservInterface;
     private boolean isMatchStarted = false;
 
+    private Step currentStep;
+
     private Logger logger;
 
     @Inject
@@ -33,12 +35,16 @@ public class MovementManager {
     private List<Point> gotoQueue = new ArrayList<Point>();
 
     public void haltAsserv(boolean temporary) {
+        logger.info("haltAsserv, gotoQueue.size() = " + gotoQueue.size() + " - temporary = " + temporary);
         if (!temporary) {
             gotoQueue.clear();
         } else {
+            logger.info("gotoQueue.size() = " + gotoQueue.size() + " - this.asservInterface.getQueueSize() = " + this.asservInterface.getQueueSize());
             if (gotoQueue.size() > 0 && gotoQueue.size() - this.asservInterface.getQueueSize() > 0 && this.asservInterface.getQueueSize() > 0) {
                 gotoQueue = gotoQueue.subList(gotoQueue.size() - this.asservInterface.getQueueSize(), gotoQueue.size());
             }
+            logger.info("new gotoQueue size = " + gotoQueue.size());
+            logger.info(gotoQueue.toString());
         }
         this.asservInterface.emergencyStop();
     }
@@ -60,6 +66,9 @@ public class MovementManager {
             }
             return true;
         } else {
+            if (this.currentStep != null) {
+                this.executeStepDeplacement(this.currentStep);
+            }
             return false;
         }
     }
@@ -86,6 +95,7 @@ public class MovementManager {
 
     public void executeStepDeplacement(Step step) {
         //Here we receive a GO or a FACE
+        this.currentStep = step;
         if (step.getSubType() == Step.SubType.FACE) {
             this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY()));
         } else if (step.getSubType() == Step.SubType.GO) {
@@ -105,6 +115,7 @@ public class MovementManager {
         boolean isFinished = this.asservInterface.getQueueSize() == 0 && this.asservInterface.getAsservStatus() == AsservInterface.AsservStatus.STATUS_IDLE;
         if (isFinished) {
             gotoQueue.clear();
+            this.currentStep = null;
         }
         return isFinished;
     }

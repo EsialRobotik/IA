@@ -222,8 +222,7 @@ public class MasterLoop {
     //This function could be simplified but at least it keeps things readeable
     private boolean currentStepEnded() {
         Step.Type type = currentStep.getActionType();
-        if ((type == Step.Type.DEPLACEMENT)
-                && movementManager.isLastOrderedMovementEnded()) {
+        if ((type == Step.Type.DEPLACEMENT) && movementManager.isLastOrderedMovementEnded()) {
             return true;
         } else if (type == Step.Type.MANIPULATION && actionSupervisor.isLastExecutionFinished()) {
             return true;

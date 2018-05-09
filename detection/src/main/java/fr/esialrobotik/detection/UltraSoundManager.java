@@ -20,7 +20,7 @@ import javax.inject.Inject;
 public class UltraSoundManager {
     private DetectionInterface detectionInterface;
     private Logger logger;
-    private int threshold = 300;
+    private int threshold = 420;
 
     private Thread thread;
     private boolean[] detection;
@@ -60,10 +60,10 @@ public class UltraSoundManager {
 
         xObstacleRelativeToTable = (int) (posRobot.getX()
                 + xObstacleRelativeToRobot * Math.cos(posRobot.getTheta())
-                + yObstacleRelativeToRobot * Math.sin(posRobot.getTheta()) );
+                - yObstacleRelativeToRobot * Math.sin(posRobot.getTheta()) );
 
         yObstacleRelativeToTable = (int) (posRobot.getY()
-                - xObstacleRelativeToRobot * Math.sin(posRobot.getTheta())
+                + xObstacleRelativeToRobot * Math.sin(posRobot.getTheta())
                 + yObstacleRelativeToRobot * Math.cos(posRobot.getTheta()) );
 
         return new Position(xObstacleRelativeToTable, yObstacleRelativeToTable);
@@ -75,52 +75,52 @@ public class UltraSoundManager {
                 boolean[] tempDetection = new boolean[4];
                 final long[] pull = detectionInterface.ultraSoundDetection();
                 Position position = movementManager.getPosition();
-//                int x, y;
 
                 //First one is front left
                 if(pull[0] < threshold) {
                     Position pos = getObstaclePosition(position, posFrontLeft, pull[0]);
-//                        x = (int) (position.getX() + 50 + Math.cos(position.getTheta() + Math.PI/6) * pull[0]);
-//                        y = (int) (position.getY() + 130 + Math.sin(position.getTheta() + Math.PI/6) * pull[0]);
-//                    logger.debug("Avant gauche : " + pos.getX() + "," + pos.getY());
+                    logger.debug("Ultrasound Avant gauche : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                        tempDetection[0] = true;
+                        logger.debug("Ultrasound Avant gauche : STOP");
+                    } else {
+                        logger.debug("Ultrasound Avant gauche : IGNORER");
                     }
                 }
 
-                //frnt middle
-//                logger.debug("Avant milieu : " + pull[1]);
+                //front middle
                 if(pull[1] < threshold) {
                     Position pos = getObstaclePosition(position, posFront, pull[1]);
-//                        x = (int) (position.getX() + 100 + Math.cos(position.getTheta() + Math.PI/12) * pull[1]);
-//                        y = (int) (position.getY() - 60 + Math.sin(position.getTheta() + Math.PI/12) * pull[1]);
-//                    logger.debug("Avant milieu : " + pos.getX() + "," + pos.getY());
+                    logger.debug("Ultrasound Avant milieu : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[1] = true;
+                        logger.debug("Ultrasound Avant milieu : STOP");
+                    } else {
+                        logger.debug("Ultrasound Avant milieu : IGNORER");
                     }
                 }
 
-                //frnt right
-//                logger.debug("Avant droit : " + pull[2]);
+                //front right
                 if(pull[2] < threshold) {
                     Position pos = getObstaclePosition(position, posFrontRight, pull[2]);
-//                        x = (int) (position.getX() + 100 + Math.cos(position.getTheta() - Math.PI/6) * pull[2]);
-//                        y = (int) (position.getY() - 130 + Math.sin(position.getTheta() - Math.PI/6) * pull[2]);
-//                    logger.debug("Avant droit : " + pos.getX() + "," + pos.getY());
+                    logger.debug("Ultrasound Avant droit : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[2] = true;
+                        logger.debug("Ultrasound Avant droit : STOP");
+                    } else {
+                        logger.debug("Ultrasound Avant droit : IGNORER");
                     }
                 }
 
                 //back middle
-//                logger.debug("Arriere : " + pull[3]);
                 if(pull[3] < threshold) {
                     Position pos = getObstaclePosition(position, posBack, pull[3]);
-//                        x = (int) (position.getX() - 100 - Math.cos(position.getTheta()) * pull[1]);
-//                        y = (int) (position.getY() - Math.sin(position.getTheta()) * pull[1]);
-//                    logger.debug("Arriere : " + pos.getX() + "," + pos.getY());
+                    logger.debug("Ultrasound Arriere : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[3] = true;
+                        logger.debug("Ultrasound Arriere : STOP");
+                    } else {
+                        logger.debug("Ultrasound Arriere : IGNORER");
                     }
                 }
                 detection = tempDetection;
