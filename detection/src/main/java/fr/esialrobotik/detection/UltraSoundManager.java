@@ -17,7 +17,7 @@ import javax.inject.Inject;
 public class UltraSoundManager {
     private DetectionInterface detectionInterface;
     private Logger logger;
-    private int threshold = 350;
+    private int threshold = 300;
 
     private Thread thread;
     private boolean[] detection;
