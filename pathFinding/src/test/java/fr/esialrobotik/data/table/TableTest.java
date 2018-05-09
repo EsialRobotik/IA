@@ -1,6 +1,6 @@
 package fr.esialrobotik.data.table;
 
-import fr.esialrobotik.data.table.shape.*;
+import fr.esialrobotik.data.table.shape.Circle;
 import fr.esialrobotik.data.table.shape.Polygon;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,8 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by icule on 28/03/17.

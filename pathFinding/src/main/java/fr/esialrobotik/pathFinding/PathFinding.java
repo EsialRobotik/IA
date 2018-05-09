@@ -1,12 +1,10 @@
 package fr.esialrobotik.pathFinding;
 
 import fr.esialrobotik.data.table.Point;
-import fr.esialrobotik.data.table.Table;
 import fr.esialrobotik.data.table.astar.Astar;
 import fr.esialrobotik.data.table.astar.LineSimplificator;
 
 import javax.inject.Inject;
-import javax.swing.text.Position;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

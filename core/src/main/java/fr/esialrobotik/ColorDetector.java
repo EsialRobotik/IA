@@ -3,7 +3,6 @@ package fr.esialrobotik;
 import com.google.inject.Inject;
 import esialrobotik.ia.utils.gpio.raspberry.GpioInput;
 import fr.esialrobotik.configuration.ConfigurationManager;
-import fr.esialrobotik.data.table.TableColor;
 
 /**
  * Created by icule on 20/05/17.

@@ -1,14 +1,11 @@
 package fr.esialrobotik.detection;
 
 
-import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.detection.DetectionInterface;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.MovementManager;
-import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
-import javafx.geometry.Pos;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 

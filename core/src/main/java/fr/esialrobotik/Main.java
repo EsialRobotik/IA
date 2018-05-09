@@ -2,16 +2,9 @@ package fr.esialrobotik;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import esialrobotik.ia.detection.DetectionInterface;
-import esialrobotik.ia.detection.DetectionInterfaceImpl;
-import esialrobotik.ia.detection.ultrasound.srf04.raspberry.SRF04;
-import esialrobotik.ia.utils.gpio.raspberry.Gpio;
-import esialrobotik.ia.utils.gpio.raspberry.GpioInput;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.configuration.ConfigurationModule;
-import fr.esialrobotik.detection.DetectionManager;
-import fr.esialrobotik.detection.UltraSoundManager;
 import org.apache.logging.log4j.Level;
 
 import java.io.FileNotFoundException;

@@ -5,7 +5,6 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import esialrobotik.ia.actions.ActionModule;
 import esialrobotik.ia.asserv.AsservModule;
-import esialrobotik.ia.utils.lcd.DummyLCD;
 import esialrobotik.ia.utils.lcd.LCD;
 import esialrobotik.ia.utils.lcd.raspberry.LCD_I2C;
 import fr.esialrobotik.configuration.ConfigurationManager;

@@ -2,7 +2,10 @@ package fr.esialrobotik.detection;
 
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.utils.log.LoggerFactory;
-import esialrobotik.ia.utils.rplidar.*;
+import esialrobotik.ia.utils.rplidar.RpLidarDeviceInfo;
+import esialrobotik.ia.utils.rplidar.RpLidarHeath;
+import esialrobotik.ia.utils.rplidar.RpLidarListener;
+import esialrobotik.ia.utils.rplidar.RpLidarMeasurement;
 import fr.esialrobotik.MovementManager;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;

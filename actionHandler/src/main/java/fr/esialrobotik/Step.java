@@ -2,7 +2,6 @@ package fr.esialrobotik;
 
 import com.google.gson.JsonObject;
 import esialrobotik.ia.asserv.Position;
-import fr.esialrobotik.data.table.Point;
 
 /**
  * Created by Guillaume on 18/05/2017.
