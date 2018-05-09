@@ -20,7 +20,7 @@ import javax.inject.Inject;
 public class UltraSoundManager {
     private DetectionInterface detectionInterface;
     private Logger logger;
-    private int threshold = 420;
+    private int threshold = 350;
 
     private Thread thread;
     private boolean[] detection;
@@ -46,7 +46,7 @@ public class UltraSoundManager {
         this.table = table;
 
         this.posFrontLeft = new Position(50, 130, Math.PI/6);
-        this.posFront = new Position(100, -60, Math.PI/12);
+        this.posFront = new Position(100, -60, 0);
         this.posFrontRight = new Position(100, -130, -Math.PI/6);
         this.posBack = new Position(-100, 0, Math.PI);
     }
@@ -135,7 +135,7 @@ public class UltraSoundManager {
     }
 
     public boolean hasBeenDetected() {
-        return detection[0] || detection[1] || detection[3] || detection[4];
+        return detection[0] || detection[1] || detection[2] || detection[3];
     }
 
     public boolean[] getDetectionResult() {
