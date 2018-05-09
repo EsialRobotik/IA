@@ -82,43 +82,43 @@ public class UltraSoundManager {
                     Position pos = getObstaclePosition(position, posFrontLeft, pull[0]);
 //                        x = (int) (position.getX() + 50 + Math.cos(position.getTheta() + Math.PI/6) * pull[0]);
 //                        y = (int) (position.getY() + 130 + Math.sin(position.getTheta() + Math.PI/6) * pull[0]);
-                    logger.debug("Avant gauche : " + pos.getX() + "," + pos.getY());
+//                    logger.debug("Avant gauche : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                        tempDetection[0] = true;
                     }
                 }
 
                 //frnt middle
-                logger.debug("Avant milieu : " + pull[1]);
+//                logger.debug("Avant milieu : " + pull[1]);
                 if(pull[1] < threshold) {
                     Position pos = getObstaclePosition(position, posFront, pull[1]);
 //                        x = (int) (position.getX() + 100 + Math.cos(position.getTheta() + Math.PI/12) * pull[1]);
 //                        y = (int) (position.getY() - 60 + Math.sin(position.getTheta() + Math.PI/12) * pull[1]);
-                    logger.debug("Avant milieu : " + pos.getX() + "," + pos.getY());
+//                    logger.debug("Avant milieu : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[1] = true;
                     }
                 }
 
                 //frnt right
-                logger.debug("Avant droit : " + pull[2]);
+//                logger.debug("Avant droit : " + pull[2]);
                 if(pull[2] < threshold) {
                     Position pos = getObstaclePosition(position, posFrontRight, pull[2]);
 //                        x = (int) (position.getX() + 100 + Math.cos(position.getTheta() - Math.PI/6) * pull[2]);
 //                        y = (int) (position.getY() - 130 + Math.sin(position.getTheta() - Math.PI/6) * pull[2]);
-                    logger.debug("Avant droit : " + pos.getX() + "," + pos.getY());
+//                    logger.debug("Avant droit : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[2] = true;
                     }
                 }
 
                 //back middle
-                logger.debug("Arriere : " + pull[3]);
+//                logger.debug("Arriere : " + pull[3]);
                 if(pull[3] < threshold) {
                     Position pos = getObstaclePosition(position, posBack, pull[3]);
 //                        x = (int) (position.getX() - 100 - Math.cos(position.getTheta()) * pull[1]);
 //                        y = (int) (position.getY() - Math.sin(position.getTheta()) * pull[1]);
-                    logger.debug("Arriere : " + pos.getX() + "," + pos.getY());
+//                    logger.debug("Arriere : " + pos.getX() + "," + pos.getY());
                     if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
                         tempDetection[3] = true;
                     }

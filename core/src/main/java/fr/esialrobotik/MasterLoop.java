@@ -177,10 +177,10 @@ public class MasterLoop {
                     }
                     //Switch... switch... switch, yeah I heard about them once, but never met :P
                     if (currentStep.getActionType() == Step.Type.MANIPULATION) {
-                        logger.debug("Manip id : " + currentStep.getActionId());
+                        logger.info("Manip id : " + currentStep.getActionId());
                         actionSupervisor.executeCommand(currentStep.getActionId());
                     } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
-                        logger.debug("Déplacement");
+                        logger.info("Déplacement");
 //                        if (currentStep.getSubType() == Step.SubType.GOTO) {
 //                            // We need to launch the astar
 //                            launchAstar(positionToPoint(currentStep.getEndPosition()));
