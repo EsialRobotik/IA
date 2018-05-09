@@ -123,29 +123,29 @@
       "centre" :
       {
         "x" : 840,
-        "y" : 53
+        "y" : 0
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
       "desc": "distrib 2",
       "centre" :
       {
-        "x" : 1947,
+        "x" : 2000,
         "y" : 610
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
       "desc": "distrib 3",
       "centre" :
       {
-        "x" : 1947,
+        "x" : 2000,
         "y" : 2390
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
@@ -153,9 +153,9 @@
       "centre" :
       {
         "x" : 840,
-        "y" : 2947
+        "y" : 3000
       },
-      "rayon": 53
+      "rayon": 120
 	}
   ]
 }
