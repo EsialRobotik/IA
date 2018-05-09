@@ -125,7 +125,7 @@ public class MasterLoop {
 
                     if (direction.equals(AsservInterface.MovementDirection.FORWARD)
                             && (detected[0] || detected[1] || detected[2])) {
-                        logger.debug("C'est devant, faut s'arrêter");
+                        logger.info("C'est devant, faut s'arrêter");
                         //We detect something. That's horrible
                         movementManager.haltAsserv(true);
                         movingForward = true;
@@ -133,7 +133,7 @@ public class MasterLoop {
 
                     } else if (direction.equals(AsservInterface.MovementDirection.BACKWARD)
                             && detected[3]) {
-                        logger.debug("C'est derrière, faut s'arrêter");
+                        logger.info("C'est derrière, faut s'arrêter");
                         // something is sneaking on us, grab the rocket launcher
                         movementManager.haltAsserv(true);
                         movingForward = false;
@@ -203,7 +203,7 @@ public class MasterLoop {
                     movementManager.resumeAsserv();
                     somethingDetected = false;
                 } else {
-                    logger.info("Detection NOK");
+                    logger.debug("Detection NOK");
                 }
             }
             try {
