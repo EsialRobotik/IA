@@ -1,38 +1,40 @@
 package fr.esialrobotik.Divers;
 
-import com.pi4j.io.serial.Baud;
-import com.pi4j.io.serial.*;
-
-import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.nio.file.Files;
 
 public class DomotikClient {
+    File rfcommFile;
 
-    private static String domotikBTAddress = "AA:AA:AA:AA";
-    private static final Serial serial = SerialFactory.createInstance();;
-
-    public static void DomotikInitialise() {
-        SerialConfig config = new SerialConfig();
-        try {
-            config.device(SerialPort.getDefaultPort())
-                    .baud(Baud._9600)
-                    .dataBits(DataBits._8)
-                    .parity(Parity.NONE)
-                    .stopBits(StopBits._1)
-                    .flowControl(FlowControl.NONE);
-            serial.open(config);
-        }
-        catch (Exception ex){
-            System.err.println("Error when initializing Serial:" + ex.getMessage());
-        }
+    public DomotikClient(){
+        rfcommFile = new File("/dev/rfcomm0");
     }
 
-    public static void UpdateInfo(String time, String score){
-        if(!serial.isOpen()){
-            System.err.println("Serial not initialized bastard!");
-            return;
+    public boolean DomotikInitialise() {
+        System.out.println("init");
+        boolean rfcommExists = false;
+        try {
+            rfcommExists = rfcommFile.exists();
+            System.out.println("RFCOMM exists!");
+        }catch (Exception e){
+            System.err.println("Fail to test rfcomm existence" + e.getMessage());
+            return false;
         }
+        if(!rfcommExists) {
+            System.err.println("RFCOMM doesn't exists, not ready!");
+            return false;
+        }
+        return true;
+    }
+
+    public void UpdateInfo(String time, String score){
+        String display = time + ";" + score + '\n';
         try{
-            serial.write(time + ";" + score);
+            BufferedWriter bw = Files.newBufferedWriter(rfcommFile.toPath());
+            bw.write(display, 0, display.length());
+            System.out.printf("display:" + display);
+            bw.flush();
         }
             catch (Exception ex){
             System.err.println("Error when writting to Serial:" + ex.getMessage());

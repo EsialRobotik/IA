@@ -48,7 +48,18 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         LoggerFactory.init(Level.TRACE);
-        DomotikClient.DomotikInitialise();
-        DomotikClient.UpdateInfo("42", "infinity");
+        Thread.sleep(200);
+        DomotikClient dmc = new DomotikClient();
+        while(!dmc.DomotikInitialise()){
+            System.err.println("Not initialized yet!");
+            Thread.sleep(1000);
+        };
+        for (int i = 20; i < 100; i++) {
+            dmc.UpdateInfo(""+i, "448");
+            Thread.sleep(1000);
+        }
+        while(true){
+            // wait
+        }
     }
 }
