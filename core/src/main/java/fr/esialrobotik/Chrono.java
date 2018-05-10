@@ -3,6 +3,7 @@ package fr.esialrobotik;
 import fr.esialrobotik.configuration.ConfigurationManager;
 
 import javax.inject.Inject;
+import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,11 +13,20 @@ import java.util.TimerTask;
 public class Chrono {
     private Timer timer;
     private int matchDuration;
+    private double timestampStart;
 
     @Inject
     public Chrono(ConfigurationManager configurationManager) {
         timer = new Timer();
         matchDuration = configurationManager.getMatchDuration();
+        Timestamp t = new Timestamp(System.currentTimeMillis());
+        timestampStart = t.getTime();
+    }
+
+    public String toString(){
+        Timestamp t = new Timestamp(System.currentTimeMillis());
+        int chrono = (int)((t.getTime() - timestampStart)/1000);
+        return ""+chrono;
     }
 
     //We should find a way to do other wise, but, well
