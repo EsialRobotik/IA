@@ -75,14 +75,14 @@ public class UltraSoundManager {
 
                 //First one is front left
                 if(pull[0] < threshold) {
-                    Position pos = getObstaclePosition(position, posFrontLeft, pull[0]);
-                    logger.debug("Ultrasound Avant gauche : " + pos.getX() + "," + pos.getY());
-                    if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
-                       tempDetection[0] = true;
-                        logger.debug("Ultrasound Avant gauche : STOP");
-                    } else {
-                        logger.debug("Ultrasound Avant gauche : IGNORER");
-                    }
+//                    Position pos = getObstaclePosition(position, posFrontLeft, pull[0]);
+//                    logger.debug("Ultrasound Avant gauche : " + pos.getX() + "," + pos.getY());
+//                    if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
+//                       tempDetection[0] = true;
+//                        logger.debug("Ultrasound Avant gauche : STOP");
+//                    } else {
+//                        logger.debug("Ultrasound Avant gauche : IGNORER");
+//                    }
                 }
 
                 //front middle
@@ -99,14 +99,14 @@ public class UltraSoundManager {
 
                 //front right
                 if(pull[2] < threshold) {
-                    Position pos = getObstaclePosition(position, posFrontRight, pull[2]);
-                    logger.debug("Ultrasound Avant droit : " + pos.getX() + "," + pos.getY());
-                    if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
-                        tempDetection[2] = true;
-                        logger.debug("Ultrasound Avant droit : STOP");
-                    } else {
-                        logger.debug("Ultrasound Avant droit : IGNORER");
-                    }
+//                    Position pos = getObstaclePosition(position, posFrontRight, pull[2]);
+//                    logger.debug("Ultrasound Avant droit : " + pos.getX() + "," + pos.getY());
+//                    if(!table.isAreaForbiddenSafe(pos.getX() / 10, pos.getY() / 10)) {
+//                        tempDetection[2] = true;
+//                        logger.debug("Ultrasound Avant droit : STOP");
+//                    } else {
+//                        logger.debug("Ultrasound Avant droit : IGNORER");
+//                    }
                 }
 
                 //back middle
