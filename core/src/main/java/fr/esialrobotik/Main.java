@@ -59,7 +59,7 @@ public class Main {
                         System.out.println("  - DEBUG : Active les logs en mode DEBUG");
                         System.out.println("  - ERROR : Active les logs en mode ERROR");
                         System.out.println("Par defaut, le niveau de log affiché est TRACE");
-                        break;
+                        return;
                     case "TRACE":
                         LoggerFactory.init(Level.TRACE);
                         break;
