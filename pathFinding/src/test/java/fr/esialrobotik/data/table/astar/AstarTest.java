@@ -1,28 +1,21 @@
 package fr.esialrobotik.data.table.astar;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Singleton;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.Table;
-import fr.esialrobotik.data.table.TableTest;
 import fr.esialrobotik.pathFinding.PathFindingConfiguration;
 import fr.esialrobotik.pathFinding.PathFindingModule;
 import org.apache.logging.log4j.Level;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.List;
 import java.util.Stack;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by icule on 16/05/17.

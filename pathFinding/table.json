@@ -1,12 +1,12 @@
 {
   "tailleX": 2000,
   "tailleY": 3000,
-  "couleurDepartYPositif": "Vert",
-  "couleurDepartYNegatif": "Orange",
+  "couleur0": "Vert",
+  "couleur3000": "Orange",
   "zonesInterdites": [
     {
       "forme": "polygone",
-      "desc": "Depart Vert et zone construction",
+      "desc": "Depart Vert",
       "points": [
         {
           "x": 0,
@@ -21,22 +21,38 @@
           "y": 400
         },
         {
-          "x": 180,
-          "y": 400
-        },
-		{
-          "x": 180,
-          "y": 960
-        },
-        {
           "x": 0,
-          "y": 960
-		}
+          "y": 400
+        }
       ]
     },
     {
       "forme": "polygone",
-      "desc": "Depart Orange et zone construction",
+      "desc": "Construction Vert",
+      "points": [
+        {
+          "x": 0,
+          "y": 400
+        },
+        {
+          "x": 180,
+          "y": 400
+        },
+        {
+          "x": 180,
+          "y": 960
+        },
+        {
+          "x": 0,
+          "y": 960
+        }
+      ]
+    },
+
+
+    {
+      "forme": "polygone",
+      "desc": "Depart Orange",
       "points": [
         {
           "x": 0,
@@ -48,6 +64,20 @@
         },
         {
           "x": 650,
+          "y": 2600
+        },
+        {
+          "x": 0,
+          "y": 2600
+        }
+      ]
+    },
+    {
+      "forme": "polygone",
+      "desc": "Construction Orange",
+      "points": [
+        {
+          "x": 0,
           "y": 2600
         },
         {
@@ -64,6 +94,7 @@
         }
       ]
     },
+
     {
       "forme" : "polygone",
       "desc": "stations epuration",
@@ -82,7 +113,7 @@
         },
         {
           "x": 1750,
-          "y": 2100
+          "y": 2106
         }
       ]
     },
@@ -92,29 +123,29 @@
       "centre" :
       {
         "x" : 840,
-        "y" : 53
+        "y" : 0
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
       "desc": "distrib 2",
       "centre" :
       {
-        "x" : 1947,
+        "x" : 2000,
         "y" : 610
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
       "desc": "distrib 3",
       "centre" :
       {
-        "x" : 1947,
+        "x" : 2000,
         "y" : 2390
       },
-      "rayon": 53
+      "rayon": 120
 	},
 	{
       "forme" : "cercle",
@@ -122,9 +153,9 @@
       "centre" :
       {
         "x" : 840,
-        "y" : 2947
+        "y" : 3000
       },
-      "rayon": 53
+      "rayon": 120
 	}
   ]
 }

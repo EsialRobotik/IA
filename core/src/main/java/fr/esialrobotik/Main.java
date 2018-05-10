@@ -40,26 +40,28 @@ public class Main {
             }
         }
 
-
         //End of the game. Let's wait a few more seconds (for funny action and to be sure) and let's return
         Thread.sleep(9000);
     }
 
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-        LoggerFactory.init(Level.TRACE);
-        Thread.sleep(200);
-        DomotikClient dmc = new DomotikClient();
-        while(!dmc.DomotikInitialise()){
-            System.err.println("Not initialized yet!");
-            Thread.sleep(1000);
-        };
-        for (int i = 20; i < 100; i++) {
-            dmc.UpdateInfo(""+i, "448");
-            Thread.sleep(1000);
-        }
-        while(true){
-            // wait
-        }
+        LoggerFactory.init(Level.INFO);
+        new Main();
+
+//        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
+//        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
+//        configurationManager.loadConfiguration("config.json");
+//
+//        //Loading the core
+//        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
+//
+//        DetectionManager detectionManager = coreInjector.getInstance(DetectionManager.class);
+//        detectionManager.initAPI();
+//        detectionManager.startDetection();
+//        while (true){
+//            System.out.println("Yolo");
+//            Thread.sleep(1000);
+//        }
     }
 }
