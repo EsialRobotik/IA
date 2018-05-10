@@ -3,6 +3,7 @@ package fr.esialrobotik;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import esialrobotik.ia.utils.log.LoggerFactory;
+import fr.esialrobotik.Divers.DomotikClient;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.configuration.ConfigurationModule;
 import org.apache.logging.log4j.Level;
