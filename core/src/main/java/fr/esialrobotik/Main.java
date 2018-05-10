@@ -45,7 +45,38 @@ public class Main {
 
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-        LoggerFactory.init(Level.INFO);
+        if (args.length > 0) {
+            if (args.length > 1) {
+                System.out.println("L'IA n'attends qu'un seul argument pour démarrer");
+            } else {
+                switch (args[0]) {
+                    default:
+                    case "help":
+                        System.out.println("Utilisation :");
+                        System.out.println("  - help : Affiche ce menu");
+                        System.out.println("  - TRACE : Active les logs en mode TRACE");
+                        System.out.println("  - INFO : Active les logs en mode INFO");
+                        System.out.println("  - DEBUG : Active les logs en mode DEBUG");
+                        System.out.println("  - ERROR : Active les logs en mode ERROR");
+                        System.out.println("Par defaut, le niveau de log affiché est TRACE");
+                        break;
+                    case "TRACE":
+                        LoggerFactory.init(Level.TRACE);
+                        break;
+                    case "INFO":
+                        LoggerFactory.init(Level.INFO);
+                        break;
+                    case "DEBUG":
+                        LoggerFactory.init(Level.DEBUG);
+                        break;
+                    case "ERROR":
+                        LoggerFactory.init(Level.ERROR);
+                        break;
+                }
+            }
+        } else {
+            LoggerFactory.init(Level.TRACE);
+        }
         new Main();
 
 //        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
