@@ -4,7 +4,7 @@ import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.utils.lcd.LCD;
 import esialrobotik.ia.utils.log.LoggerFactory;
-import fr.esialrobotik.Divers.DomotikClient;
+import fr.esialrobotik.miscallenious.DomotikClient;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.TableColor;
 import fr.esialrobotik.detection.DetectionManager;
@@ -118,7 +118,14 @@ public class MasterLoop {
         logger.debug("while " + !interrupted);
         lcdDisplay.clear();
         lcdDisplay.println("Score : " + score);
+        String remainingTime = chrono.toString();
         while (!interrupted) {
+
+            if (!remainingTime.equals(chrono.toString())) {
+                domotikClient.updateInfo(chrono.toString(), "" + score);
+                remainingTime = chrono.toString();
+            }
+
             if (!somethingDetected) {
                 // 1/ we check if we detect something
                 boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
@@ -168,7 +175,6 @@ public class MasterLoop {
                         score += currentAction.getPoints();
                         lcdDisplay.clear();
                         lcdDisplay.println("Score : " + score);
-                        domotikClient.UpdateInfo(chrono.toString(), ""+score);
                         currentAction = actionCollection.getNextActionToPerform();
                         if (currentAction == null) {//Nothing more to do. #sadness
                             logger.info("Plus rien à faire :'(");

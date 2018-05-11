@@ -3,12 +3,13 @@ package fr.esialrobotik;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import esialrobotik.ia.utils.log.LoggerFactory;
-import fr.esialrobotik.Divers.DomotikClient;
+import fr.esialrobotik.miscallenious.DomotikClient;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.configuration.ConfigurationModule;
 import org.apache.logging.log4j.Level;
 
 import java.io.FileNotFoundException;
+import java.util.Random;
 
 /**
  * The goal of this class if to bootstrap the code, init the robot and launch the match
@@ -83,10 +84,10 @@ public class Main {
 //        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
 //        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
 //        configurationManager.loadConfiguration("config.json");
-//
-//        //Loading the core
+
+        // Loading the core
 //        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
-//
+
 //        DetectionManager detectionManager = coreInjector.getInstance(DetectionManager.class);
 //        detectionManager.initAPI();
 //        detectionManager.startDetection();
