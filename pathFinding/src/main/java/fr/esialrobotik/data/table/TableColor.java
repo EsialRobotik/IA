@@ -4,20 +4,17 @@ package fr.esialrobotik.data.table;
  * Created by icule on 28/03/17.
  */
 public enum TableColor {
-    RED("Rouge"),
-    BLUE("Bleu");
+    COLOR_0("Vert"),
+    COLOR_3000("Orange");
 
-    private String configName;
-    TableColor(String configName){
-        this.configName = configName;
+    private String colorName;
+
+    TableColor(String colorName) {
+        this.colorName = colorName;
     }
 
-    public static TableColor getTableColorFromConfigName(String configName){
-        for(TableColor tc : TableColor.values()){
-            if(tc.configName.equals(configName)){
-                return tc;
-            }
-        }
-        return null;
+    @Override
+    public String toString() {
+        return colorName;
     }
 }

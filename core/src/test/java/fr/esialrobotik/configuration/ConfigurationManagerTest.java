@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by icule on 20/05/17.

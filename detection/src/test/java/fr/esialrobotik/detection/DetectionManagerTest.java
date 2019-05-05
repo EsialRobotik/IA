@@ -5,9 +5,6 @@ import com.google.gson.JsonParser;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import esialrobotik.ia.detection.DetectionModuleConfiguration;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by icule on 12/05/17.

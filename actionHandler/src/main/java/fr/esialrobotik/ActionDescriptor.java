@@ -2,11 +2,8 @@ package fr.esialrobotik;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +61,14 @@ public class ActionDescriptor {
 
   public String getDesc() {
     return desc;
+  }
+
+  public int getPoints() {
+    return points;
+  }
+
+  public void setPoints(int points) {
+    this.points = points;
   }
 
   public static void main(String[] args) throws FileNotFoundException {

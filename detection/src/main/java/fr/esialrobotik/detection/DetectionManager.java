@@ -30,7 +30,7 @@ public class DetectionManager {
 
     public void stopDetection() {
         this.ultraSoundManager.stop();
-        this.lidarManager.stop();
+//        this.lidarManager.stop();
     }
 
     public boolean robotDetectInPath() {

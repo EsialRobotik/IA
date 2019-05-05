@@ -22,7 +22,7 @@ public class Tirette {
      * @return true si la tirette est présente, false sinon
      */
     public boolean getTiretteState() {
-        return this.tirette.isHigh();
+        return this.tirette.isLow();
     }
 
     /**

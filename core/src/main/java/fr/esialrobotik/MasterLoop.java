@@ -4,6 +4,7 @@ import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.utils.lcd.LCD;
 import esialrobotik.ia.utils.log.LoggerFactory;
+import fr.esialrobotik.miscallenious.DomotikClient;
 import fr.esialrobotik.data.table.Point;
 import fr.esialrobotik.data.table.TableColor;
 import fr.esialrobotik.detection.DetectionManager;
@@ -24,6 +25,7 @@ public class MasterLoop {
     private Chrono chrono;
     private Tirette tirette;
     private LCD lcdDisplay;
+    private DomotikClient domotikClient;
 
     private volatile boolean interrupted;
 
@@ -53,6 +55,7 @@ public class MasterLoop {
         this.tirette = tirette;
         this.lcdDisplay = lcdDisplay;
         this.actionSupervisor = actionSupervisor;
+        this.domotikClient = new DomotikClient();
 
         this.interrupted = false; // Chiotte de bordel de saloperie d'enflure de connerie !
         this.logger = LoggerFactory.getLogger(MasterLoop.class);
@@ -68,15 +71,19 @@ public class MasterLoop {
         boolean astarLaunch = false;
         boolean somethingDetected = false;
         boolean movingForward = false;
+        int score = 0;
 
-        movementManager.setYPositive(colorDetector.isYPositive());
+        actionCollection.prepareActionList(colorDetector.isColor0());
+        logger.info("ActionList size : " + actionCollection.getActionList().size());
 
         // FIRST COMPUTATION HERE
         // 1/ We pull the first action to do
         currentAction = actionCollection.getNextActionToPerform();
         currentStep = currentAction.getNextStep(); //Should not be null
 
-        logger.info("Fetch of first acction");
+        logger.info("Fetch of first action");
+        logger.info(currentStep.toString());
+
         //The first action is always a move straight or a path finding issue
         // 2/ We launch the Astar (to spare time) if we have a non always.
 //        if (currentStep.getActionType() == Step.Type.DEPLACEMENT && currentStep.getSubType() == Step.SubType.GOTO) {
@@ -109,7 +116,16 @@ public class MasterLoop {
         movementManager.executeStepDeplacement(currentStep);
 
         logger.debug("while " + !interrupted);
+        lcdDisplay.clear();
+        lcdDisplay.println("Score : " + score);
+        String remainingTime = chrono.toString();
         while (!interrupted) {
+
+            if (!remainingTime.equals(chrono.toString())) {
+                domotikClient.updateInfo(chrono.toString(), "" + score);
+                remainingTime = chrono.toString();
+            }
+
             if (!somethingDetected) {
                 // 1/ we check if we detect something
                 boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
@@ -119,7 +135,7 @@ public class MasterLoop {
 
                     if (direction.equals(AsservInterface.MovementDirection.FORWARD)
                             && (detected[0] || detected[1] || detected[2])) {
-                        logger.debug("C'est devant, faut s'arrêter");
+                        logger.info("C'est devant, faut s'arrêter");
                         //We detect something. That's horrible
                         movementManager.haltAsserv(true);
                         movingForward = true;
@@ -127,7 +143,7 @@ public class MasterLoop {
 
                     } else if (direction.equals(AsservInterface.MovementDirection.BACKWARD)
                             && detected[3]) {
-                        logger.debug("C'est derrière, faut s'arrêter");
+                        logger.info("C'est derrière, faut s'arrêter");
                         // something is sneaking on us, grab the rocket launcher
                         movementManager.haltAsserv(true);
                         movingForward = false;
@@ -148,37 +164,33 @@ public class MasterLoop {
                         e.printStackTrace();
                     }
                 } else */if (currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
-                    logger.debug("currentStepEnded");
+                    logger.info("currentStepEnded : " + currentStep.getDesc());
                     currentStep = null;
                     //Time to fetch the next one
                     if (currentAction.hasNextStep()) {
                         currentStep = currentAction.getNextStep();
-                        if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
-                                || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
-                            currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
-                        }
-                        logger.debug("Suite de l'action, step = " + currentStep.getDesc());
+                        logger.info("Suite de l'action, step = " + currentStep.getDesc());
                     } else { //Previous action has ended, time to fetch a new one
+                        logger.info("Action terminé, mise à jour du score");
+                        score += currentAction.getPoints();
+                        lcdDisplay.clear();
+                        lcdDisplay.println("Score : " + score);
                         currentAction = actionCollection.getNextActionToPerform();
                         if (currentAction == null) {//Nothing more to do. #sadness
-                            logger.debug("Plus rien à faire :'(");
+                            logger.info("Plus rien à faire :'(");
                             break;
                         } else {
                             currentStep = currentAction.getNextStep();
-                            if ((currentStep != null && currentStep.isyPositiveExclusive() && !movementManager.isYPositive())
-                                    || (currentStep != null && currentStep.isyNegativeExclusive() && movementManager.isYPositive())) {
-                                currentStep = currentAction.getNextStep(); // TODO FIXME, ne pas mettre en prod
-                            }
-                            logger.debug("Nouvelle action = " + currentAction.getDesc());
-                            logger.debug("Nouvelle step = " + currentStep.getDesc());
+                            logger.info("Nouvelle action = " + currentAction.getDesc());
+                            logger.info("Nouvelle step = " + currentStep.getDesc());
                         }
                     }
-                    //Switch... switch... switch, yeah I heard about htem once, but never met :P
+                    //Switch... switch... switch, yeah I heard about them once, but never met :P
                     if (currentStep.getActionType() == Step.Type.MANIPULATION) {
-                        logger.debug("Manip");
+                        logger.info("Manip id : " + currentStep.getActionId());
                         actionSupervisor.executeCommand(currentStep.getActionId());
                     } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
-                        logger.debug("Déplacement");
+                        logger.info("Déplacement");
 //                        if (currentStep.getSubType() == Step.SubType.GOTO) {
 //                            // We need to launch the astar
 //                            launchAstar(positionToPoint(currentStep.getEndPosition()));
@@ -193,11 +205,15 @@ public class MasterLoop {
                 //If we want to put smart code, it's here
                 boolean[] detected = this.detectionManager.getEmergencyDetectionMap();
                 if (movingForward && !detected[0] && !detected[1] && !detected[2]) {
+                    logger.info("OK devant");
                     movementManager.resumeAsserv();
                     somethingDetected = false;
                 } else if (!movingForward && !detected[3]) {
+                    logger.info("OK derrière");
                     movementManager.resumeAsserv();
                     somethingDetected = false;
+                } else {
+                    logger.debug("Detection NOK");
                 }
             }
             try {
@@ -207,6 +223,8 @@ public class MasterLoop {
             }
         }
 
+        logger.info("Sortie du While");
+
 
         return !interrupted;
     }
@@ -214,8 +232,7 @@ public class MasterLoop {
     //This function could be simplified but at least it keeps things readeable
     private boolean currentStepEnded() {
         Step.Type type = currentStep.getActionType();
-        if ((type == Step.Type.DEPLACEMENT)
-                && movementManager.isLastOrderedMovementEnded()) {
+        if ((type == Step.Type.DEPLACEMENT) && movementManager.isLastOrderedMovementEnded()) {
             return true;
         } else if (type == Step.Type.MANIPULATION && actionSupervisor.isLastExecutionFinished()) {
             return true;
@@ -228,17 +245,17 @@ public class MasterLoop {
         logger.info("Init mainLoop");
 
         // Calage bordure
-        lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
-        logger.info("Attente mise en place tirette pour init callage");
-        lcdDisplay.println("tirette callage");
+        lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
+        logger.info("Attente mise en place tirette pour init calage");
+        lcdDisplay.println("tirette calage");
         tirette.waitForTirette(true);
-        logger.info("Attente retrait tirette pour init callage");
-        lcdDisplay.println(colorDetector.getSelectedColor() == TableColor.BLUE ? "Bleu" : "Jaune");
-        lcdDisplay.println("tirette callage");
+        logger.info("Attente retrait tirette pour init calage");
+        lcdDisplay.println(colorDetector.isColor0() ? TableColor.COLOR_0.toString() : TableColor.COLOR_3000.toString());
+        lcdDisplay.println("tirette calage");
         tirette.waitForTirette(false);
         logger.info("Start calage bordure");
-        lcdDisplay.println("Lancement callage bordure");
-        movementManager.callage(colorDetector.getSelectedColor() == TableColor.BLUE); // TODO l'ia ne devrait pas connaitre les couleurs mais seulement le sens du Y
+        lcdDisplay.println("Lancement calage bordure");
+        movementManager.calage(colorDetector.isColor0());
 
         // Wait tirette remise
         lcdDisplay.println("Attente remise tirette");

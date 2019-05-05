@@ -599,7 +599,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 145,
+        "dist" : 142,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -787,7 +787,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 145,
+        "dist" : 142,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -974,7 +974,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 145,
+        "dist" : 142,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1
@@ -1161,15 +1161,7 @@
       {
         "desc": "mise en position pour saisir le module",
         "id" : 4,
-        "dist" : 148,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 145,
+        "dist" : 142,
         "type" : "deplacement",
         "subtype" : "go",
         "actionId" : -1

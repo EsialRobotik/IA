@@ -1,6 +1,7 @@
 package fr.esialrobotik.detection;
 
-import esialrobotik.ia.utils.rplidar.*;
+import esialrobotik.ia.utils.rplidar.RpLidarListener;
+import esialrobotik.ia.utils.rplidar.RpLidarLowLevelDriver;
 
 import javax.inject.Inject;
 

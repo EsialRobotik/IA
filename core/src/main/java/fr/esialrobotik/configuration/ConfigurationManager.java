@@ -6,9 +6,7 @@ import com.google.inject.Inject;
 import esialrobotik.ia.actions.ActionModuleConfiguration;
 import esialrobotik.ia.asserv.AsservAPIConfiguration;
 import esialrobotik.ia.detection.DetectionModuleConfiguration;
-import fr.esialrobotik.data.table.TableColor;
 import fr.esialrobotik.pathFinding.PathFindingConfiguration;
-import fr.esialrobotik.pathFinding.PathFindingModule;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
