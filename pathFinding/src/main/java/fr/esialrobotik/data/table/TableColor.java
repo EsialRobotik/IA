@@ -4,8 +4,8 @@ package fr.esialrobotik.data.table;
  * Created by icule on 28/03/17.
  */
 public enum TableColor {
-    COLOR_0("Vert"),
-    COLOR_3000("Orange");
+    COLOR_0("Jaune"),
+    COLOR_3000("Violet");
 
     private String colorName;
 

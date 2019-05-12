@@ -12,8 +12,8 @@
   },
 
   "action": {
-    "baud":19200,
-    "serie":"/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0"
+    "baud":115200,
+    "serie":"/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_00000000-if00-port0"
   },
 
   "detection": {
@@ -21,24 +21,24 @@
       "type":"srf04",
       "gpioList":[
         {
-          "desc" : "Avant droit",
+          "desc" : "Avant gauche",
           "in" : 22,
           "out": 21
         },
         {
           "desc" : "Avant milieu",
-          "in" : 12,
-          "out": 13
-        },
-        {
-          "desc" : "Avant gauche",
           "in" : 2,
           "out": 0
         },
         {
-          "desc" : "Arrière",
+          "desc" : "Avant droit",
           "in" : 24,
           "out": 25
+        },
+        {
+          "desc" : "Arrière",
+          "in" : 12,
+          "out": 13
         }
       ]
     },

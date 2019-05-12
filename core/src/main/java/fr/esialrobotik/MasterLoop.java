@@ -118,13 +118,13 @@ public class MasterLoop {
         logger.debug("while " + !interrupted);
         lcdDisplay.clear();
         lcdDisplay.println("Score : " + score);
-        String remainingTime = chrono.toString();
+//        String remainingTime = chrono.toString();
         while (!interrupted) {
 
-            if (!remainingTime.equals(chrono.toString())) {
-                domotikClient.updateInfo(chrono.toString(), "" + score);
-                remainingTime = chrono.toString();
-            }
+//            if (!remainingTime.equals(chrono.toString())) {
+//                domotikClient.updateInfo(chrono.toString(), "" + score);
+//                remainingTime = chrono.toString();
+//            }
 
             if (!somethingDetected) {
                 // 1/ we check if we detect something

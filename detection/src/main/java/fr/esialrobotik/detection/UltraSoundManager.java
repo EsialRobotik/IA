@@ -46,10 +46,10 @@ public class UltraSoundManager {
         this.detectionInterface = detectionInterface;
         this.table = table;
 
-        this.posFrontLeft = new Position(50, 130, Math.PI/6);
-        this.posFront = new Position(100, -60, 0);
-        this.posFrontRight = new Position(100, -130, -Math.PI/6);
-        this.posBack = new Position(-100, 0, Math.PI);
+        this.posFrontLeft = new Position(125, 105, 0);
+        this.posFront = new Position(125, -0, 0);
+        this.posFrontRight = new Position(125, -105, 0);
+        this.posBack = new Position(-125, 0, Math.PI);
 
         this.thresholdMap = new HashMap<>();
         this.thresholdMap.put("FrontLeft", 150);
@@ -130,6 +130,36 @@ public class UltraSoundManager {
                         logger.debug("Ultrasound Arriere : IGNORER");
                     }
                 }
+                detection = tempDetection;
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    public void startDebug() {
+        thread = new Thread(() -> {
+            while(!interrupted){
+                boolean[] tempDetection = new boolean[4];
+                final long[] pull = detectionInterface.ultraSoundDetection();
+                Position position = movementManager.getPosition();
+
+                //First one is front left
+                Position pos = getObstaclePosition(position, posFrontLeft, pull[0]);
+                System.out.println("Ultrasound Avant gauche : " + pull[0] + " = " + pos.getX() + "," + pos.getY());
+
+                //front middle
+                pos = getObstaclePosition(position, posFront, pull[1]);
+                System.out.println("Ultrasound Avant milieu : " + pull[1] + " = "  + pos.getX() + "," + pos.getY());
+
+                //front right
+                pos = getObstaclePosition(position, posFrontRight, pull[2]);
+                System.out.println("Ultrasound Avant droit : " + pull[2] + " = "  + pos.getX() + "," + pos.getY());
+
+                //back middle
+                pos = getObstaclePosition(position, posBack, pull[3]);
+                System.out.println("Ultrasound Arriere : " + pull[3] + " = "  + pos.getX() + "," + pos.getY());
+
                 detection = tempDetection;
             }
         });

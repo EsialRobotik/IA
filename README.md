@@ -25,4 +25,7 @@ mvn install // Génère le jar contenant tout dans core/core-1.0-jar-with-depend
 * Ecrire le fichier table.json dans pathFinding pour définir les zones interdites
 * Lancer le main dans pathFinding/../Table.java pour générer le fichier table.tbl
 
-
+# TODO
+- Mettre le nom des couleurs en config
+- Mettre le seuil des SRF en config
+- Mettre les positions des SRF en config

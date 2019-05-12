@@ -38,6 +38,11 @@ public class DetectionManager {
         return false;
     }
 
+    public void startDetectionDebug() {
+        this.ultraSoundManager.startDebug();
+        //this.lidarManager.start();
+    }
+
     public boolean emergencyDetection() {
         return this.ultraSoundManager.hasBeenDetected();
     }

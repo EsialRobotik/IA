@@ -7,6 +7,7 @@ import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.asserv.raspberry.Asserv;
 import esialrobotik.ia.utils.log.LoggerFactory;
+import fr.esialrobotik.detection.DetectionManager;
 import fr.esialrobotik.miscallenious.DomotikClient;
 import fr.esialrobotik.configuration.ConfigurationManager;
 import fr.esialrobotik.configuration.ConfigurationModule;
@@ -85,24 +86,53 @@ public class Main {
         } else {
             LoggerFactory.init(Level.TRACE);
         }
+
+        // Exécution normal de l'IA
         new Main();
 
-//        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
-//        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
-//        configurationManager.loadConfiguration("config.json");
+        // Test de la détection
+//        Main.testDetection();
 
-         // Loading the core
-//        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
+        // Test interrupteurs
+//        Main.testInterrupteurs();
 
-//        DetectionManager detectionManager = coreInjector.getInstance(DetectionManager.class);
-//        detectionManager.initAPI();
-//        detectionManager.startDetection();
-//        while (true){
-//            System.out.println("Yolo");
-//            Thread.sleep(1000);
-//        }
-
+        // Danse de la coupe off
 //        Main.coupeOffDance();
+    }
+
+    private static void testDetection() throws FileNotFoundException, InterruptedException {
+        // On charge la config
+        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
+        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
+        configurationManager.loadConfiguration("config.json");
+
+        // Loading the core
+        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
+
+        DetectionManager detectionManager = coreInjector.getInstance(DetectionManager.class);
+        detectionManager.initAPI();
+        detectionManager.startDetectionDebug();
+        while (true){
+            Thread.sleep(1000);
+        }
+    }
+
+    private static void testInterrupteurs() throws FileNotFoundException, InterruptedException {
+        // On charge la config
+        Injector configurationInjector = Guice.createInjector(new ConfigurationModule());
+        ConfigurationManager configurationManager = configurationInjector.getInstance(ConfigurationManager.class);
+        configurationManager.loadConfiguration("config.json");
+
+        // Loading the core
+        Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
+
+        ColorDetector colorDetector = coreInjector.getInstance(ColorDetector.class);
+        Tirette tirette = coreInjector.getInstance(Tirette.class);
+        while (true){
+            Thread.sleep(500);
+            System.out.println("Couleur0 ? " + colorDetector.isColor0());
+            System.out.println("Tirette présente ? " + tirette.getTiretteState());
+        }
     }
 
     private static void coupeOffDance() throws FileNotFoundException {
