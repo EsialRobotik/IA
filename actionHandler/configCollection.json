@@ -1,1283 +1,148 @@
-[
-  {
-    "desc": "Module bicolore juste à la sortie de la zone de départ",
-    "id": 1,
-    "points": 2,
-    "priorite": 1000,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 320,
-        "positionY" : 930,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 2,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "rentrer bras",
-        "id" : 6,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-      {
-        "desc": "face depose",
-        "id" : 7,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "largage vertical",
-        "id" : 8,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 7
-      },
-      {
-        "desc": "on recule",
-        "id" : 9,
-        "dist": -200,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-  {
-    "desc": "Moitié du cratère + Module monocouleur proche du largage des minerais",
-    "id": 2,
-    "points": 15,
-    "priorite": 100,
-    "taches": [
-//      {
-//        "desc": "goto",
-//        "id" : 1,
-//        "positionX" : 540,
-//        "positionY" : 950,
-//        "type" : "deplacement",
-//        "subtype": "goto",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "face",
-//        "id" : 2,
-//        "positionX" : 540,
-//        "positionY" : 2000,
-//        "type" : "deplacement",
-//        "subtype": "face",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "on recule",
-//        "id" : 3,
-//        "dist" : -90,
-//        "type" : "deplacement",
-//        "subtype": "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "On ramasse les minerais",
-//        "id" : 1,
-//        "positionX" : 540,
-//        "positionY" : 900,
-//        "type" : "manipulation",
-//        "actionId" : 0
-//      },
-//      {
-//        "desc": "On stocke les minerais",
-//        "id" : 1,
-//        "positionX" : 540,
-//        "positionY" : 900,
-//        "type" : "manipulation",
-//        "actionId" : 2
-//      },
-//      {
-//        "desc": "on avance pour sortir de la zone interdite",
-//        "id" : 3,
-//        "dist" : 90,
-//        "type" : "deplacement",
-//        "subtype": "go",
-//        "actionId" : -1
-//      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1000,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 800,
-        "positionY" : 460,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 600,
-        "positionY" : 200,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 800,
-        "positionY" : 460,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 130,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 360,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "rentrer bras",
-        "id" : 6,
-        "positionX" : 600,
-        "positionY" : 360,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-//      {
-//        "desc": "face",
-//        "id" : 1,
-//        "positionX" : 1000,
-//        "positionY" : 360,
-//        "type" : "deplacement",
-//        "subtype": "face",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "mise en position pour larguer les minerais",
-//        "id" : 4,
-//        "dist" : -240,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "larguage minerai",
-//        "id" : 6,
-//        "positionX" : 350,
-//        "positionY" : 360,
-//        "type" : "manipulation",
-//        "actionId" : 1
-//      },
-//      {
-//        "desc": "on avance pour larguer les minerais",
-//        "id" : 4,
-//        "dist" : 130,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "on rentre le ramasse minerai",
-//        "id" : 6,
-//        "positionX" : 350,
-//        "positionY" : 460,
-//        "type" : "manipulation",
-//        "actionId" : 2
-//      },
-//      {
-//        "desc": "On sort de la zone interdite",
-//        "id" : 4,
-//        "dist" : 100,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 750,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 755,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 750,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 755,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage module horizontale",
-        "id" : 6,
-        "positionX" : 750,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 6
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 6,
-        "positionX" : 750,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-//  {
-//    "desc": "Seconde moitié du cratère",
-//    "id": 3,
-//    "points": 5,
-//    "priorite": 100,
-//    "taches": [
-//      {
-//        "desc": "goto",
-//        "id" : 1,
-//        "positionX" : 750,
-//        "positionY" : 310,
-//        "type" : "deplacement",
-//        "subtype": "goto",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "face",
-//        "id" : 2,
-//        "positionX" : 2000,
-//        "positionY" : 310,
-//        "type" : "deplacement",
-//        "subtype": "face",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "on recule",
-//        "id" : 3,
-//        "dist" : -180,
-//        "type" : "deplacement",
-//        "subtype": "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "face",
-//        "id" : 2,
-//        "positionX" : 550,
-//        "positionY" : 0,
-//        "type" : "deplacement",
-//        "subtype": "face",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "on recule",
-//        "id" : 3,
-//        "dist" : -110,
-//        "type" : "deplacement",
-//        "subtype": "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "On ramasse les minerais",
-//        "id" : 1,
-//        "positionX" : 550,
-//        "positionY" : 200,
-//        "type" : "manipulation",
-//        "actionId" : 0
-//      },
-//      {
-//        "desc": "On stocke les minerais",
-//        "id" : 1,
-//        "positionX" : 550,
-//        "positionY" : 200,
-//        "type" : "manipulation",
-//        "actionId" : 2
-//      },
-//      {
-//        "desc": "go",
-//        "id" : 1,
-//        "dist" : 110,
-//        "type" : "deplacement",
-//        "subtype": "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "face",
-//        "id" : 1,
-//        "positionX" : 2000,
-//        "positionY" : 310,
-//        "type" : "deplacement",
-//        "subtype": "face",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "mise en position pour larguer les minerais",
-//        "id" : 4,
-//        "dist" : -80,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "larguage minerai",
-//        "id" : 6,
-//        "positionX" : 350,
-//        "positionY" : 310,
-//        "type" : "manipulation",
-//        "actionId" : 1
-//      },
-//      {
-//        "desc": "on avance pour larguer les minerais",
-//        "id" : 4,
-//        "dist" : 110,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      },
-//      {
-//        "desc": "on rentre le ramasse minerai",
-//        "id" : 6,
-//        "positionX" : 350,
-//        "positionY" : 460,
-//        "type" : "manipulation",
-//        "actionId" : 2
-//      },
-//      {
-//        "desc": "On sort de la zone interdite",
-//        "id" : 4,
-//        "dist" : 100,
-//        "type" : "deplacement",
-//        "subtype" : "go",
-//        "actionId" : -1
-//      }
-//    ]
-//  },
-  {
-    "desc": "Module bicolore qui fait chier",
-    "id": 4,
-    "points": 2,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 800,
-        "positionY" : 410,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 2,
-        "positionX" : 1100,
-        "positionY" : 500,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 800,
-        "positionY" : 410,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 120,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 800,
-        "positionY" : 410,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "rentrer bras",
-        "id" : 6,
-        "positionX" : 800,
-        "positionY" : 410,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1000,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 500,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 800,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "largage vertical",
-        "id" : 8,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 7
-      },
-      {
-        "desc": "vire moi ce module",
-        "id" : 1,
-        "dist" : 100,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "vire moi ce module",
-        "id" : 1,
-        "dist" : -100,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 500,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-  {
-    "desc": "Module 1 de la fusée",
-    "id": 5,
-    "points": 10,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 142,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1300,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on dégage",
-        "id" : 4,
-        "dist" : -100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 860,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 870,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 860,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 870,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 860,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 870,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage module horizontale",
-        "id" : 6,
-        "positionX" : 860,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 6
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 6,
-        "positionX" : 860,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-  {
-    "desc": "Module 2 de la fusée",
-    "id": 6,
-    "points": 10,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 860,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 142,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1300,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on dégage",
-        "id" : 4,
-        "dist" : -100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 970,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 980,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 970,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 980,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 970,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 980,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage module horizontale",
-        "id" : 6,
-        "positionX" : 970,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 6
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 6,
-        "positionX" : 970,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-  {
-    "desc": "Module 3 de la fusée",
-    "id": 7,
-    "points": 10,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 970,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 142,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1300,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "saisir module",
-        "id" : 5,
-        "positionX" : 600,
-        "positionY" : 1000,
-        "type" : "manipulation",
-        "actionId" : 4
-      },
-      {
-        "desc": "on dégage",
-        "id" : 4,
-        "dist" : -100,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1100,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1110,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1100,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1110,
-        "positionY" : 360,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 1100,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 1110,
-        "positionY" : 0,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-
-
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 50,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage module horizontale",
-        "id" : 6,
-        "positionX" : 1100,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 6
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 6,
-        "positionX" : 1100,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 5
-      }
-    ]
-  },
-  {
-    "desc": "Module 4 de la fusée",
-    "id": 8,
-    "points": 10,
-    "priorite": 100,
-    "taches": [
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 1100,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "sortir bras",
-        "id" : 3,
-        "positionX" : 400,
-        "positionY" : 1150,
-        "type" : "manipulation",
-        "actionId" : 3
-      },
-      {
-        "desc": "mise en position pour saisir le module",
-        "id" : 4,
-        "dist" : 142,
-        "type" : "deplacement",
-        "subtype" : "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1300,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yNegativeExclusive" : true
-      },
-      {
-        "desc": "sort de la putain de module !",
-        "id" : 4,
-        "positionX" : 0,
-        "positionY" : 1000,
-        "type" : "deplacement",
-        "subtype" : "face",
-        "actionId" : -1,
-        "yPositiveExclusive" : true
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 10,
-        "positionX" : 200,
-        "positionY" : 800,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-      {
-        "desc": "goto",
-        "id" : 1,
-        "positionX" : 800,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "goto",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 2000,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 500,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 1300,
-        "positionY" : 3000,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 80,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "larguage module horizontale",
-        "id" : 6,
-        "positionX" : 750,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 6
-      },
-      {
-        "desc": "on rentre le bras",
-        "id" : 6,
-        "positionX" : 750,
-        "positionY" : 310,
-        "type" : "manipulation",
-        "actionId" : 5
-      },
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : -80,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      },
-      {
-        "desc": "face",
-        "id" : 1,
-        "positionX" : 0,
-        "positionY" : 1150,
-        "type" : "deplacement",
-        "subtype": "face",
-        "actionId" : -1
-      },
-      {
-        "desc": "go largage module",
-        "id" : 1,
-        "dist" : 500,
-        "type" : "deplacement",
-        "subtype": "go",
-        "actionId" : -1
-      }
-    ]
-  }
-]
+{
+  "couleur0": [
+    {
+      "desc": "Sortie de la zone de départ",
+      "id": 1,
+      "points": 5,
+      "priorite": 1,
+      "taches": [
+        {
+          "desc": "sortie de la zone de départ vers objectif 1",
+          "id": 1,
+          "positionX": 250,
+          "positionY": 200,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        }
+      ]
+    },
+    {
+      "desc": "Zone de chaos",
+      "id": 2,
+      "points": 10,
+      "priorite": 1,
+      "taches": [
+        {
+          "desc": "Go position séquence chaos",
+          "id": 1,
+          "positionX": 250,
+          "positionY": 1400,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "Go position séquence chaos 2",
+          "id": 2,
+          "positionX": 1050,
+          "positionY": 1400,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "Alignement avec le chaos",
+          "id": 3,
+          "positionX": 1050,
+          "positionY": 0,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "face",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "On pousse la chaos",
+          "id": 4,
+          "positionX": 1050,
+          "positionY": 400,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        }
+      ]
+    }
+  ],
+  "couleur3000": [
+    {
+      "desc": "Sortie de la zone de départ",
+      "id": 1,
+      "points": 5,
+      "priorite": 1,
+      "taches": [
+        {
+          "desc": "sortie de la zone de départ vers objectif 1",
+          "id": 1,
+          "positionX": 250,
+          "positionY": 2800,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        }
+      ]
+    },
+    {
+      "desc": "Zone de chaos",
+      "id": 2,
+      "points": 10,
+      "priorite": 1,
+      "taches": [
+        {
+          "desc": "Go position séquence chaos",
+          "id": 1,
+          "positionX": 250,
+          "positionY": 1600,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "Go position séquence chaos 2",
+          "id": 2,
+          "positionX": 1050,
+          "positionY": 1600,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "Alignement avec le chaos",
+          "id": 3,
+          "positionX": 1050,
+          "positionY": 3000,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "face",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        },
+        {
+          "desc": "On pousse la chaos",
+          "id": 4,
+          "positionX": 1050,
+          "positionY": 2600,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY"
+        }
+      ]
+    }
+  ]
+}

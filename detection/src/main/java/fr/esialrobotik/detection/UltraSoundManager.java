@@ -52,9 +52,9 @@ public class UltraSoundManager {
         this.posBack = new Position(-125, 0, Math.PI);
 
         this.thresholdMap = new HashMap<>();
-        this.thresholdMap.put("FrontLeft", 150);
+        this.thresholdMap.put("FrontLeft", 300);
         this.thresholdMap.put("Front", 300);
-        this.thresholdMap.put("FrontRight", 200);
+        this.thresholdMap.put("FrontRight", 300);
         this.thresholdMap.put("Back", 300);
     }
 
@@ -130,6 +130,7 @@ public class UltraSoundManager {
                         logger.debug("Ultrasound Arriere : IGNORER");
                     }
                 }
+
                 detection = tempDetection;
             }
         });

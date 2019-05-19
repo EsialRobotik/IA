@@ -291,9 +291,15 @@ public class Table {
         return forbiddenArea[x][y];
     }
 
+    /**
+     * Vérifie si une position est dans une zone interdite ou hors de la table
+     * @param x Coordonnée x
+     * @param y Coordonnée y
+     * @return true si en dehors de la table ou dans une zone interdite
+     */
     public boolean isAreaForbiddenSafe(int x, int y) {
         if(x < 0 || y < 0 || x >= rectifiedXSize || y >= rectifiedYSize) {
-            return false;
+            return true;
         }
         return forbiddenArea[x][y];
     }
