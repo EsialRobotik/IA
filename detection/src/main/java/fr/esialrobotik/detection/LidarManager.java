@@ -1,38 +1,80 @@
 package fr.esialrobotik.detection;
 
-import esialrobotik.ia.utils.rplidar.RpLidarListener;
-import esialrobotik.ia.utils.rplidar.RpLidarLowLevelDriver;
+import esialrobotik.ia.asserv.Position;
+import esialrobotik.ia.detection.lidar.LidarInterface;
+import esialrobotik.ia.detection.lidar.rplidar.raspberry.LidarPoint;
+import fr.esialrobotik.MovementManager;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by icule on 12/05/17.
  */
 public class LidarManager {
-    private RpLidarLowLevelDriver driver;
+
+    private Thread thread;
+
+    private MovementManager movementManager;
+
+    private LidarInterface lidar;
 
     @Inject
-    public LidarManager(RpLidarLowLevelDriver driver, RpLidarListener rpLidarListenerner) {
-        this.driver = driver;
+    public LidarManager(LidarInterface lidar, MovementManager movementManager) {
+        this.lidar = lidar;
+        this.movementManager = movementManager;
     }
 
     public void start() {
-        driver.setVerbose(false);
-
-        driver.sendReset();
-        driver.pause(100);
-
-        //for v2 only - I guess this command is ignored by v1
-        driver.sendStartMotor(1023);
-        driver.sendScan(500);
+        thread = new Thread(() -> {
+            int fail = 0;
+            while (true) {
+                Position position = movementManager.getPosition();
+                List<LidarPoint> points = lidar.getMeasures();
+                for (LidarPoint point : points) {
+                    Position pos = getObstaclePosition(position, point);
+                    System.out.println(pos.toString());
+                }
+                if (points.size() == 0) {
+                    fail++;
+                    if (fail == 5) {
+                        lidar.stop();
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        lidar.init();
+                        fail = 0;
+                        System.out.println("FAIL");
+                    }
+                }
+                System.out.println("#########");
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void stop() {
-        driver.sendReset();
-        driver.pause(1000);
-        driver.sendStartMotor(0);
-        driver.pause(1000);
-        driver.shutdown();
-        driver.pause(1000);
+        this.lidar.stop();
+    }
+
+    private static Position getObstaclePosition(Position posRobot, LidarPoint lidarPoint) {
+        double xObstacleRelativeToRobot, yObstacleRelativeToRobot;
+        int xObstacleRelativeToTable, yObstacleRelativeToTable;
+
+        xObstacleRelativeToRobot = lidarPoint.distance * Math.cos(lidarPoint.angle);
+        yObstacleRelativeToRobot = lidarPoint.distance * Math.sin(lidarPoint.angle);
+
+        xObstacleRelativeToTable = (int) (posRobot.getX()
+                + xObstacleRelativeToRobot * Math.cos(posRobot.getTheta())
+                - yObstacleRelativeToRobot * Math.sin(posRobot.getTheta()) );
+
+        yObstacleRelativeToTable = (int) (posRobot.getY()
+                + xObstacleRelativeToRobot * Math.sin(posRobot.getTheta())
+                + yObstacleRelativeToRobot * Math.cos(posRobot.getTheta()) );
+
+        return new Position(xObstacleRelativeToTable, yObstacleRelativeToTable);
     }
 }

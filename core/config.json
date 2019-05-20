@@ -43,7 +43,7 @@
       ]
     },
     "lidar": {
-      "port": "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A9M9DV3R-if00-port0"
+      "port": "/dev/ttyUSB1"
     }
   }
 }
