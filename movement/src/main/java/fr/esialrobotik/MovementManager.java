@@ -100,6 +100,15 @@ public class MovementManager {
             this.asservInterface.face(new Position(step.getEndPosition().getX(), step.getEndPosition().getY()));
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
+            if (step.getTimeout() > 0) {
+                try {
+                    Thread.sleep(step.getTimeout());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.asservInterface.emergencyStop();
+                this.asservInterface.emergencyReset();
+            }
         } else if (step.getSubType() == Step.SubType.GOTO) {
             this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));
         } else if (step.getSubType() == Step.SubType.GOTO_BACK) {
@@ -135,6 +144,14 @@ public class MovementManager {
     public void calage(boolean isColor0) {
         try {
             this.asservInterface.calage(isColor0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goStart(boolean isColor0) {
+        try {
+            this.asservInterface.goStart(isColor0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

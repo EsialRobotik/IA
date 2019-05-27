@@ -13,7 +13,8 @@
 
   "action": {
     "baud":115200,
-    "serie":"/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_00000000-if00-port0"
+    "serie":"/dev/ttyUSB0",
+    "dataDir":"/home/pi/IA/actions/"
   },
 
   "detection": {

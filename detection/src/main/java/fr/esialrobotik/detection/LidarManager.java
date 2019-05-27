@@ -3,7 +3,10 @@ package fr.esialrobotik.detection;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.detection.lidar.LidarInterface;
 import esialrobotik.ia.detection.lidar.rplidar.raspberry.LidarPoint;
+import esialrobotik.ia.utils.log.LoggerFactory;
 import fr.esialrobotik.MovementManager;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -19,10 +22,15 @@ public class LidarManager {
 
     private LidarInterface lidar;
 
+    private Logger logger;
+
     @Inject
     public LidarManager(LidarInterface lidar, MovementManager movementManager) {
         this.lidar = lidar;
         this.movementManager = movementManager;
+
+        LoggerFactory.init(Level.TRACE);
+        logger = LoggerFactory.getLogger(LidarManager.class);
     }
 
     public void start() {
@@ -33,10 +41,10 @@ public class LidarManager {
                 List<LidarPoint> points = lidar.getMeasures();
                 for (LidarPoint point : points) {
                     Position pos = getObstaclePosition(position, point);
-                    System.out.println(pos.toString());
+                    logger.debug(pos.toString());
                 }
                 if (points.size() == 0) {
-                    fail++;
+                    fail++; // Quand ça commence à merder, on reset le lidar
                     if (fail == 5) {
                         lidar.stop();
                         try {
@@ -46,10 +54,8 @@ public class LidarManager {
                         }
                         lidar.init();
                         fail = 0;
-                        System.out.println("FAIL");
                     }
                 }
-                System.out.println("#########");
             }
         });
         thread.setDaemon(true);

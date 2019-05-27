@@ -17,7 +17,8 @@ public class Step {
         GO,
         FACE,
         GOTO,
-        GOTO_BACK
+        GOTO_BACK,
+        GOTO_ASTAR
     }
 
     private String desc;
@@ -30,12 +31,14 @@ public class Step {
     private Type actionType;
     private SubType subType;
     private int distance;
+    private int timeout;
 
     private boolean yPositiveExclusive = false;
     private boolean yNegativeExclusive = false;
 
     public Step(JsonObject configNode) {
         this.distance = -1;
+        this.timeout = -1;
 
         this.desc = configNode.get("desc").getAsString();
         this.stepId = configNode.get("id").getAsInt();
@@ -52,6 +55,7 @@ public class Step {
             if (temp.equals("go")) {
                 this.subType = SubType.GO;
                 this.distance = configNode.get("dist").getAsInt();
+                this.timeout = configNode.get("timeout").getAsInt();
             } else if (temp.equals("goto")) {
                 this.subType = SubType.GOTO;
                 this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
@@ -60,6 +64,9 @@ public class Step {
                 this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
             } else if (temp.equals("goto_back")) {
                 this.subType = SubType.GOTO_BACK;
+                this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
+            } else if (temp.equals("goto_astar")) {
+                this.subType = SubType.GOTO_ASTAR;
                 this.position = new Position(configNode.get("positionX").getAsInt(), configNode.get("positionY").getAsInt());
             }
 
@@ -103,6 +110,10 @@ public class Step {
 
     public boolean isyNegativeExclusive() {
         return yNegativeExclusive;
+    }
+
+    public int getTimeout() {
+        return timeout;
     }
 
     @Override

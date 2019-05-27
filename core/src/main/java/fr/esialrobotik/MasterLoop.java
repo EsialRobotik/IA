@@ -25,7 +25,7 @@ public class MasterLoop {
     private Chrono chrono;
     private Tirette tirette;
     private LCD lcdDisplay;
-    private DomotikClient domotikClient;
+//    private DomotikClient domotikClient;
 
     private volatile boolean interrupted;
 
@@ -55,7 +55,7 @@ public class MasterLoop {
         this.tirette = tirette;
         this.lcdDisplay = lcdDisplay;
         this.actionSupervisor = actionSupervisor;
-        this.domotikClient = new DomotikClient();
+//        this.domotikClient = new DomotikClient();
 
         this.interrupted = false; // Chiotte de bordel de saloperie d'enflure de connerie !
         this.logger = LoggerFactory.getLogger(MasterLoop.class);
@@ -83,26 +83,6 @@ public class MasterLoop {
 
         logger.info("Fetch of first action");
         logger.info(currentStep.toString());
-
-        //The first action is always a move straight or a path finding issue
-        // 2/ We launch the Astar (to spare time) if we have a non always.
-//        if (currentStep.getActionType() == Step.Type.DEPLACEMENT && currentStep.getSubType() == Step.SubType.GOTO) {
-//            logger.info("First action is a deplacement with astar, let's start computation");
-//            launchAstar(positionToPoint(currentStep.getEndPosition()));
-//            while (!pathFinding.isComputationEnded()) {
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                    //We got interrupted, things are bad
-//                }
-//            }
-//            // 3/ We send command to the asserv manager
-//            movementManager.executeMovement(pathFinding.getLastComputedPath());
-//        } else if (currentStep.getSubType() == Step.SubType.GO) {//Straight line
-//            logger.info("First deplacement is a straight line");
-//            movementManager.executeStepDeplacement(currentStep);
-//        }
 
         logger.info("Trajectory load, let's wait for tirette");
         // 4/ We wait for the beginning of the match
@@ -152,7 +132,7 @@ public class MasterLoop {
                 }
 
                 // 2/ Check if the current step Status
-                /*if (astarLaunch) { //We are computing a path let's check if it's ok now
+                if (astarLaunch) { //We are computing a path let's check if it's ok now
                     logger.debug("astarLaunch");
                     if (pathFinding.isComputationEnded()) {
                         movementManager.executeMovement(pathFinding.getLastComputedPath());
@@ -163,43 +143,46 @@ public class MasterLoop {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } else */if (currentStepEnded()) { //There is few chance we end the deplacement that soon so don't check
-                    logger.info("currentStepEnded : " + currentStep.getDesc());
-                    currentStep = null;
-                    //Time to fetch the next one
-                    if (currentAction.hasNextStep()) {
-                        currentStep = currentAction.getNextStep();
-                        logger.info("Suite de l'action, step = " + currentStep.getDesc());
-                    } else { //Previous action has ended, time to fetch a new one
-                        logger.info("Action terminé, mise à jour du score");
-                        score += currentAction.getPoints();
-                        lcdDisplay.clear();
-                        lcdDisplay.println("Score : " + score);
-                        currentAction = actionCollection.getNextActionToPerform();
-                        if (currentAction == null) {//Nothing more to do. #sadness
-                            logger.info("Plus rien à faire :'(");
-                            break;
-                        } else {
+                } else {
+                    // Si on a fini l'étape en cour, on lance la suivante
+                    if (currentStepEnded()) {
+                        logger.info("currentStepEnded : " + currentStep.getDesc());
+                        currentStep = null;
+                        //Time to fetch the next one
+                        if (currentAction.hasNextStep()) {
                             currentStep = currentAction.getNextStep();
-                            logger.info("Nouvelle action = " + currentAction.getDesc());
-                            logger.info("Nouvelle step = " + currentStep.getDesc());
+                            logger.info("Suite de l'action, step = " + currentStep.getDesc());
+                        } else { //Previous action has ended, time to fetch a new one
+                            logger.info("Action terminé, mise à jour du score");
+                            score += currentAction.getPoints();
+                            lcdDisplay.clear();
+                            lcdDisplay.println("Score : " + score);
+                            currentAction = actionCollection.getNextActionToPerform();
+                            if (currentAction == null) {//Nothing more to do. #sadness
+                                logger.info("Plus rien à faire :'(");
+                                break;
+                            } else {
+                                currentStep = currentAction.getNextStep();
+                                logger.info("Nouvelle action = " + currentAction.getDesc());
+                                logger.info("Nouvelle step = " + currentStep.getDesc());
+                            }
+                        }
+                        //Switch... switch... switch, yeah I heard about them once, but never met :P
+                        if (currentStep.getActionType() == Step.Type.MANIPULATION) {
+                            logger.info("Manip id : " + currentStep.getActionId());
+                            actionSupervisor.executeCommand(currentStep.getActionId());
+                        } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
+                            logger.info("Déplacement");
+                            if (currentStep.getSubType() == Step.SubType.GOTO_ASTAR) {
+                                // We need to launch the astar
+                                launchAstar(positionToPoint(currentStep.getEndPosition()));
+                                astarLaunch = true;
+                            } else {
+                                movementManager.executeStepDeplacement(currentStep);
+                            }
                         }
                     }
-                    //Switch... switch... switch, yeah I heard about them once, but never met :P
-                    if (currentStep.getActionType() == Step.Type.MANIPULATION) {
-                        logger.info("Manip id : " + currentStep.getActionId());
-                        actionSupervisor.executeCommand(currentStep.getActionId());
-                    } else if (currentStep.getActionType() == Step.Type.DEPLACEMENT) {
-                        logger.info("Déplacement");
-//                        if (currentStep.getSubType() == Step.SubType.GOTO) {
-//                            // We need to launch the astar
-//                            launchAstar(positionToPoint(currentStep.getEndPosition()));
-//                            astarLaunch = true;
-//                        } else {
-                            movementManager.executeStepDeplacement(currentStep);
-//                        }
-
-                    }
+                    // todo faut vérifier si la voie est libre, sinon on s'arrête et on recalcul
                 }
             } else { //We detect something last loop. let's check if we still see it, either let's resume the move
                 //If we want to put smart code, it's here
@@ -257,8 +240,22 @@ public class MasterLoop {
         lcdDisplay.println("Lancement calage bordure");
         movementManager.calage(colorDetector.isColor0());
 
+        logger.info("Initialisation des actionneurs");
+        lcdDisplay.println("Init actions");
+        // TODO faire une vrai méthode d'init d'actions
+        actionSupervisor.executeCommand(2);
+
+        lcdDisplay.println("Attente tirette");
+        logger.info("Attente tirette mise en position de départ");
+        tirette.waitForTirette(true);
+        lcdDisplay.println("tirette gostart");
+        tirette.waitForTirette(false);
+        logger.info("Start zone de départ");
+        lcdDisplay.println("position départ");
+        movementManager.goStart(colorDetector.isColor0());
+
         // Wait tirette remise
-        lcdDisplay.println("Attente remise tirette");
+        lcdDisplay.println("Attente tirette");
         logger.info("Init ended, wait for tirette");
         tirette.waitForTirette(true);
         logger.info("Tirette inserted. End of initialization.");

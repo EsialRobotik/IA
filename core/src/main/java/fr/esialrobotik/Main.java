@@ -3,6 +3,8 @@ package fr.esialrobotik;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import esialrobotik.ia.actions.a2018.Actions;
+import esialrobotik.ia.actions.a2019.ActionAX12Json;
+import esialrobotik.ia.actions.a2019.ActionFileBinder;
 import esialrobotik.ia.asserv.AsservInterface;
 import esialrobotik.ia.asserv.Position;
 import esialrobotik.ia.asserv.raspberry.Asserv;
@@ -143,7 +145,7 @@ public class Main {
         // Loading the core
         Injector coreInjector = Guice.createInjector(new CoreModule(configurationManager));
         Asserv asserv = coreInjector.getInstance(Asserv.class);
-        Actions actions = coreInjector.getInstance(Actions.class);
+        ActionFileBinder actions = coreInjector.getInstance(ActionFileBinder.class);
         Tirette tirette = configurationInjector.getInstance(Tirette.class);
         Logger logger = LoggerFactory.getLogger(Main.class);
 
