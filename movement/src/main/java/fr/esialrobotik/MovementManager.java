@@ -47,6 +47,7 @@ public class MovementManager {
             logger.info(gotoQueue.toString());
         }
         this.asservInterface.emergencyStop();
+        this.asservInterface.stop();
     }
 
     /**

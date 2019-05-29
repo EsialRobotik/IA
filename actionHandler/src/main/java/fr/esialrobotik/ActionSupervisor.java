@@ -30,6 +30,10 @@ public class ActionSupervisor {
         t.start();
     }
 
+    public void stopActions() {
+        actionInterface.stopActions();
+    }
+
     public boolean isLastExecutionFinished() {
         return this.currentActionExecutor.finished();
     }

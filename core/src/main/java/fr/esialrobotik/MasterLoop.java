@@ -274,6 +274,8 @@ public class MasterLoop {
         //Don't forget action
         logger.info("Shutting done detection");
         detectionManager.stopDetection();
+        logger.info("Shutting down actions");
+        actionSupervisor.stopActions();
 
         interrupted = true;
         //Launch the funny action if needed
