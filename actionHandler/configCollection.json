@@ -2116,6 +2116,73 @@
       "priorite": 1,
       "taches": [
         {
+          "desc": "Go position goldenium",
+          "id": 1,
+          "positionX": 400,
+          "positionY": 660,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "goto",
+          "actionId": -1,
+          "mirror": "MIRRORY",
+          "timeout": -1
+        },
+        {
+          "desc": "Alignement goldenium",
+          "id": 2,
+          "positionX": 0,
+          "positionY": 660,
+          "dist": 0,
+          "type": "deplacement",
+          "subtype": "face",
+          "actionId": -1,
+          "mirror": "MIRRORY",
+          "timeout": -1
+        },
+        {
+          "desc": "Preparation récupération goldenium",
+          "id": 3,
+          "positionX": 0,
+          "positionY": 3000,
+          "dist": 0,
+          "type": "manipulation",
+          "actionId": 15,
+          "mirror": "MIRRORY",
+          "timeout": -1
+        },
+        {
+          "desc": "On avance",
+          "id": 4,
+          "positionX": 0,
+          "positionY": 3000,
+          "dist": 100,
+          "type": "deplacement",
+          "subtype": "go",
+          "actionId": -1,
+          "mirror": "MIRRORY",
+          "timeout": -1
+        },
+        {
+          "desc": "On recule",
+          "id": 5,
+          "positionX": 0,
+          "positionY": 3000,
+          "dist": -100,
+          "type": "deplacement",
+          "subtype": "go",
+          "actionId": -1,
+          "mirror": "MIRRORY",
+          "timeout": -1
+        }
+      ]
+    },
+    {
+      "desc": "Largage goldenium",
+      "id": 9,
+      "points": 24,
+      "priorite": 1,
+      "taches": [
+        {
           "desc": "Go position",
           "id": 1,
           "positionX": 1050,
@@ -2174,12 +2241,6 @@
           "timeout": -1
         }
       ]
-    },
-    {
-      "desc": "Largage goldenium",
-      "id": 9,
-      "points": 24,
-      "priorite": 1
     }
   ]
 }

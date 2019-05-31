@@ -324,9 +324,9 @@ public class Table {
 
         table.drawTable();
 //        table.computeForbiddenArea(182);
-        table.computeForbiddenArea(182);
+        table.computeForbiddenArea(195);
 
-        File f = new File("table.tbl");
+        File f = new File("table2.tbl");
 
         table.saveToFile(f.getName());
         System.out.println("Generation of the table succesfull.");

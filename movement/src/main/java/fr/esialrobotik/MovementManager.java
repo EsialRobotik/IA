@@ -47,7 +47,9 @@ public class MovementManager {
             logger.info(gotoQueue.toString());
         }
         this.asservInterface.emergencyStop();
-        this.asservInterface.stop();
+        if (!temporary) {
+            this.asservInterface.stop();
+        }
     }
 
     /**
@@ -102,6 +104,7 @@ public class MovementManager {
         } else if (step.getSubType() == Step.SubType.GO) {
             this.asservInterface.go(step.getDistance());
             if (step.getTimeout() > 0) {
+                this.asservInterface.enableLowSpeed(true);
                 try {
                     Thread.sleep(step.getTimeout());
                 } catch (InterruptedException e) {
@@ -109,6 +112,7 @@ public class MovementManager {
                 }
                 this.asservInterface.emergencyStop();
                 this.asservInterface.emergencyReset();
+                this.asservInterface.enableLowSpeed(false);
             }
         } else if (step.getSubType() == Step.SubType.GOTO) {
             this.asservInterface.goTo(new Position(step.getEndPosition().getX(),step.getEndPosition().getY()));

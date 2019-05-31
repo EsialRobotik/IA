@@ -28,7 +28,6 @@ public class ActionDescriptor {
     objectiveId = object.get("id").getAsInt();
     points = object.get("points").getAsInt();
     priority = object.get("priorite").getAsInt();
-
     for(JsonElement elt : object.get("taches").getAsJsonArray()) {
       stepList.add(new Step(elt.getAsJsonObject()));
     }

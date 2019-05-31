@@ -52,6 +52,7 @@ public class Main {
 
         //End of the game. Let's wait a few more seconds (for funny action and to be sure) and let's return
         Thread.sleep(9000);
+        LoggerFactory.shutdown();
     }
 
 

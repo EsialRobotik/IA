@@ -46,16 +46,16 @@ public class UltraSoundManager {
         this.detectionInterface = detectionInterface;
         this.table = table;
 
-        this.posFrontLeft = new Position(125, 105, 0);
-        this.posFront = new Position(125, -0, 0);
-        this.posFrontRight = new Position(125, -105, 0);
+        this.posFrontLeft = new Position(120, 105, Math.toRadians(20));
+        this.posFront = new Position(125, 0, 0);
+        this.posFrontRight = new Position(120, -105,Math.toRadians(-20));
         this.posBack = new Position(-125, 0, Math.PI);
 
         this.thresholdMap = new HashMap<>();
         this.thresholdMap.put("FrontLeft", 300);
         this.thresholdMap.put("Front", 300);
-        this.thresholdMap.put("FrontRight", 300);
-        this.thresholdMap.put("Back", 300);
+        this.thresholdMap.put("FrontRight", 320);
+        this.thresholdMap.put("Back", 150);
     }
 
     private static Position getObstaclePosition(Position posRobot, Position posDetector, long distance) {
